@@ -19,11 +19,11 @@ NickName: 'MaoLongT'
 webtitle: '被水淹死的鱼'
 bio: '新浪微博@被水淹死的鱼'
 about: true
-aboutyou: '自言语言处理专业的小学生'
+aboutyou: '自然语言处理专业的小学生。从事过一阵子软件开发，现在读研中。'
 portraits: '/assets/profile.jpeg' # your portraits image file path
 
 # SNS
-SNS: true
+SNS: false
 SNS-icon: #['Facebook', 'weibo', 'qq', 'github', 'Dribbble', 'Twitter', 'instagram', 'weixin', 'Codepen']
   mail: '18565663062@163.com'
   weixin: '' # 你的微信二维码存放的地址
@@ -55,7 +55,7 @@ kramdown:
 # 代码高亮 使用rouge
 highlighter: rouge
 # 代码高亮主题使用pygments主题: autumn\ default\ emacs\ friendly\ manni\ murphy\ pastie\ perldoc\ tango 任选一个你喜欢的主题名称填在下面的单引号中
-pygmentsTheme: 'default'
+pygmentsTheme: 'pastie'
 
 # 友情链接
 friends:
