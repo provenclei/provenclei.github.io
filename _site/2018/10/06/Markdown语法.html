@@ -1,0 +1,638 @@
+<!-- 博文的布局-Layout -->
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 引入head标签 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-sclable=0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="description" content="个人技术微博" />
+<meta name="keywords" content="自然语言处理, 模式识别，机器学习" />
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/media.css">
+<link rel="stylesheet" href="/assets/css/animate.min.css">
+<link rel="stylesheet" href="/assets/css/pygments/pygments_pastie.css">
+<link rel="stylesheet" href="/assets/css/github-markdown.css">
+<!-- SNS-icon -->
+<script src="//at.alicdn.com/t/font_856428_y9z6nq7zf5.js"></script>
+<!-- share.css -->
+<link rel="stylesheet" href="/assets/css/share.min.css">
+<!-- font -->
+<link rel="stylesheet" href="/assets/css/font.css">
+<!-- <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Pacifico|Ubuntu|Roboto+Mono|Source+Sans+Pro" rel="stylesheet"> -->
+
+<!-- Favicon -->
+<link href="/assets/profile.jpeg" rel="shortcut icon" />
+<link href="/assets/profile.jpeg" rel="apple-touch-icon-precomposed" />
+<!-- Android Lolipop Theme Color -->
+<!-- <meta name="theme-color" content="#1464FB"> -->
+<title>Markdown语法</title>
+<!-- 百度统计 -->
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<!-- 谷歌分析 -->
+
+
+<!-- Android Lolipop Theme Color -->
+<meta name="theme-color" content=" rgb(255,210,32) ">
+</head>
+<body>
+
+<!-- 顶部锚点 -->
+<a id="htmlup" name="htmlup"></a>
+<!-- 引入博文顶部选项 -->
+
+<header id="post-header" style="background-color:rgb(255,210,32);">
+  <div class="top-center">
+      <div class="logo">
+          <a href="/" title="my awesome webtitle" style="color: white;">被水淹死的鱼</a>
+      </div>
+      <nav class="top-nav">
+          <ul>
+              
+                <li><a href="/" style="color: white;">首页</a></li>
+              
+                <li><a href="/tags.html" style="color: white;">标签</a></li>
+              
+                <li><a href="/timeline.html" style="color: white;">时间线</a></li>
+              
+                <li><a href="/about.html" style="color: white;">关于博主</a></li>
+              
+                <li><a href="/friendLink.html" style="color: white;">友情链接</a></li>
+              
+          </ul>
+      </nav>
+      <div id="top-boot">
+        <a href="javascript:;" id="boot1" style="display:block;" onclick="document.getElementById('boot-area').style.display='block';document.getElementById('boot1').style.display='none';document.getElementById('boot2').style.display='block';"><img src="/assets/boot_white.png" alt=""></a>
+        <a href="javascript:;" id="boot2" style="display: none;" onclick="document.getElementById('boot-area').style.display='none';document.getElementById('boot1').style.display='block';document.getElementById('boot2').style.display='none';"><img src="/assets/boot_white.png" alt=""></a>
+      </div>
+  </div>
+
+</header>
+
+
+<!-- 引入移动下拉选项 -->
+<div id="boot-area">
+    <ul>
+        
+          <a href="/"><li>首页</li></a>
+        
+          <a href="/tags.html"><li>标签</li></a>
+        
+          <a href="/timeline.html"><li>时间线</li></a>
+        
+          <a href="/about.html"><li>关于博主</li></a>
+        
+          <a href="/friendLink.html"><li>友情链接</li></a>
+        
+    </ul>
+</div>
+
+<!-- 引入博文顶部样式 -->
+<!-- 版本一 垃圾 -->
+<!-- <div class="wow fadeIn top" data-wow-duration="3.5s" >
+    <span class="wow fadeInUp" data-wow-delay="0.2s">Markdown语法</span>
+    <span class="wow fadeInUp" data-wow-delay="0.4s"></span>
+    <span class="wow fadeInUp" data-wow-delay="0.4s"></span>
+    <span class="wow fadeInUp" data-wow-delay="0.6s">作者&nbsp;&nbsp;|&nbsp;&nbsp;被水淹死的鱼</span>
+</div> -->
+
+<!-- 版本二 可切换页面 -->
+
+<div class="post-top" style="background-color:rgb(255,210,32);">
+  <!-- 页面宽度大于800px -->
+  <div class="left-area">
+    
+      <a href="/2018/10/08/KNN.html" class="btn bounceInLeft animated" onmouseover="showLeft();this.style.color='rgb(255,210,32)';" onmouseout="goneLeft();this.style.color='rgba(0,0,0,.2)';"><</a>
+      <div id="left-tab" style="display:none;"><span class="left-san"></span><span class="left-main" style="color:rgb(255,210,32);"><sapn class="main">KNN</sapn></span></div>
+    
+  </div>
+  <div class="post-titlearea">
+    <span class="wow fadeInUp" data-wow-delay="0.2s">Markdown语法</span>
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.4s"></span> -->
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.4s"></span> -->
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.6s">作者&nbsp;&nbsp;|&nbsp;&nbsp;被水淹死的鱼</span> -->
+  </div>
+  <div class="right-area">
+    
+      <a href="/2018/05/17/welcome-to-jekyll.html" class="btn bounceInRight self-animated" onmouseover="showRight();this.style.color='rgb(255,210,32)';" onmouseout="goneRight();this.style.color='rgba(0,0,0,.2)';">></a>
+      <div id="right-tab" style="display:none;"><span class="right-san"></span><span class="right-main" style="color:rgb(255,210,32);"><sapn class="main">Welcome to Jekyll!</sapn></span></div>
+    
+  </div>
+
+  <!-- 页面宽度小于800px -->
+  <div class="post-changearea">
+    
+      <a href="/2018/10/08/KNN.html" class="leftchange" style="border-right: 1px solid rgb(255,210,32);border-bottom: 2px solid rgb(255,210,32);"><span>上一篇<br><br>KNN</span></a>
+    
+    
+      <a href="/2018/05/17/welcome-to-jekyll.html" class="rightchange" style="border-left: 1px solid rgb(255,210,32);border-bottom: 2px solid rgb(255,210,32);"><span>下一篇<br><br>Welcome to Jekyll!</span></a>
+    
+  </div>
+</div>
+
+
+<div class="markdown-body fadeInUp animated">
+
+  
+
+  <!-- 文章内容 -->
+  <h1 id="markdown-语法和-mweb-写作使用说明">Markdown 语法和 MWeb 写作使用说明</h1>
+
+<h2 id="markdown-的设计哲学">Markdown 的设计哲学</h2>
+
+<blockquote>
+  <p>Markdown 的目標是實現「易讀易寫」。
+不過最需要強調的便是它的可讀性。一份使用 Markdown 格式撰寫的文件應該可以直接以純文字發佈，並且看起來不會像是由許多標籤或是格式指令所構成。
+Markdown 的語法有個主要的目的：用來作為一種網路內容的<em>寫作</em>用語言。</p>
+</blockquote>
+
+<!-- more -->
+
+<h2 id="本文约定">本文约定</h2>
+
+<p>如果有写 <code class="highlighter-rouge">效果如下：</code>， 在 MWeb 编辑状态下只有用 <code class="highlighter-rouge">CMD + R</code> 预览才可以看效果。</p>
+
+<h2 id="标题">标题</h2>
+
+<p>Markdown 语法：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 第一级标题 `&lt;h1&gt;` 
+## 第二级标题 `&lt;h2&gt;` 
+###### 第六级标题 `&lt;h6&gt;` 
+</code></pre></div></div>
+
+<p>效果如下：</p>
+
+<h1 id="第一级标题-h1">第一级标题 <code class="highlighter-rouge">&lt;h1&gt;</code></h1>
+<h2 id="第二级标题-h2">第二级标题 <code class="highlighter-rouge">&lt;h2&gt;</code></h2>
+<h6 id="第六级标题-h6">第六级标题 <code class="highlighter-rouge">&lt;h6&gt;</code></h6>
+
+<h2 id="强调">强调</h2>
+
+<p>Markdown 语法：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>*这些文字会生成`&lt;em&gt;`*
+_这些文字会生成`&lt;u&gt;`_
+
+**这些文字会生成`&lt;strong&gt;`**
+__这些文字会生成`&lt;strong&gt;`__
+</code></pre></div></div>
+
+<p>在 MWeb 中的快捷键为： <code class="highlighter-rouge">CMD + U</code>、<code class="highlighter-rouge">CMD + I</code>、<code class="highlighter-rouge">CMD + B</code>
+效果如下：</p>
+
+<p><em>这些文字会生成<code class="highlighter-rouge">&lt;em&gt;</code></em>
+<em>这些文字会生成<code class="highlighter-rouge">&lt;u&gt;</code></em></p>
+
+<p><strong>这些文字会生成<code class="highlighter-rouge">&lt;strong&gt;</code></strong>
+<strong>这些文字会生成<code class="highlighter-rouge">&lt;strong&gt;</code></strong></p>
+
+<h2 id="换行">换行</h2>
+
+<p>四个及以上空格加回车。
+如果不想打这么多空格，只要回车就为换行，请勾选：<code class="highlighter-rouge">Preferences</code> - <code class="highlighter-rouge">Themes</code> - <code class="highlighter-rouge">Translate newlines to &lt;br&gt; tags</code></p>
+
+<h2 id="列表">列表</h2>
+
+<h3 id="无序列表">无序列表</h3>
+
+<p>Markdown 语法：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* 项目一 无序列表 `* + 空格键`
+* 项目二
+	* 项目二的子项目一 无序列表 `TAB + * + 空格键`
+	* 项目二的子项目二
+</code></pre></div></div>
+
+<p>在 MWeb 中的快捷键为： <code class="highlighter-rouge">Option + U</code>
+效果如下：</p>
+
+<ul>
+  <li>项目一 无序列表 <code class="highlighter-rouge">* + 空格键</code></li>
+  <li>项目二
+    <ul>
+      <li>项目二的子项目一 无序列表 <code class="highlighter-rouge">TAB + * + 空格键</code></li>
+      <li>项目二的子项目二</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="有序列表">有序列表</h3>
+
+<p>Markdown 语法：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 项目一 有序列表 `数字 + . + 空格键`
+2. 项目二 
+3. 项目三
+	1. 项目三的子项目一 有序列表 `TAB + 数字 + . + 空格键`
+	2. 项目三的子项目二
+</code></pre></div></div>
+
+<p>效果如下：</p>
+
+<ol>
+  <li>项目一 有序列表 <code class="highlighter-rouge">数字 + . + 空格键</code></li>
+  <li>项目二</li>
+  <li>项目三
+    <ol>
+      <li>项目三的子项目一 有序列表 <code class="highlighter-rouge">TAB + 数字 + . + 空格键</code></li>
+      <li>项目三的子项目二</li>
+    </ol>
+  </li>
+</ol>
+
+<h3 id="任务列表task-lists">任务列表（Task lists）</h3>
+
+<p>Markdown 语法：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- [ ] 任务一 未做任务 `- + 空格 + [ ]`
+- [x] 任务二 已做任务 `- + 空格 + [x]`
+</code></pre></div></div>
+
+<p>效果如下：</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />任务一 未做任务 <code class="highlighter-rouge">- + 空格 + [ ]</code></li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />任务二 已做任务 <code class="highlighter-rouge">- + 空格 + [x]</code></li>
+</ul>
+
+<h2 id="图片">图片</h2>
+
+<p>Markdown 语法：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>![GitHub set up](http://zh.mweb.im/asset/img/set-up-git.gif)
+格式: ![Alt Text](url)
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">Control + Shift + I</code> 可插入Markdown语法。
+如果是 MWeb 的文档库中的文档，还可以用拖放图片、<code class="highlighter-rouge">CMD + V</code> 粘贴、<code class="highlighter-rouge">CMD + Option + I</code> 导入这三种方式来增加图片。
+效果如下：</p>
+
+<p><img src="http://zh.mweb.im/asset/img/set-up-git.gif" alt="GitHub set up" /></p>
+
+<h2 id="链接">链接</h2>
+
+<p>Markdown 语法：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>email &lt;example@example.com&gt;
+[GitHub](http://github.com)
+自动生成连接  &lt;http://www.github.com/&gt;
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">Control + Shift + L</code> 可插入Markdown语法。
+如果是 MWeb 的文档库中的文档，拖放或<code class="highlighter-rouge">CMD + Option + I</code> 导入非图片时，会生成连接。
+效果如下：</p>
+
+<p>Email 连接： <a href="mailto:example@example.com">example@example.com</a>
+<a href="http://github.com">连接标题Github网站</a>
+自动生成连接像： <a href="http://www.github.com/">http://www.github.com/</a> 这样</p>
+
+<h2 id="区块引用">区块引用</h2>
+
+<p>Markdown 语法：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>某某说:
+&gt; 第一行引用
+&gt; 第二行费用文字
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">CMD + Shift + B</code> 可插入Markdown语法。
+效果如下：</p>
+
+<p>某某说:</p>
+<blockquote>
+  <p>第一行引用
+第二行费用文字</p>
+</blockquote>
+
+<h2 id="行内代码">行内代码</h2>
+
+<p>Markdown 语法：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>像这样即可：`&lt;addr&gt;` `code`
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">CMD + K</code> 可插入Markdown语法。
+效果如下：</p>
+
+<p>像这样即可：<code class="highlighter-rouge">&lt;addr&gt;</code> <code class="highlighter-rouge">code</code></p>
+
+<h2 id="多行或者一段代码">多行或者一段代码</h2>
+
+<p>Markdown 语法：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```js
+function fancyAlert(arg) {
+  if(arg) {
+    $.facebox({div:'#foo'})
+  }
+
+}
+```
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">CMD + Shift + K</code> 可插入Markdown语法。
+效果如下：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">fancyAlert</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">$</span><span class="p">.</span><span class="nx">facebox</span><span class="p">({</span><span class="na">div</span><span class="p">:</span><span class="s1">'#foo'</span><span class="p">})</span>
+	<span class="p">}</span>
+	
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="顺序图或流程图">顺序图或流程图</h2>
+
+<p>Markdown 语法：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```sequence
+张三-&gt;李四: 嘿，小四儿, 写博客了没?
+Note right of 李四: 李四愣了一下，说：
+李四--&gt;张三: 忙得吐血，哪有时间写。
+```
+
+```flow
+st=&gt;start: 开始
+e=&gt;end: 结束
+op=&gt;operation: 我的操作
+cond=&gt;condition: 确认？
+
+st-&gt;op-&gt;cond
+cond(yes)-&gt;e
+cond(no)-&gt;op
+```
+</code></pre></div></div>
+
+<p>效果如下（ <code class="highlighter-rouge">Preferences</code> - <code class="highlighter-rouge">Themes</code> - <code class="highlighter-rouge">Enable sequence &amp; flow chart</code> 才会看到效果 ）：</p>
+
+<pre><code class="language-sequence">张三-&gt;李四: 嘿，小四儿, 写博客了没?
+Note right of 李四: 李四愣了一下，说：
+李四--&gt;张三: 忙得吐血，哪有时间写。
+</code></pre>
+
+<pre><code class="language-flow">st=&gt;start: 开始
+e=&gt;end: 结束
+op=&gt;operation: 我的操作
+cond=&gt;condition: 确认？
+
+st-&gt;op-&gt;cond
+cond(yes)-&gt;e
+cond(no)-&gt;op
+</code></pre>
+
+<p>更多请参考：<a href="http://bramp.github.io/js-sequence-diagrams/">http://bramp.github.io/js-sequence-diagrams/</a>, <a href="http://adrai.github.io/flowchart.js/">http://adrai.github.io/flowchart.js/</a></p>
+
+<h2 id="表格">表格</h2>
+
+<p>Markdown 语法：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>第一格表头 | 第二格表头
+--------- | -------------
+内容单元格 第一列第一格 | 内容单元格第二列第一格
+内容单元格 第一列第二格 多加文字 | 内容单元格第二列第二格
+</code></pre></div></div>
+
+<p>效果如下：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>第一格表头</th>
+      <th>第二格表头</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>内容单元格 第一列第一格</td>
+      <td>内容单元格第二列第一格</td>
+    </tr>
+    <tr>
+      <td>内容单元格 第一列第二格 多加文字</td>
+      <td>内容单元格第二列第二格</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="删除线">删除线</h2>
+
+<p>Markdown 语法：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>加删除线像这样用： ~~删除这些~~
+</code></pre></div></div>
+
+<p>效果如下：</p>
+
+<p>加删除线像这样用： <del>删除这些</del></p>
+
+<h2 id="分隔线">分隔线</h2>
+
+<p>以下三种方式都可以生成分隔线：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>***
+
+*****
+
+- - -
+</code></pre></div></div>
+
+<p>效果如下：</p>
+
+<hr />
+
+<hr />
+
+<hr />
+
+<h2 id="mathjax">MathJax</h2>
+
+<p>Markdown 语法：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>块级公式：
+$$	x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a} $$
+
+\\[ \frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} =
+1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {1+\frac{e^{-6\pi}}
+{1+\frac{e^{-8\pi}} {1+\ldots} } } } \\]
+
+行内公式： $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$
+</code></pre></div></div>
+
+<p>效果如下（<code class="highlighter-rouge">Preferences</code> - <code class="highlighter-rouge">Themes</code> - <code class="highlighter-rouge">Enable MathJax</code> 才会看到效果）：</p>
+
+<p>块级公式：
+<script type="math/tex">x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}</script></p>
+
+<p>\[ \frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} =
+1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {1+\frac{e^{-6\pi}}
+{1+\frac{e^{-8\pi}} {1+\ldots} } } } \]</p>
+
+<p>行内公式： $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$</p>
+
+<h2 id="脚注footnote">脚注（Footnote）</h2>
+
+<p>Markdown 语法：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>这是一个脚注：[^sample_footnote]
+</code></pre></div></div>
+
+<p>效果如下：</p>
+
+<p>这是一个脚注：<sup id="fnref:sample_footnote"><a href="#fn:sample_footnote" class="footnote">1</a></sup></p>
+
+<h2 id="注释和阅读更多">注释和阅读更多</h2>
+
+<!-- comment -->
+<!-- more -->
+<p>Actions-&gt;Insert Read More Comment <em>或者</em> <code class="highlighter-rouge">Command + .</code>
+<strong>注</strong> 阅读更多的功能只用在生成网站或博客时。</p>
+
+<h2 id="toc">TOC</h2>
+
+<p>Markdown 语法：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[TOC]
+</code></pre></div></div>
+
+<p>效果如下：</p>
+
+<p>[TOC]</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:sample_footnote">
+      <p>这里是脚注信息 <a href="#fnref:sample_footnote" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  <!-- 引入share模块 -->
+  
+  <div class="social-share-wrapper">
+    <div class="social-share"></div>
+  </div>
+
+
+<!-- share.js -->
+<script src="/assets/js/social-share.min.js"></script>
+<script>
+  socialShare('.social-share', {
+    sites: [
+      
+        'qq'
+        ,
+        
+      
+        'wechat'
+        ,
+        
+      
+        'weibo'
+        ,
+        
+      
+        'twitter'
+        ,
+        
+      
+        'facebook'
+        
+      
+    ],
+    wechatQrcodeTitle: "分享到微信朋友圈",
+    wechatQrcodeHelper: '期待在朋友圈见到这篇文章'
+  });
+</script>
+
+</div>
+
+<!-- 底部锚点 -->
+<a id="htmldown" name="htmldown"></a>
+<!-- 引入评论模块 -->
+
+
+
+    <section class="post-footer-item comment">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDI2OS8xMDgwNg=="></div>
+    </section>
+
+    <!-- 来必力City版安装代码 -->
+    <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+
+           if (typeof LivereTower === 'function') { return; }
+
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+    </script>
+    <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    <!-- City版安装代码已完成 -->
+
+
+
+
+
+<!-- 引入goto模块 -->
+<div class="bounceInRight animated go">
+  <a title="顶部切换页面" class="gototop" href="#htmlup" target="_self">
+    <div class="box" style="font-family:'ffad_matroregular';">
+        Top
+    </div>
+  </a>
+  <a title="底部有livere评论哦" class="gotobottom" href="#htmldown" target="_self">
+    <div class="box" style="font-family:'ffad_matroregular';">
+        Foot
+    </div>
+  </a>
+</div>
+
+<!-- 引入页面底部模块 -->
+<footer id="bottom">
+  <br>
+  <span>被水淹死的鱼 ©
+  
+  
+  2018
+  <br>
+  Powered by <a href="https://www.jekyll.com.cn/">Jekyll</a> | <a href="https://github.com/xukimseven/HardCandy-Jekyll">HardCandy-Jekyll</a></span>
+</footer>
+
+
+<!-- 引用wow.js的动画效果 -->
+<script src="/assets/js/wow.js"></script>
+<script>
+    var wow = new WOW({
+        boxClass: 'wow',
+        animateClass: 'animated',
+        // offset: 600,
+        mobile: true,
+        live: true
+    });
+    wow.init();
+</script>
+<!-- 页面刷新回到顶部 -->
+<script>
+    window.onbeforeunload = function(){
+        //刷新后页面自动回到顶部
+        document.documentElement.scrollTop = 0;  //ie下
+        document.body.scrollTop = 0;  //非ie
+    }
+</script>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>
