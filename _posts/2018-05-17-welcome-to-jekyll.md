@@ -2,7 +2,7 @@
 layout: post
 title:  "Welcome to Jekyll!"
 date:   2018-05-17 14:05:21 +0800
-tags: jekyll update
+tags: jekyll
 color: rgb(255,90,90)
 cover: '../assets/test.png'
 subtitle: 'Welcome to Jekyll!'
@@ -26,3 +26,5 @@ Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most ou
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll
 [jekyll-talk]: https://talk.jekyllrb.com/
+
+

@@ -43,7 +43,7 @@ var _hmt = _hmt || [];
 
 
 <!-- Android Lolipop Theme Color -->
-<meta name="theme-color" content=" rgb(255,210,32) ">
+<meta name="theme-color" content=" purple ">
 </head>
 <body>
 
@@ -51,7 +51,7 @@ var _hmt = _hmt || [];
 <a id="htmlup" name="htmlup"></a>
 <!-- 引入博文顶部选项 -->
 
-<header id="post-header" style="background-color:rgb(255,210,32);">
+<header id="post-header" style="background-color:purple;">
   <div class="top-center">
       <div class="logo">
           <a href="/" title="my awesome webtitle" style="color: white;">被水淹死的鱼</a>
@@ -108,12 +108,12 @@ var _hmt = _hmt || [];
 
 <!-- 版本二 可切换页面 -->
 
-<div class="post-top" style="background-color:rgb(255,210,32);">
+<div class="post-top" style="background-color:purple;">
   <!-- 页面宽度大于800px -->
   <div class="left-area">
     
-      <a href="javascript:;" class="btn bounceInLeft animated" onmouseover="showLeft();this.style.color='rgb(255,210,32)';" onmouseout="goneLeft();this.style.color='rgba(0,0,0,.2)';"><</a>
-      <div id="left-tab" style="display:none;"><span class="left-san"></span><span class="left-main" style="color:rgb(255,210,32);"><sapn class="main">没有上一页咯</sapn></span></div>
+      <a href="javascript:;" class="btn bounceInLeft animated" onmouseover="showLeft();this.style.color='purple';" onmouseout="goneLeft();this.style.color='rgba(0,0,0,.2)';"><</a>
+      <div id="left-tab" style="display:none;"><span class="left-san"></span><span class="left-main" style="color:purple;"><sapn class="main">没有上一页咯</sapn></span></div>
     
   </div>
   <div class="post-titlearea">
@@ -124,18 +124,18 @@ var _hmt = _hmt || [];
   </div>
   <div class="right-area">
     
-      <a href="/2018/10/06/Markdown%E8%AF%AD%E6%B3%95.html" class="btn bounceInRight self-animated" onmouseover="showRight();this.style.color='rgb(255,210,32)';" onmouseout="goneRight();this.style.color='rgba(0,0,0,.2)';">></a>
-      <div id="right-tab" style="display:none;"><span class="right-san"></span><span class="right-main" style="color:rgb(255,210,32);"><sapn class="main">Markdown语法</sapn></span></div>
+      <a href="/2018/10/06/Markdown%E8%AF%AD%E6%B3%95.html" class="btn bounceInRight self-animated" onmouseover="showRight();this.style.color='purple';" onmouseout="goneRight();this.style.color='rgba(0,0,0,.2)';">></a>
+      <div id="right-tab" style="display:none;"><span class="right-san"></span><span class="right-main" style="color:purple;"><sapn class="main">Markdown语法</sapn></span></div>
     
   </div>
 
   <!-- 页面宽度小于800px -->
   <div class="post-changearea">
     
-      <a href="javascript:;" class="leftchange" style="border-right: 1px solid rgb(255,210,32);border-bottom: 2px solid rgb(255,210,32);"><span><br>没有上一篇咯</span></a>
+      <a href="javascript:;" class="leftchange" style="border-right: 1px solid purple;border-bottom: 2px solid purple;"><span><br>没有上一篇咯</span></a>
     
     
-      <a href="/2018/10/06/Markdown%E8%AF%AD%E6%B3%95.html" class="rightchange" style="border-left: 1px solid rgb(255,210,32);border-bottom: 2px solid rgb(255,210,32);"><span>下一篇<br><br>Markdown语法</span></a>
+      <a href="/2018/10/06/Markdown%E8%AF%AD%E6%B3%95.html" class="rightchange" style="border-left: 1px solid purple;border-bottom: 2px solid purple;"><span>下一篇<br><br>Markdown语法</span></a>
     
   </div>
 </div>
@@ -154,11 +154,11 @@ var _hmt = _hmt || [];
 
 <h2 id="knn-算法决策过程">KNN 算法决策过程</h2>
 
-<p><img src="/assets/knn_1.png" style="zoom:50%" /></p>
+<p><img src="/assets/knn/knn_1.png" style="zoom:50%" /></p>
 
-<p>绿色圆要被决定赋予哪个类，是红色三角形还是蓝色四方形?  <br />
-如果 K=3，由于红色三角形所占比例为 2/3，绿色圆将被赋予红色三角形那个类。  <br />
-如果 K=5，由于蓝色四方形比例为 3/5，绿色圆被赋予蓝色四方类。</p>
+<p>四角星要被决定赋予哪个类，是白色圆圈还是黑色圆圈?  <br />
+如果 K=3，由于黑色圆圈所占比例为 2/3，四角星将被赋予黑色圆圈那个类。  <br />
+如果 K=7，由于黑色圈圈比例为 5/7，四角星被赋予黑色与圆圈类。</p>
 
 <p>K 最近邻(k-Nearest Neighbor，KNN)分类算法，是一个理论上比较成熟的方法，也是最简单的机器学习算法之一。该方法的<strong>思路</strong>是：如果一个样本在特征空间中的 k 个最相似（即特征空间中最邻近）的样本中的大多数属于某一个类别，则该样本也属于这个类别。KNN 算法中，所选择的邻居都是已经正确分类的对象。该方法在定类决策上只依据最邻近的一个或者几个样本的类别来决定待分样本所属的类别。KNN 方法虽然从原理上也依赖于极限定理，但在类别决策时，只与极少量的相邻样本有关。由于 KNN 方法主要靠周围有限的邻近的样本，而不是靠判别类域的方法来确定所属类别的，因此对于类域的交叉或重叠较多的待分样本集来说，KNN 方法较其他方法更为适合。KNN 算法不仅可以用于<strong>分类</strong>，还可以用于<strong>回归</strong>。通过找出一个样本的 k 个最近邻居， 将这些邻居的属性的平均值赋给该样本，就可以得到该样本的属性。更有用的方法是将不同距离的邻居对该样本产生的影响给予不同的<strong>权值(weight)</strong>，如权值与距离成正比。</p>
 
@@ -170,7 +170,7 @@ var _hmt = _hmt || [];
 
 <h2 id="knn-中遇到的问题">KNN 中遇到的问题</h2>
 
-<h3 id="one-question">One Question</h3>
+<h3 id="two-questions">Two Questions</h3>
 <p><strong><em>K has to an odd number?</em></strong></p>
 
 <blockquote>
@@ -184,6 +184,30 @@ var _hmt = _hmt || [];
   <p>KNN for <strong>regression(prediction)</strong>:
 求 x 对应点处的 y 值，只需将 x 附近取 K 个点，求 K 个点的 y 的<strong>平均值</strong>即可。另外取K个均值时，由于每个点的贡献不同，可取相应的<strong>权重</strong>。</p>
 </blockquote>
+
+<p><strong><em>What if K becomes very large?</em></strong></p>
+<blockquote>
+  <p><img src="/assets/knn/knn_7.png" alt="1" />
+In two dimensions, the nearest-neighbor algorithm leads to a partitioning of the input space into Voronoi cells, each label led by the category of the training point it contains. In three dimensions, the cells are three-dimensional, and the decision boundary resembles the surface of a crystal. 
+<img src="/assets/knn/knn_8.png" alt="1" /></p>
+</blockquote>
+
+<h3 id="knn-for-regression-prediction">KNN for Regression (Prediction)</h3>
+
+<p><img src="/assets/knn/knn_9.png" alt="1" /></p>
+
+<blockquote>
+  <ol>
+    <li>Assume a value for the number of nearest neighbors K and a prediction point x0.</li>
+    <li>KNN identifies the training observations No closest to the prediction point x0.</li>
+    <li>KNN estimates f (x0) using the average of all the responses in N0</li>
+  </ol>
+</blockquote>
+
+<p><img src="/assets/knn/knn_10.png" alt="1" /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Q: Any better non-parametric model, do we need to adjust the weights? 
+</code></pre></div></div>
 
 <h3 id="度量问题">度量问题</h3>
 
@@ -202,34 +226,35 @@ var _hmt = _hmt || [];
 <ul>
   <li>
     <p>Euclidean Distance（欧几里得距离）
-<img src="/assets/knn_2.png" alt="1" /></p>
+<img src="/assets/knn/knn_2.png" alt="1" /></p>
   </li>
   <li>
     <p>Manhattan Distance（曼哈顿距离）
-<img src="/assets/knn_3.png" alt="1" /></p>
+<img src="/assets/knn/knn_3.png" alt="1" /></p>
   </li>
   <li>
     <p>Minkowski Distance（闵可夫斯基距离)
-<img src="/assets/knn_4.png" alt="1" /></p>
+<img src="/assets/knn/knn_4.png" alt="1" /></p>
   </li>
   <li>
     <p>Hamming Distance（汉明距离）
-<img src="/assets/knn_6.png" alt="1" /></p>
+<img src="/assets/knn/knn_6.png" alt="1" /></p>
   </li>
   <li>
     <p>Cosine Distance
-<img src="/assets/knn_5.png" alt="1" /></p>
+<img src="/assets/knn/knn_5.png" alt="1" /></p>
   </li>
 </ul>
 
 <h4 id="edited-measure">Edited Measure</h4>
 
 <blockquote>
-  <p>To measure the similarity between two object, transform one into the other, and measure how much effect it took. The measure of effort becomes the distance measure.</p>
+  <p>To measure the similarity between two objects, transform one into the other, and measure how much effort it took. The measure of effort becomes the distance measure.</p>
 </blockquote>
 
 <blockquote>
-  <p>给定固定特征，看样本在特征上的表现，关注是否相同。</p>
+  <p>给定固定特征，看样本在特征上的表现，关注是否相同。
+<img src="/assets/knn/knn_11.png" alt="1" /></p>
 </blockquote>
 
 
