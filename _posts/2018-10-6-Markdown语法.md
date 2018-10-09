@@ -5,7 +5,7 @@ date: 2018-10-6
 author: 被水淹死的鱼
 color: rgb(255,210,32)
 cover: 'http://pic2.16pic.com/00/51/75/16pic_5175214_b.jpg'
-tags: 博客 工具
+tags: 工具
 ---
 # Markdown 语法和 MWeb 写作使用说明
 

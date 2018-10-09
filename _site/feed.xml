@@ -1,44 +1,44 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-08T22:37:38+08:00</updated><id>http://localhost:4000/</id><title type="html">被水淹死的鱼</title><subtitle>个人技术微博</subtitle><author><name>true</name></author><entry><title type="html">KNN</title><link href="http://localhost:4000/2018/10/08/KNN.html" rel="alternate" type="text/html" title="KNN" /><published>2018-10-08T00:00:00+08:00</published><updated>2018-10-08T00:00:00+08:00</updated><id>http://localhost:4000/2018/10/08/KNN</id><content type="html" xml:base="http://localhost:4000/2018/10/08/KNN.html">&lt;h1 id=&quot;k-nearest-neighber-algorithm&quot;&gt;K-Nearest Neighber algorithm&lt;/h1&gt;
-
-&lt;p&gt;[TOC]&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-09T10:21:42+08:00</updated><id>http://localhost:4000/</id><title type="html">被水淹死的鱼</title><subtitle>个人技术微博</subtitle><author><name>true</name></author><entry><title type="html">Non-parameter model: KNN</title><link href="http://localhost:4000/2018/10/08/KNN.html" rel="alternate" type="text/html" title="Non-parameter model: KNN" /><published>2018-10-08T00:00:00+08:00</published><updated>2018-10-08T00:00:00+08:00</updated><id>http://localhost:4000/2018/10/08/KNN</id><content type="html" xml:base="http://localhost:4000/2018/10/08/KNN.html">&lt;h1 id=&quot;k-nearest-neighber-algorithm&quot;&gt;K-Nearest Neighber algorithm&lt;/h1&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;KNN is a non-parameteric model used for classification and regression.The input considts of the K closest training examples in the feature space.&lt;/p&gt;
+  &lt;p&gt;KNN is a non-parameteric model used for classification and regression. The input considts of the K closest training examples in the feature space.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h2 id=&quot;knn-算法决策过程&quot;&gt;KNN 算法决策过程&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/knn_1.png&quot; alt=&quot;1&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/knn_1.png&quot; style=&quot;zoom:50%&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;绿色圆要被决定赋予哪个类，是红色三角形还是蓝色四方形?
-如果 K=3，由于红色三角形所占比例为 2/3，绿色圆将被赋予红色三角形那个类，
+&lt;p&gt;绿色圆要被决定赋予哪个类，是红色三角形还是蓝色四方形?  &lt;br /&gt;
+如果 K=3，由于红色三角形所占比例为 2/3，绿色圆将被赋予红色三角形那个类。  &lt;br /&gt;
 如果 K=5，由于蓝色四方形比例为 3/5，绿色圆被赋予蓝色四方类。&lt;/p&gt;
 
-&lt;p&gt;K 最近邻(k-Nearest Neighbor，KNN)分类算法，是一个理论上比较成熟的方法，也是最简单的机器学习算法之一。该方法的思路是：如果一个样本在特征空间中的 k 个最相似（即特征空间中最邻近）的样本中的大多数属于某一个类别，则该样本也属于这个类别。KNN 算法中，所选择的邻居都是已经正确分类的对象。该方法在定类决策上只依据最邻近的一个或者几个样本的类别来决定待分样本所属的类别。KNN 方法虽然从原理上也依赖于极限定理，但在类别决策时，只与极少量的相邻样本有关。由于 KNN 方法主要靠周围有限的邻近的样本，而不是靠判别类域的方法来确定所属类别的，因此对于类域的交叉或重叠较多的待分样本集来说，KNN 方法较其他方法更为适合。KNN 算法不仅可以用于分类，还可以用于回归。通过找出一个样本的 k 个最近邻居， 将这些邻居的属性的平均值赋给该样本，就可以得到该样本的属性。更有用的方法是将不同距离的邻居对该样本产生的影响给予不同的权值(weight)，如权值与距离成正比。&lt;/p&gt;
+&lt;p&gt;K 最近邻(k-Nearest Neighbor，KNN)分类算法，是一个理论上比较成熟的方法，也是最简单的机器学习算法之一。该方法的&lt;strong&gt;思路&lt;/strong&gt;是：如果一个样本在特征空间中的 k 个最相似（即特征空间中最邻近）的样本中的大多数属于某一个类别，则该样本也属于这个类别。KNN 算法中，所选择的邻居都是已经正确分类的对象。该方法在定类决策上只依据最邻近的一个或者几个样本的类别来决定待分样本所属的类别。KNN 方法虽然从原理上也依赖于极限定理，但在类别决策时，只与极少量的相邻样本有关。由于 KNN 方法主要靠周围有限的邻近的样本，而不是靠判别类域的方法来确定所属类别的，因此对于类域的交叉或重叠较多的待分样本集来说，KNN 方法较其他方法更为适合。KNN 算法不仅可以用于&lt;strong&gt;分类&lt;/strong&gt;，还可以用于&lt;strong&gt;回归&lt;/strong&gt;。通过找出一个样本的 k 个最近邻居， 将这些邻居的属性的平均值赋给该样本，就可以得到该样本的属性。更有用的方法是将不同距离的邻居对该样本产生的影响给予不同的&lt;strong&gt;权值(weight)&lt;/strong&gt;，如权值与距离成正比。&lt;/p&gt;
 
 &lt;h2 id=&quot;knn-的不足&quot;&gt;KNN 的不足&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;该算法在分类时有个主要的不足是，当样本不平衡时，如一个类的样本容量很大，而其他类样本容量很小时，有可能导致当输入一个新样本时，该样本的 K 个邻居中大容量类的样本占多数。因此可以采用权值的方法(和该样本距离小的邻居权值大)来改进。&lt;/li&gt;
-  &lt;li&gt;该方法的另一个不足之处是计算量较大，因为对每一个待分类的文本都要计算它到全体已知样本的距离，才能求得它的 K 个最近邻点。目前常用的解决方法是事先对已知样本点进行剪辑，事先去除对分类作用不大的样本。该算法比较适用于样本容量比较大的类域的自动分类，而那 些样本容量较小的类域采用这种算法比较容易产生误分。&lt;/li&gt;
+  &lt;li&gt;该算法在分类时有个主要的不足是，当&lt;strong&gt;样本不平衡&lt;/strong&gt;时，如一个类的样本容量很大，而其他类样本容量很小时，有可能导致当输入一个新样本时，该样本的 K 个邻居中大容量类的样本占多数。因此可以采用权值的方法(和该样本距离小的邻居权值大)来改进。&lt;/li&gt;
+  &lt;li&gt;该方法的另一个不足之处是&lt;strong&gt;计算量较大&lt;/strong&gt;，因为对每一个待分类的文本都要计算它到全体已知样本的距离，才能求得它的 K 个最近邻点。目前常用的解决方法是事先对已知样本点进行剪辑，事先去除对分类作用不大的样本。该算法比较适用于样本容量比较大的类域的自动分类，而那 些样本容量较小的类域采用这种算法比较容易产生误分。&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;knn-中遇到的问题&quot;&gt;KNN 中遇到的问题&lt;/h2&gt;
+
 &lt;h3 id=&quot;one-question&quot;&gt;One Question&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;K has to an odd number?&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;KNN for classification:
-如果K为偶数，出现的两类别相同，可以根据距离计算离得近的类别，从而进行分类。
-如果k为∞时，只需要看两类的个数。
-如果k为1时，过拟合。&lt;/p&gt;
+  &lt;p&gt;KNN for &lt;strong&gt;classification&lt;/strong&gt;:
+如果 K 为&lt;strong&gt;偶数&lt;/strong&gt;，出现的两类别相同，可以根据距离计算离得近的类别，从而进行分类。
+如果 k 为 &lt;strong&gt;∞&lt;/strong&gt; 时，只需要看两类的个数。
+如果 k 为 &lt;strong&gt;1&lt;/strong&gt; 时，过拟合。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;KNN for regression(prediction):
-求x对应点处的y值，只需将x附近取K个点，求K个点的y的平均值即可。另外取K个均值时，由于每个点的贡献不同，可取相应的权重。&lt;/p&gt;
+  &lt;p&gt;KNN for &lt;strong&gt;regression(prediction)&lt;/strong&gt;:
+求 x 对应点处的 y 值，只需将 x 附近取 K 个点，求 K 个点的 y 的&lt;strong&gt;平均值&lt;/strong&gt;即可。另外取K个均值时，由于每个点的贡献不同，可取相应的&lt;strong&gt;权重&lt;/strong&gt;。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h3 id=&quot;度量问题&quot;&gt;度量问题&lt;/h3&gt;
+
 &lt;h4 id=&quot;distance-measure&quot;&gt;Distance Measure&lt;/h4&gt;
 
 &lt;p&gt;关于距离的度量，两点 A，B 之间的距离d，应该有如下性质：&lt;/p&gt;
@@ -75,9 +75,13 @@
 &lt;/ul&gt;
 
 &lt;h4 id=&quot;edited-measure&quot;&gt;Edited Measure&lt;/h4&gt;
+
 &lt;blockquote&gt;
-  &lt;p&gt;To measure the similarity between two object, transform one into the other, and measure how much effect it took. The measure of effort becomes the distance measure.
-给定固定特征，看样本在特征上的表现，关注是否相同。&lt;/p&gt;
+  &lt;p&gt;To measure the similarity between two object, transform one into the other, and measure how much effect it took. The measure of effort becomes the distance measure.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;给定固定特征，看样本在特征上的表现，关注是否相同。&lt;/p&gt;
 &lt;/blockquote&gt;</content><author><name>被水淹死的鱼</name></author><category term="机器学习" /><category term="算法" /><summary type="html">K-Nearest Neighber algorithm</summary></entry><entry><title type="html">Markdown语法</title><link href="http://localhost:4000/2018/10/06/Markdown%E8%AF%AD%E6%B3%95.html" rel="alternate" type="text/html" title="Markdown语法" /><published>2018-10-06T00:00:00+08:00</published><updated>2018-10-06T00:00:00+08:00</updated><id>http://localhost:4000/2018/10/06/Markdown%E8%AF%AD%E6%B3%95</id><content type="html" xml:base="http://localhost:4000/2018/10/06/Markdown%E8%AF%AD%E6%B3%95.html">&lt;h1 id=&quot;markdown-语法和-mweb-写作使用说明&quot;&gt;Markdown 语法和 MWeb 写作使用说明&lt;/h1&gt;
 
 &lt;h2 id=&quot;markdown-的设计哲学&quot;&gt;Markdown 的设计哲学&lt;/h2&gt;
@@ -446,7 +450,7 @@ $$	x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a} $$
       &lt;p&gt;这里是脚注信息 &lt;a href=&quot;#fnref:sample_footnote&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>被水淹死的鱼</name></author><category term="博客" /><category term="工具" /><summary type="html">Markdown 语法和 MWeb 写作使用说明</summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/2018/05/17/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2018-05-17T14:05:21+08:00</published><updated>2018-05-17T14:05:21+08:00</updated><id>http://localhost:4000/2018/05/17/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/2018/05/17/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+&lt;/div&gt;</content><author><name>被水淹死的鱼</name></author><category term="工具" /><summary type="html">Markdown 语法和 MWeb 写作使用说明</summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/2018/05/17/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2018-05-17T14:05:21+08:00</published><updated>2018-05-17T14:05:21+08:00</updated><id>http://localhost:4000/2018/05/17/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/2018/05/17/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
 
 &lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
 
