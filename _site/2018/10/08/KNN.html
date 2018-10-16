@@ -112,8 +112,8 @@ var _hmt = _hmt || [];
   <!-- 页面宽度大于800px -->
   <div class="left-area">
     
-      <a href="javascript:;" class="btn bounceInLeft animated" onmouseover="showLeft();this.style.color='purple';" onmouseout="goneLeft();this.style.color='rgba(0,0,0,.2)';"><</a>
-      <div id="left-tab" style="display:none;"><span class="left-san"></span><span class="left-main" style="color:purple;"><sapn class="main">没有上一页咯</sapn></span></div>
+      <a href="/2018/10/15/Naive-Bayes.html" class="btn bounceInLeft animated" onmouseover="showLeft();this.style.color='purple';" onmouseout="goneLeft();this.style.color='rgba(0,0,0,.2)';"><</a>
+      <div id="left-tab" style="display:none;"><span class="left-san"></span><span class="left-main" style="color:purple;"><sapn class="main">Non-parameter model: Naive Bayes</sapn></span></div>
     
   </div>
   <div class="post-titlearea">
@@ -132,7 +132,7 @@ var _hmt = _hmt || [];
   <!-- 页面宽度小于800px -->
   <div class="post-changearea">
     
-      <a href="javascript:;" class="leftchange" style="border-right: 1px solid purple;border-bottom: 2px solid purple;"><span><br>没有上一篇咯</span></a>
+      <a href="/2018/10/15/Naive-Bayes.html" class="leftchange" style="border-right: 1px solid purple;border-bottom: 2px solid purple;"><span>上一篇<br><br>Non-parameter model: Naive Bayes</span></a>
     
     
       <a href="/2018/10/06/Markdown%E8%AF%AD%E6%B3%95.html" class="rightchange" style="border-left: 1px solid purple;border-bottom: 2px solid purple;"><span>下一篇<br><br>Markdown语法</span></a>
@@ -152,7 +152,7 @@ var _hmt = _hmt || [];
   <p>KNN is a non-parameteric model used for classification and regression. The input considts of the K closest training examples in the feature space.</p>
 </blockquote>
 
-<h2 id="knn-算法决策过程">KNN 算法决策过程</h2>
+<h2 id="一-knn-算法决策过程">一. KNN 算法决策过程</h2>
 
 <p><img src="/assets/knn/knn_1.png" style="zoom:50%" /></p>
 
@@ -160,39 +160,9 @@ var _hmt = _hmt || [];
 如果 K=3，由于黑色圆圈所占比例为 2/3，四角星将被赋予黑色圆圈那个类。  <br />
 如果 K=7，由于黑色圈圈比例为 5/7，四角星被赋予黑色与圆圈类。</p>
 
-<p>K 最近邻(k-Nearest Neighbor，KNN)分类算法，是一个理论上比较成熟的方法，也是最简单的机器学习算法之一。该方法的<strong>思路</strong>是：如果一个样本在特征空间中的 k 个最相似（即特征空间中最邻近）的样本中的大多数属于某一个类别，则该样本也属于这个类别。KNN 算法中，所选择的邻居都是已经正确分类的对象。该方法在定类决策上只依据最邻近的一个或者几个样本的类别来决定待分样本所属的类别。KNN 方法虽然从原理上也依赖于极限定理，但在类别决策时，只与极少量的相邻样本有关。由于 KNN 方法主要靠周围有限的邻近的样本，而不是靠判别类域的方法来确定所属类别的，因此对于类域的交叉或重叠较多的待分样本集来说，KNN 方法较其他方法更为适合。KNN 算法不仅可以用于<strong>分类</strong>，还可以用于<strong>回归</strong>。通过找出一个样本的 k 个最近邻居， 将这些邻居的属性的平均值赋给该样本，就可以得到该样本的属性。更有用的方法是将不同距离的邻居对该样本产生的影响给予不同的<strong>权值(weight)</strong>，如权值与距离成正比。</p>
+<p>K 最近邻(k-Nearest Neighbor，KNN)分类算法，是一个理论上比较成熟的方法，也是最简单的机器学习算法之一。该方法的<strong>思路</strong>是：如果一个样本在特征空间中的 k 个最相似（即特征空间中最邻近）的样本中的大多数属于某一个类别，则该样本也属于这个类别。KNN 算法中，所选择的邻居都是<strong>已经正确分类的对象</strong>。该方法在定类决策上只依据最邻近的一个或者几个样本的类别来决定待分样本所属的类别。KNN 方法虽然从原理上也依赖于极限定理，但在类别决策时，只与极少量的相邻样本有关。由于 KNN 方法主要靠周围有限的邻近的样本，而不是靠判别类域的方法来确定所属类别的，因此对于<strong>类域的交叉或重叠较多</strong>的待分样本集来说，KNN 方法较其他方法更为适合。KNN 算法不仅可以用于<strong>分类</strong>，还可以用于<strong>回归</strong>。通过找出一个样本的 k 个最近邻居， 将这些邻居的属性的平均值赋给该样本，就可以得到该样本的属性。更有用的方法是将不同距离的邻居对该样本产生的影响给予不同的<strong>权值(weight)</strong>，如权值与距离成正比。</p>
 
-<h2 id="knn-的不足">KNN 的不足</h2>
-<ul>
-  <li>该算法在分类时有个主要的不足是，当<strong>样本不平衡</strong>时，如一个类的样本容量很大，而其他类样本容量很小时，有可能导致当输入一个新样本时，该样本的 K 个邻居中大容量类的样本占多数。因此可以采用权值的方法(和该样本距离小的邻居权值大)来改进。</li>
-  <li>该方法的另一个不足之处是<strong>计算量较大</strong>，因为对每一个待分类的文本都要计算它到全体已知样本的距离，才能求得它的 K 个最近邻点。目前常用的解决方法是事先对已知样本点进行剪辑，事先去除对分类作用不大的样本。该算法比较适用于样本容量比较大的类域的自动分类，而那 些样本容量较小的类域采用这种算法比较容易产生误分。</li>
-</ul>
-
-<h2 id="knn-中遇到的问题">KNN 中遇到的问题</h2>
-
-<h3 id="two-questions">Two Questions</h3>
-<p><strong><em>K has to an odd number?</em></strong></p>
-
-<blockquote>
-  <p>KNN for <strong>classification</strong>:
-如果 K 为<strong>偶数</strong>，出现的两类别相同，可以根据距离计算离得近的类别，从而进行分类。
-如果 k 为 <strong>∞</strong> 时，只需要看两类的个数。
-如果 k 为 <strong>1</strong> 时，过拟合。</p>
-</blockquote>
-
-<blockquote>
-  <p>KNN for <strong>regression(prediction)</strong>:
-求 x 对应点处的 y 值，只需将 x 附近取 K 个点，求 K 个点的 y 的<strong>平均值</strong>即可。另外取K个均值时，由于每个点的贡献不同，可取相应的<strong>权重</strong>。</p>
-</blockquote>
-
-<p><strong><em>What if K becomes very large?</em></strong></p>
-<blockquote>
-  <p><img src="/assets/knn/knn_7.png" alt="1" />
-In two dimensions, the nearest-neighbor algorithm leads to a partitioning of the input space into Voronoi cells, each label led by the category of the training point it contains. In three dimensions, the cells are three-dimensional, and the decision boundary resembles the surface of a crystal. 
-<img src="/assets/knn/knn_8.png" alt="1" /></p>
-</blockquote>
-
-<h3 id="knn-for-regression-prediction">KNN for Regression (Prediction)</h3>
+<h3 id="11-knn-for-regression-prediction">1.1 KNN for Regression (Prediction)</h3>
 
 <p><img src="/assets/knn/knn_9.png" alt="1" /></p>
 
@@ -209,9 +179,9 @@ In two dimensions, the nearest-neighbor algorithm leads to a partitioning of the
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Q: Any better non-parametric model, do we need to adjust the weights? 
 </code></pre></div></div>
 
-<h3 id="度量问题">度量问题</h3>
+<h3 id="12-度量问题">1.2 度量问题</h3>
 
-<h4 id="distance-measure">Distance Measure</h4>
+<h4 id="121-distance-measure">1.2.1 Distance Measure</h4>
 
 <p>关于距离的度量，两点 A，B 之间的距离d，应该有如下性质：</p>
 
@@ -246,7 +216,7 @@ In two dimensions, the nearest-neighbor algorithm leads to a partitioning of the
   </li>
 </ul>
 
-<h4 id="edited-measure">Edited Measure</h4>
+<h4 id="122-edited-measure">1.2.2 Edited Measure</h4>
 
 <blockquote>
   <p>To measure the similarity between two objects, transform one into the other, and measure how much effort it took. The measure of effort becomes the distance measure.</p>
@@ -256,6 +226,47 @@ In two dimensions, the nearest-neighbor algorithm leads to a partitioning of the
   <p>给定固定特征，看样本在特征上的表现，关注是否相同。
 <img src="/assets/knn/knn_11.png" alt="1" /></p>
 </blockquote>
+
+<h2 id="二-knn-的不足">二. KNN 的不足</h2>
+<ul>
+  <li>该算法在分类时有个主要的不足是，当<strong>样本不平衡</strong>时，如一个类的样本容量很大，而其他类样本容量很小时，有可能导致当输入一个新样本时，该样本的 K 个邻居中大容量类的样本占多数。因此可以采用权值的方法(和该样本距离小的邻居权值大)来改进。</li>
+  <li>该方法的另一个不足之处是<strong>计算量较大</strong>，因为对每一个待分类的文本都要计算它到全体已知样本的距离，才能求得它的 K 个最近邻点。目前常用的解决方法是事先对已知样本点进行剪辑，事先去除对分类作用不大的样本。该算法比较适用于样本容量比较大的类域的自动分类，而那 些样本容量较小的类域采用这种算法比较容易产生误分。</li>
+</ul>
+
+<h2 id="三-knn-中遇到的问题">三. KNN 中遇到的问题</h2>
+
+<h3 id="31-two-questions">3.1 Two Questions</h3>
+<p><strong><em>K has to an odd number?</em></strong></p>
+
+<blockquote>
+  <ol>
+    <li>KNN for <strong>classification</strong>:  <br />
+如果 K 为<strong>偶数</strong>，出现的两类别相同，可以根据距离计算离得近的类别，从而进行分类。  <br />
+如果 k 为 <strong>∞</strong> 时，只需要看两类的个数。  <br />
+如果 k 为 <strong>1</strong> 时，过拟合。</li>
+  </ol>
+</blockquote>
+
+<blockquote>
+  <ol>
+    <li>KNN for <strong>regression(prediction)</strong>:  <br />
+求 x 对应点处的 y 值，只需将 x 附近取 K 个点，求 K 个点的 y 的<strong>平均值</strong>即可。另外取K个均值时，由于每个点的贡献不同，可取相应的<strong>权重</strong>。</li>
+  </ol>
+</blockquote>
+
+<p><strong><em>What if K becomes very large?</em></strong></p>
+<blockquote>
+  <p><img src="/assets/knn/knn_7.png" alt="1" />
+In two dimensions, the nearest-neighbor algorithm leads to a partitioning of the input space into Voronoi cells, each label led by the category of the training point it contains. In three dimensions, the cells are three-dimensional, and the decision boundary resembles the surface of a crystal.</p>
+</blockquote>
+
+<blockquote>
+  <p><img src="/assets/knn/knn_8.png" alt="1" /></p>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>KNN 这部分的代码在另一个仓库中：
+&lt;https://github.com/provenclei/tensorflow_learning_path&gt;
+</code></pre></div></div>
 
 
   <!-- 引入share模块 -->
