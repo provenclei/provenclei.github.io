@@ -1,4 +1,397 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-16T20:50:28+08:00</updated><id>http://localhost:4000/</id><title type="html">被水淹死的鱼</title><subtitle>个人技术微博</subtitle><author><name>true</name></author><entry><title type="html">Non-parameter model: Naive Bayes</title><link href="http://localhost:4000/2018/10/15/Naive-Bayes.html" rel="alternate" type="text/html" title="Non-parameter model: Naive Bayes" /><published>2018-10-15T00:00:00+08:00</published><updated>2018-10-15T00:00:00+08:00</updated><id>http://localhost:4000/2018/10/15/Naive%20Bayes</id><content type="html" xml:base="http://localhost:4000/2018/10/15/Naive-Bayes.html">&lt;h1 id=&quot;naive-bayes-algorithm&quot;&gt;Naive Bayes algorithm&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-25T15:38:18+08:00</updated><id>http://localhost:4000/</id><title type="html">被水淹死的鱼</title><subtitle>个人技术微博</subtitle><author><name>true</name></author><entry><title type="html">Non-parameter model: Decision Tree</title><link href="http://localhost:4000/2018/10/21/Decision-Tree.html" rel="alternate" type="text/html" title="Non-parameter model: Decision Tree" /><published>2018-10-21T00:00:00+08:00</published><updated>2018-10-21T00:00:00+08:00</updated><id>http://localhost:4000/2018/10/21/Decision%20Tree</id><content type="html" xml:base="http://localhost:4000/2018/10/21/Decision-Tree.html">&lt;p&gt;[TOC]&lt;/p&gt;
+
+&lt;h1 id=&quot;decision-tree-algorithm&quot;&gt;Decision Tree algorithm&lt;/h1&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;决策树（decision tree）算法基于特征属性进行分类，其主要的优点：模型具有可读性，计算量小，分类速度快。决策树算法包括了由Quinlan提出的ID3与C4.5，Breiman等提出的CART。其中，C4.5是基于ID3的，对分裂属性的目标函数做出了改进。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;一-基础知识&quot;&gt;一. 基础知识&lt;/h2&gt;
+
+&lt;h3 id=&quot;11-决策树模型&quot;&gt;1.1 决策树模型&lt;/h3&gt;
+
+&lt;p&gt;决策树是一种通过对特征属性的分类对样本进行分类的树形结构，包括有向边与三类节点：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;根节点（root node）&lt;/code&gt;：表示第一个特征属性，只有出边没有入边；&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;内部节点（internal node）&lt;/code&gt;：表示特征属性，有一条入边至少两条出边；&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;叶子节点（leaf node）&lt;/code&gt;：表示类别，只有一条入边没有出边。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/tree/tree_1.png&quot; style=&quot;zoom:50%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;上图给出了（二叉）决策树的示例。决策树具有以下特点：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;对于二叉决策树而言，可以看作是if-then规则集合，由决策树的根节点到叶子节点对应于一条分类规则;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;分类规则是&lt;strong&gt;互斥并且完备&lt;/strong&gt;的，所谓&lt;strong&gt;互斥&lt;/strong&gt;即每一条样本记录不会同时匹配上两条分类规则，所谓&lt;strong&gt;完备&lt;/strong&gt;即每条样本记录都在决策树中都能匹配上一条规则。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;分类的本质是对特征空间的划分，如下图所示，&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/tree/tree_2.png&quot; alt=&quot;1&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;12-决策树学习&quot;&gt;1.2 决策树学习&lt;/h3&gt;
+
+&lt;p&gt;决策树学习的本质是从训练数据集中归纳出一组分类规则。但随着分裂属性次序的不同，所得到的决策树也会不同。如何得到一棵决策树既对训练数据有较好的拟合，又对未知数据有很好的预测呢？&lt;/p&gt;
+
+&lt;p&gt;首先，我们要解决两个问题：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;如何选择较优的特征属性进行分裂？每一次特征属性的分裂，相当于对训练数据集进行再划分，对应于一次决策树的生长。ID3算法定义了目标函数来进行特征选择。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;什么时候应该停止分裂？有两种自然情况应该停止分裂，一是该节点对应的所有样本记录均属于同一类别，二是该节点对应的所有样本的特征属性值均相等。但除此之外，是不是还应该其他情况停止分裂呢？&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;13-information-theory信息论&quot;&gt;1.3 information Theory(信息论)&lt;/h3&gt;
+
+&lt;h4 id=&quot;131-自信息&quot;&gt;1.3.1 自信息&lt;/h4&gt;
+
+&lt;p&gt;       在信息论中，&lt;code class=&quot;highlighter-rouge&quot;&gt;自信息&lt;/code&gt;（英语：self-information），由克劳德·香农提出，是与概率空间中的单一事件或离散随机变量的值相关的信息量的量度。它用信息的单位表示，例如 bit、nat或是hart，使用哪个单位取决于在计算中使用的对数的底。自信息的期望值就是信息论中的&lt;code class=&quot;highlighter-rouge&quot;&gt;熵&lt;/code&gt;，它&lt;strong&gt;反映了随机变量采样时的平均不确定程度&lt;/strong&gt;。  &lt;br /&gt;
+       由定义，当信息被拥有它的实体传递给接收它的实体时，仅当接收实体不知道信息的先验知识时信息才得到传递。如果接收实体事先知道了消息的内容，这条消息所传递的信息量就是&lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt;。只有当接收实体对消息对先验知识少于&lt;code class=&quot;highlighter-rouge&quot;&gt;100%&lt;/code&gt;时，消息才真正传递信息。  &lt;br /&gt;
+       因此，一个随机产生的事&lt;code class=&quot;highlighter-rouge&quot;&gt;ω_n&lt;/code&gt;所包含的自信息数量，只与事件发生的机率相关。事件发生的机率越低，在事件真的发生时，接收到的信息中，包含的自信息越大。  &lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;ω_n&lt;/code&gt;的自信息量：&lt;script type=&quot;math/tex&quot;&gt;I(ω_n) = f(P(ω_n))&lt;/script&gt;如果 P(ω_n) = 1，则 I(ω_n) = 0。如果 P(ω_n) &amp;lt; 1, 则 I(ω_n) &amp;gt; 0。此外，根据定义，自信息的量度是非负的而且是可加的。如果事件 &lt;code class=&quot;highlighter-rouge&quot;&gt;C&lt;/code&gt; 是两个独立事件 &lt;code class=&quot;highlighter-rouge&quot;&gt;A&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;B&lt;/code&gt; 的交集，那么宣告 &lt;code class=&quot;highlighter-rouge&quot;&gt;C&lt;/code&gt; 发生的信息量就等于分别宣告事件 &lt;code class=&quot;highlighter-rouge&quot;&gt;A&lt;/code&gt; 和事件 &lt;code class=&quot;highlighter-rouge&quot;&gt;B&lt;/code&gt; 的信息量的和： &lt;script type=&quot;math/tex&quot;&gt;I(C) = I(A∩B) = I(A) + I(B)&lt;/script&gt; 因为 &lt;code class=&quot;highlighter-rouge&quot;&gt;A&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;B&lt;/code&gt; 是独立事件，所以 &lt;code class=&quot;highlighter-rouge&quot;&gt;C&lt;/code&gt; 的概率为： &lt;script type=&quot;math/tex&quot;&gt;P(C) = P(A∩B) = P(A) · P(B)&lt;/script&gt; 应用函数 &lt;code class=&quot;highlighter-rouge&quot;&gt;f(·)&lt;/code&gt; 会得到：&lt;script type=&quot;math/tex&quot;&gt;I(C) = I(A) + I(B)&lt;/script&gt; &lt;script type=&quot;math/tex&quot;&gt;f(P(C)) = f(P(A)) + f(P(B)) = f(P(A) · P(B))&lt;/script&gt; 所以函数 &lt;code class=&quot;highlighter-rouge&quot;&gt;f(·)&lt;/code&gt; 具有性质 &lt;script type=&quot;math/tex&quot;&gt;f(x·y) = f(x) + f(y)&lt;/script&gt; 而对数函数正好有这个性质，不同的底的对数函数之间的区别只差一个常数：&lt;script type=&quot;math/tex&quot;&gt;f(x) = Klog(x)&lt;/script&gt; 由于事件的概率总在 &lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt; 之间，而信息量不能为负，所以 &lt;code class=&quot;highlighter-rouge&quot;&gt;K&amp;lt;0&lt;/code&gt; 。考虑到这些性质，假设事件 &lt;code class=&quot;highlighter-rouge&quot;&gt;ω_n&lt;/code&gt; 发生的机率是  &lt;code class=&quot;highlighter-rouge&quot;&gt;P(ω_n)&lt;/code&gt; ,自信息量的 &lt;code class=&quot;highlighter-rouge&quot;&gt;I(ω_n)&lt;/code&gt; 的定义为：&lt;script type=&quot;math/tex&quot;&gt;I(ω_n) = -log(P(ω_n)) = log(\frac{1}{P(ω_n)})&lt;/script&gt;事件 &lt;code class=&quot;highlighter-rouge&quot;&gt;ω_n&lt;/code&gt; 的概率越小, 它发生后的自信息量越大。此定义符合上述条件。在上面的定义中，没有指定的对数的基底：如果以 &lt;code class=&quot;highlighter-rouge&quot;&gt;2&lt;/code&gt; 为底，单位是 &lt;code class=&quot;highlighter-rouge&quot;&gt;bit&lt;/code&gt;。当使用以 &lt;code class=&quot;highlighter-rouge&quot;&gt;e&lt;/code&gt; 为底的对数时，单位将是 &lt;code class=&quot;highlighter-rouge&quot;&gt;nat&lt;/code&gt;。对于基底为 &lt;code class=&quot;highlighter-rouge&quot;&gt;10&lt;/code&gt; 的对数，单位是 &lt;code class=&quot;highlighter-rouge&quot;&gt;hart&lt;/code&gt;。信息量的大小不同于信息作用的大小，这不是同一概念。信息量只表明不确定性的减少程度，至于对接收者来说，所获得的信息可能事关重大，也可能无足轻重，这是信息作用的大小。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;和熵的联系
+熵是离散随机变量的自信息的期望值。但有时候熵也会被称作是随机变量的自信息，可能是因为熵满足 H(X) = I(X;X)，而 I(X;X) 是 X 和它自己的互信息。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;132-互信息&quot;&gt;1.3.2 互信息&lt;/h4&gt;
+
+&lt;p&gt;       在概率论和信息论中，两个随机变量的 &lt;code class=&quot;highlighter-rouge&quot;&gt;互信息（Mutual Information，简称MI）&lt;/code&gt; 或&lt;code class=&quot;highlighter-rouge&quot;&gt; 转移信息（transinformation）&lt;/code&gt; 是变量间相互依赖性的量度。不同于相关系数，互信息并不局限于实值随机变量，它更加一般且决定着联合分布 &lt;code class=&quot;highlighter-rouge&quot;&gt;p(X,Y)&lt;/code&gt; 和分解的边缘分布的乘积 &lt;code class=&quot;highlighter-rouge&quot;&gt;p(X)p(Y)&lt;/code&gt; 的相似程度。互信息是 &lt;code class=&quot;highlighter-rouge&quot;&gt;点间互信息（PMI）&lt;/code&gt; 的期望值。互信息最常用的单位是 &lt;code class=&quot;highlighter-rouge&quot;&gt;bit&lt;/code&gt;。  &lt;br /&gt;
+       一般地，两个离散随机变量 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt; 的互信息可以定义为：&lt;script type=&quot;math/tex&quot;&gt;I(X;Y) = \sum_{y∈Y}\sum_{x∈X}{P(x,y)log(\frac{P(x,y)}{P(x)·P(y)})}&lt;/script&gt; 其中 &lt;code class=&quot;highlighter-rouge&quot;&gt;p(x,y)&lt;/code&gt; 是 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt; 的联合概率分布函数，而 &lt;code class=&quot;highlighter-rouge&quot;&gt;P(x)&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;P(y)&lt;/code&gt; 分别是 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt; 的边缘概率分布函数。  &lt;br /&gt;
+在连续随机变量的情形下，求和被替换成了二重定积分：&lt;script type=&quot;math/tex&quot;&gt;I(X;Y) = \int_{Y}\int_{X}{P(x,y)log(\frac{P(x,y)}{P(x)·P(y)})} {\rm d}x{\rm d}y&lt;/script&gt; 其中 &lt;code class=&quot;highlighter-rouge&quot;&gt;P(x,y)&lt;/code&gt; 当前是 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt; 的联合概率密度函数，而 &lt;code class=&quot;highlighter-rouge&quot;&gt;P(x)&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;P(y)&lt;/code&gt; 分别是 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt; 的边缘概率密度函数。如果对数以 &lt;code class=&quot;highlighter-rouge&quot;&gt;2&lt;/code&gt; 为基底，互信息的单位是 &lt;code class=&quot;highlighter-rouge&quot;&gt;bit&lt;/code&gt;。  &lt;br /&gt;
+       直观上，互信息度量 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt; 共享的信息：它度量知道这两个变量其中一个，对另一个不确定度减少的程度。例如，如果 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt; 相互独立，则知道 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 不对 &lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt; 提供任何信息，反之亦然，所以它们的互信息为零。在另一个极端，如果 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 是 &lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt; 的一个确定性函数，且 &lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt; 也是 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 的一个确定性函数，那么传递的所有信息被 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt; 共享：知道 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 决定 &lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt; 的值，反之亦然。因此，在此情形互信息与 &lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt;（或 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt;）单独包含的不确定度相同，称作 &lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt;（或 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt;）的熵。而且，这个互信息与 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 的熵和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt; 的熵相同。(这种情形的一个非常特殊的情况是当 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt; 为相同随机变量时。)  &lt;br /&gt;
+       互信息是 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt; 的联合分布相对于假定 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt; 独立情况下的联合分布之间的内在依赖性。 于是互信息以下面方式度量依赖性：&lt;code class=&quot;highlighter-rouge&quot;&gt;I(X; Y) = 0&lt;/code&gt; 当且仅当 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt; 为独立随机变量。从一个方向很容易看出：当 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt; 独立时，&lt;code class=&quot;highlighter-rouge&quot;&gt;p(x,y) = p(x) p(y)&lt;/code&gt;，因此，&lt;script type=&quot;math/tex&quot;&gt;log(\frac{P(A,B)}{P(A)·P(B)}) = log(1) = 0&lt;/script&gt;此外，互信息是非负的（即 &lt;code class=&quot;highlighter-rouge&quot;&gt;I(X;Y) ≥ 0&lt;/code&gt;），而且是对称的（即 &lt;code class=&quot;highlighter-rouge&quot;&gt;I(X;Y) = I(Y;X)&lt;/code&gt;）。  &lt;br /&gt;
+       另外，互信息可以简单的表示成：&lt;script type=&quot;math/tex&quot;&gt;I(X;Y) = H(Y) - H(Y|X) = H(X,Y) - H(X|Y) - H(Y|X)&lt;/script&gt; 其中 &lt;code class=&quot;highlighter-rouge&quot;&gt;H(X)&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;H(Y)&lt;/code&gt; 是&lt;strong&gt;边缘熵&lt;/strong&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;H(X|Y)&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;H(Y|X)&lt;/code&gt; 是&lt;strong&gt;条件熵&lt;/strong&gt;，而 &lt;code class=&quot;highlighter-rouge&quot;&gt;H(X,Y)&lt;/code&gt; 是 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt; 的&lt;strong&gt;联合熵&lt;/strong&gt;。直观地说，如果把熵 H(Y) 看作一个随机变量于不确定度的量度，那么 H(Y|X) 就是”在已知 X 事件后Y事件会发生”的不确定度。这证实了互信息的直观意义为: “因X而有Y事件”的熵(基于已知随机变量的不确定性) 在”Y事件”的熵之中具有多少影响地位(“Y事件所具有的不确定性” 其中包含了多少 “Y|X事件所具有的不确性” )，意即”Y具有的不确定性”有多少程度是起因于X事件。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;舉例來說，當 &lt;code class=&quot;highlighter-rouge&quot;&gt;I(X;Y) = 0&lt;/code&gt;時，也就是 &lt;code class=&quot;highlighter-rouge&quot;&gt;H(Y) = H(Y|X)&lt;/code&gt;時，即代表此時 &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Y的不確定性&quot;&lt;/code&gt; 即為 &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Y|X的不確定性&quot;&lt;/code&gt;，這說明了互信息的具體意義是在度量兩個事件彼此之間的關聯性。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;所以具体的解释就是：互信息越小，两个来自不同事件空间的随机变量彼此之间的关联性越低；互信息越高，关联性则越高。&lt;/p&gt;
+
+&lt;h4 id=&quot;133-信息熵&quot;&gt;1.3.3 信息熵&lt;/h4&gt;
+
+&lt;p&gt;       在信息论中，&lt;code class=&quot;highlighter-rouge&quot;&gt;熵&lt;/code&gt;（英语：entropy）是接收的每条消息中包含的信息的平均量，又被称为&lt;strong&gt;信息熵&lt;/strong&gt;、&lt;strong&gt;信源熵&lt;/strong&gt;、&lt;strong&gt;平均自信息量&lt;/strong&gt;。这里，“消息”代表来自分布或数据流中的事件、样本或特征。（熵最好理解为不确定性的量度而不是确定性的量度，因为越随机的信源的熵越大。）&lt;script type=&quot;math/tex&quot;&gt;H(X) = E[I(X)] = E[-ln[P(X)]]&lt;/script&gt; 其中，&lt;code class=&quot;highlighter-rouge&quot;&gt;P&lt;/code&gt; 为 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 的概率质量函数（probability mass function），&lt;code class=&quot;highlighter-rouge&quot;&gt;E&lt;/code&gt; 为期望函数，而 &lt;code class=&quot;highlighter-rouge&quot;&gt;I(X)&lt;/code&gt; 是 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 的信息量（又称为自信息）。&lt;code class=&quot;highlighter-rouge&quot;&gt;I(X)&lt;/code&gt; 本身是个随机变数。当取自有限的样本时，&lt;strong&gt;熵&lt;/strong&gt;的公式可以表示为：
+&lt;script type=&quot;math/tex&quot;&gt;H(X) = \sum_{i} {P(x_i)I(x_i)} = -\sum_{i} {P(x_i)log_b{P(x_i)}}&lt;/script&gt; 
+可以定义事件 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 与 &lt;code class=&quot;highlighter-rouge&quot;&gt;Y&lt;/code&gt; 分别取 &lt;code class=&quot;highlighter-rouge&quot;&gt;x_i&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;y_j&lt;/code&gt; 时的&lt;strong&gt;条件熵&lt;/strong&gt;为：
+&lt;script type=&quot;math/tex&quot;&gt;{H(X|Y)} = -\sum_{i,j}{P(x_i,y_j)·log[\frac{P(x_i,y_j)}{P(y_j)}]}&lt;/script&gt; 
+这个量应当理解为你知道Y的值前提下随机变量 X 的随机性的量。&lt;/p&gt;
+
+&lt;h4 id=&quot;134-相对熵&quot;&gt;1.3.4 相对熵&lt;/h4&gt;
+
+&lt;p&gt;       &lt;strong&gt;相对熵（relative entropy）&lt;/strong&gt;又称为&lt;strong&gt;KL散度（Kullback–Leibler divergence，简称KLD）&lt;/strong&gt;，&lt;strong&gt;信息散度（information divergence）&lt;/strong&gt;，&lt;strong&gt;信息增益（information gain）&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;       &lt;code class=&quot;highlighter-rouge&quot;&gt;KL散度&lt;/code&gt;是两个概率分布 &lt;code class=&quot;highlighter-rouge&quot;&gt;P&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Q&lt;/code&gt; 差别的非对称性的度量。 &lt;code class=&quot;highlighter-rouge&quot;&gt;KL散度&lt;/code&gt;是用来度量使用基于 &lt;code class=&quot;highlighter-rouge&quot;&gt;Q&lt;/code&gt; 的编码来编码来自 &lt;code class=&quot;highlighter-rouge&quot;&gt;P&lt;/code&gt; 的样本平均所需的额外的位元数。典型情况下，&lt;code class=&quot;highlighter-rouge&quot;&gt;P&lt;/code&gt; 表示数据的真实分布，&lt;code class=&quot;highlighter-rouge&quot;&gt;Q&lt;/code&gt; 表示数据的理论分布，模型分布，或 &lt;code class=&quot;highlighter-rouge&quot;&gt;P&lt;/code&gt; 的近似分布。  对于离散随机变量，其概率分布 &lt;code class=&quot;highlighter-rouge&quot;&gt;P&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Q&lt;/code&gt; 的&lt;code class=&quot;highlighter-rouge&quot;&gt;KL散度&lt;/code&gt;可按下式定义为$$ D_KL(P&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;Q) = -\sum_{i}{P(i)\frac{Q(i)}{P(i)}} &lt;script type=&quot;math/tex&quot;&gt;等价于&lt;/script&gt; D_KL(P&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;Q) = \sum_{i}{P(i)\frac{P(i)}{Q(i)}} $$即按概率 &lt;code class=&quot;highlighter-rouge&quot;&gt;P&lt;/code&gt; 求得的 &lt;code class=&quot;highlighter-rouge&quot;&gt;P&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Q&lt;/code&gt; 的对数差的平均值。&lt;code class=&quot;highlighter-rouge&quot;&gt;KL散度&lt;/code&gt;仅当概率 &lt;code class=&quot;highlighter-rouge&quot;&gt;P&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Q&lt;/code&gt; 各自总和均为 &lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt;，且对于任何 &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt; 皆满足&lt;code class=&quot;highlighter-rouge&quot;&gt;Q(i)&amp;gt;0&lt;/code&gt;及&lt;code class=&quot;highlighter-rouge&quot;&gt;P(i)&amp;gt;0&lt;/code&gt;时，才有定义。式中出现 &lt;code class=&quot;highlighter-rouge&quot;&gt;0ln0&lt;/code&gt; 的情况，其值按0处理。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;对于连续随机变量，其概率分布 &lt;code class=&quot;highlighter-rouge&quot;&gt;P&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Q&lt;/code&gt; 可按积分方式定义为：$$ D_KL(P&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;Q) = \int_{-∞}^{∞}{P(i)\frac{Q(i)}{P(i)}}{\rm d}x $$ 尽管从直觉上KL散度是个度量或距离函数, 但是它实际上并不是一个真正的度量或距离。因为KL散度不具有对称性：从分布 &lt;code class=&quot;highlighter-rouge&quot;&gt;P&lt;/code&gt; 到 &lt;code class=&quot;highlighter-rouge&quot;&gt;Q&lt;/code&gt; 的距离通常并不等于从 &lt;code class=&quot;highlighter-rouge&quot;&gt;Q&lt;/code&gt; 到 &lt;code class=&quot;highlighter-rouge&quot;&gt;P&lt;/code&gt; 的距离。&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;举个栗子：  &lt;br /&gt;
+对于一维数据来说：
+&lt;img src=&quot;/assets/tree/tree_3.png&quot; alt=&quot;1&quot; /&gt; &lt;script type=&quot;math/tex&quot;&gt;对总体的信息熵： ori-Entropy(x) = -\frac{1}{2}log\frac{1}{2} - \frac{1}{2}log\frac{1}{2} = 1&lt;/script&gt;
+对于&lt;code class=&quot;highlighter-rouge&quot;&gt;A&lt;/code&gt;点来说，左边的信息熵用&lt;code class=&quot;highlighter-rouge&quot;&gt;A_1&lt;/code&gt;表示，右边用&lt;code class=&quot;highlighter-rouge&quot;&gt;A_2&lt;/code&gt;表示，则有&lt;script type=&quot;math/tex&quot;&gt;Entropy(A_1) = 0, Entropy(A_2) = -\frac{2}{7}log\frac{2}{7} - \frac{5}{7}log\frac{5}{7}&lt;/script&gt;对于信息增益（Information Gain，由于熵的减小，增加信息量的多少）：&lt;script type=&quot;math/tex&quot;&gt;IG = ori-Entropy - \sum_{i=1}^n{ω_i}{Entropy(A_i)}&lt;/script&gt;即：&lt;script type=&quot;math/tex&quot;&gt;IG = Entropy(A) - \sum_{i=1}^n{\frac{\lvert{A_i}\rvert}{A}}{Entropy(A_i)}&lt;/script&gt; 所以有 &lt;code class=&quot;highlighter-rouge&quot;&gt;A&lt;/code&gt; 点处的信息增益为：&lt;script type=&quot;math/tex&quot;&gt;IG(A) = 1 - \frac{3}{10}*0 + \frac{7}{10}*Entropy(A_2)&lt;/script&gt;所以， &lt;code class=&quot;highlighter-rouge&quot;&gt;B&lt;/code&gt; 点处的信息增益为：&lt;script type=&quot;math/tex&quot;&gt;IG(B) = 1 - \frac{6}{10}*Entropy(B_1) + \frac{4}{10}*Entropy(B_2)&lt;/script&gt;同理可求出&lt;code class=&quot;highlighter-rouge&quot;&gt;IG(C)&lt;/code&gt;，选择&lt;code class=&quot;highlighter-rouge&quot;&gt;IG(A)&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;IG(B)&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;IG(C)&lt;/code&gt;中的最大值就是划分的最佳结点。
+再比如上回提到的 Play Tennis 的预测模型：
+&lt;img src=&quot;/assets/tree/tree_4.png&quot; alt=&quot;1&quot; /&gt;
+以上的步骤就是&lt;code class=&quot;highlighter-rouge&quot;&gt;ID3算法&lt;/code&gt;（根据信息增益，确定合适的节点）的基本思路，实际就是将空间分为很多区域，根据特征类型进行划分，我们可以将空间划分为：&lt;code class=&quot;highlighter-rouge&quot;&gt;ordinal(有序的)&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;numerial(数字的)&lt;/code&gt;,  &lt;code class=&quot;highlighter-rouge&quot;&gt;discrete(离散的)&lt;/code&gt;。对于&lt;strong&gt;子树&lt;/strong&gt;(sub-Trees)的选择，取决于两个属性：&lt;code class=&quot;highlighter-rouge&quot;&gt;attribute types&lt;/code&gt;(Nominal, Ordinal, Continuous), &lt;code class=&quot;highlighter-rouge&quot;&gt;number of ways to split&lt;/code&gt;(2-way split, Muti-way split)。对于&lt;strong&gt;连续数据的离散化&lt;/strong&gt;（Discretization）可以根据&lt;code class=&quot;highlighter-rouge&quot;&gt;数据分布&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;区域&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;熵&lt;/code&gt;进行离散化。对于&lt;strong&gt;分割&lt;/strong&gt;（splitting），有 &lt;code class=&quot;highlighter-rouge&quot;&gt;Muti-way split&lt;/code&gt;(Use as many partitions as distinct values.) 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;Binary split&lt;/code&gt;(Divide values into two subject. Need to find optional partitioning.) 两种。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;14-信息增益比&quot;&gt;1.4 信息增益比&lt;/h3&gt;
+
+&lt;p&gt;       以信息增益比作为划分训练数据集的特征，存在偏向于选择取值较多的特征的问题。使用&lt;strong&gt;信息增益比&lt;/strong&gt;（Information gain ratio）可以对这一问题进行校正，这是特征选择的标准之一。  &lt;br /&gt;
+       特征 &lt;code class=&quot;highlighter-rouge&quot;&gt;A&lt;/code&gt; 对数据集 &lt;code class=&quot;highlighter-rouge&quot;&gt;D&lt;/code&gt; 的信息增益比&lt;code class=&quot;highlighter-rouge&quot;&gt;g_r(D,A)&lt;/code&gt;定义为信息增益&lt;code class=&quot;highlighter-rouge&quot;&gt;g(D,A)&lt;/code&gt;与训练数据集 &lt;code class=&quot;highlighter-rouge&quot;&gt;D&lt;/code&gt; 关于特征 &lt;code class=&quot;highlighter-rouge&quot;&gt;A&lt;/code&gt; 的值的熵&lt;code class=&quot;highlighter-rouge&quot;&gt;H_A(D)&lt;/code&gt;之比，即 &lt;script type=&quot;math/tex&quot;&gt;g_R(D,A) = \frac{g(D,A)}{H_A(D)}&lt;/script&gt; 其中，&lt;script type=&quot;math/tex&quot;&gt;-\sum_{i=1}^n{\frac{\lvert{D_i}\rvert}{\lvert{D}\rvert}{log}_2}{\frac{\lvert{D_i}\rvert}{\lvert{D}\rvert}}&lt;/script&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt; 是特征 &lt;code class=&quot;highlighter-rouge&quot;&gt;A&lt;/code&gt; 取值的个数。&lt;/p&gt;
+
+&lt;h3 id=&quot;14-gini-split&quot;&gt;1.4 Gini Split&lt;/h3&gt;
+
+&lt;p&gt;       对于给定样本集合 &lt;code class=&quot;highlighter-rouge&quot;&gt;D&lt;/code&gt;，其&lt;code class=&quot;highlighter-rouge&quot;&gt;GINI Index&lt;/code&gt;（基尼系数）为：&lt;script type=&quot;math/tex&quot;&gt;GINI(D) = 1 - \sum_{k=1}^K{[\frac{\lvert{C_k}\rvert}{\lvert{D}\rvert}]}^2&lt;/script&gt; 其中 &lt;code class=&quot;highlighter-rouge&quot;&gt;C_k&lt;/code&gt; 是 &lt;code class=&quot;highlighter-rouge&quot;&gt;D&lt;/code&gt; 中属于第 &lt;code class=&quot;highlighter-rouge&quot;&gt;k&lt;/code&gt; 类的样本子集, &lt;code class=&quot;highlighter-rouge&quot;&gt;K&lt;/code&gt; 是类的个数。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;举个栗子:
+如果中有 &lt;code class=&quot;highlighter-rouge&quot;&gt;C_1&lt;/code&gt; 类 &lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt; 个，&lt;code class=&quot;highlighter-rouge&quot;&gt;C_2&lt;/code&gt; 类 &lt;code class=&quot;highlighter-rouge&quot;&gt;6&lt;/code&gt; 个，则&lt;code class=&quot;highlighter-rouge&quot;&gt;GINI&lt;/code&gt;系数为：&lt;script type=&quot;math/tex&quot;&gt;GINI(C) = 1 - \sum_{i=1}^2{[\frac{\lvert{C_i}\rvert}{\lvert{D}\rvert}]}^2 = 1 - [[\frac{0}{6}]^2 + [\frac{6}{6}]^2] = 1&lt;/script&gt; 如果中有 &lt;code class=&quot;highlighter-rouge&quot;&gt;C_1&lt;/code&gt; 类 &lt;code class=&quot;highlighter-rouge&quot;&gt;3&lt;/code&gt; 个，&lt;code class=&quot;highlighter-rouge&quot;&gt;C_2&lt;/code&gt; 类 &lt;code class=&quot;highlighter-rouge&quot;&gt;3&lt;/code&gt; 个，则&lt;code class=&quot;highlighter-rouge&quot;&gt;GINI&lt;/code&gt;系数为：&lt;script type=&quot;math/tex&quot;&gt;GINI(C) = 1 - \sum_{i=1}^2{[\frac{\lvert{C_i}\rvert}{\lvert{D}\rvert}]}^2 = 1 - [[\frac{3}{6}]^2 + [\frac{3}{6}]^2] = \frac{1}{2}&lt;/script&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;基尼系数具有以下特点：
+       * 总体内包含的类别越杂乱，GINI指数就越大；
+       * 类别个数越少，基尼系数越低；    
+       * 类别个数相同时，类别集中度越高，基尼系数越低； 
+       * 当类别越少，类别集中度越高的时候，基尼系数越低；当类别越多，类别集中度越低的时候，基尼系数越高。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;GINI Split&lt;/strong&gt;：
+       Used in CART, SLIQ, SPRINT.
+       When a node p is split into k partitions (children), the quality of split is computed as, &lt;script type=&quot;math/tex&quot;&gt;{GINI}_{split} = 1 - \sum_{i=1}^k{\frac{n_i}{n}}Gini(i)&lt;/script&gt;        where, n_i = number of records at child i, 
+                     n = number of records at node p.   &lt;br /&gt;
+       For efficient computation: for each attribute,
+              * Sort the attribute on values;
+              * Linearly scan these values, each time updating the count matrix and computing gini index;
+              * Choose the split position that has the least gini index.
+       For an example:
+&lt;img src=&quot;/assets/tree/tree_5.png&quot; alt=&quot;1&quot; /&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    基尼指数的基本思想是：对每个属性都遍历所有的分割方法后若能提供最小的 GINI_Split，就被选择作为此节点处分裂的标准，无论处于根节点还是子节点。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;15-misclassification-error&quot;&gt;1.5 Misclassification Error&lt;/h3&gt;
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;Error(t) = 1 - max P(i|t)&lt;/script&gt;
+举个栗子:
+&lt;img src=&quot;/assets/tree/tree_7.png&quot; style=&quot;zoom:50%&quot; /&gt;
+Measure of Impurity for 2-Class Problems:
+&lt;img src=&quot;/assets/tree/tree_6.png&quot; style=&quot;zoom:50%&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;二-id3-和-c45-算法&quot;&gt;二. ID3 和 C4.5 算法&lt;/h2&gt;
+
+&lt;h3 id=&quot;21-id3&quot;&gt;2.1 ID3&lt;/h3&gt;
+
+&lt;h3 id=&quot;22-c45&quot;&gt;2.2 C4.5&lt;/h3&gt;
+
+&lt;h3 id=&quot;23-决策树剪枝&quot;&gt;2.3 决策树剪枝&lt;/h3&gt;
+
+&lt;h2 id=&quot;三-tree-ensembles---cart&quot;&gt;三. Tree Ensembles - CART&lt;/h2&gt;
+
+&lt;h2 id=&quot;四-tree-ensembles---bagging&quot;&gt;四. Tree Ensembles - Bagging&lt;/h2&gt;
+
+&lt;h2 id=&quot;五-tree-ensembles---random-forest&quot;&gt;五. Tree Ensembles - Random Forest&lt;/h2&gt;
+
+&lt;h2 id=&quot;六-tree-ensembles---boosting&quot;&gt;六. Tree Ensembles - Boosting&lt;/h2&gt;
+
+&lt;h2 id=&quot;七-tree-ensembles---gradient-boosting-decision-treegbdt&quot;&gt;七. Tree Ensembles - Gradient Boosting Decision Tree(GBDT)&lt;/h2&gt;
+
+&lt;h2 id=&quot;八-参考文献&quot;&gt;八. 参考文献&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;《 决策树中基于基尼指数的属性分裂方法 》 陈云樱等
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;1、C4.5 
+机器学习中，决策树是一个预测模型;他代表的是对象属性与对象值之间的一种映射关系。 树中每个节点表示某个对象，而每个分叉路径则代表的某个可能的属性值，而每个叶结点则 对应从根节点到该叶节点所经历的路径所表示的对象的值。决策树仅有单一输出，若欲有复 数输出，可以建立独立的决策树以处理不同输出。 从数据产生决策树的机器学习技术叫做决策树学习, 通俗说就是决策树。 决策树学习也是数据挖掘中一个普通的方法。在这里，每个决策树都表述了一种树型结构， 他由他的分支来对该类型的对象依靠属性进行分类。每个决策树可以依靠对源数据库的分割 进行数据测试。这个过程可以递归式的对树进行修剪。 当不能再进行分割或一个单独的类 可以被应用于某一分支时，递归过程就完成了。另外，随机森林分类器将许多决策树结合起 来以提升分类的正确率。 决策树同时也可以依靠计算条件概率来构造。决策树如果依靠数学的计算方法可以取得更加 理想的效果。 决策树是如何工作的 决策树一般都是自上而下的来生成的。 选择分割的方法有好几种，但是目的都是一致的:对目标类尝试进行最佳的分割。 从根到叶子节点都有一条路径，这条路径就是一条“规则”。 决策树可以是二叉的，也可以是多叉的。 对每个节点的衡量: 
+	.	1)  通过该节点的记录数  
+	.	2)  如果是叶子节点的话，分类的路径  
+	.	3)  对叶子节点正确分类的比例。  
+有些规则的效果可以比其他的一些规则要好。 由于 ID3 算法在实际应用中存在一些问题，于是 Quilan 提出了 C4.5 算法，严格上说 C4.5 只 能是 ID3 的一个改进算法。相信大家对 ID3 算法都很.熟悉了，这里就不做介绍。 
+C4.5 算法继承了 ID3 算法的优点，并在以下几方面对 ID3 算法进行了改进: 
+1) 用信息增益率来选择属性，克服了用信息增益选择属性时偏向选择取值多的属性的 不足; 
+2) 在树构造过程中进行剪枝; 3) 能够完成对连续属性的离散化处理; 4) 能够对不完整数据进行处理。 C4.5 算法有如下优点:产生的分类规则易于理解，准确率较高。其缺点是:在构造树的 
+过程中，需要对数据集进行多次的顺序扫描和排序，因而导致算法的低效。此外，C4.5 只适 合于能够驻留于内存的数据集，当训练集大得无法在内存容纳时程序无法运行。 来自搜索的其他内容: C4.5 算法是机器学习算法中的一种分类决策树算法,其核心算法是 ID3 算法. 
+分类决策树算法是从大量事例中进行提取分类规则的自上而下的决策树. 决策树的各部分是: 
+根: 学习的事例集. 枝: 分类的判定条件. 叶: 分好的各个类. 
+§4.3.2 ID3 算法 1.概念提取算法 CLS 
+1) 初始化参数 C={E},E 包括所有的例子,为根. 
+2) IF C 中的任一元素 e 同属于同一个决策类则创建一个叶子 节点 YES 终止. 
+ELSE 依启发式标准,选择特征 Fi={V1,V2,V3,.Vn}并创建 判定节点 
+划分 C 为互不相交的 N 个集合 C1,C2,C3,..,Cn; 3) 对任一个 Ci 递归. 2. ID3 算法 
+	.	1)  随机选择 C 的一个子集 W (窗口).  
+	.	2)  调用 CLS 生成 W 的分类树 DT(强调的启发式标准在后).  
+	.	3)  顺序扫描 C 搜集 DT 的意外(即由 DT 无法确定的例子).  
+	.	4)  组合 W 与已发现的意外,形成新的 W.  
+	.	5)  重复 2)到 4),直到无例外为止.  
+启发式标准: 只跟本身与其子树有关,采取信息理论用熵来量度. 熵是选择事件时选择自由度的量度,其计算方法为&lt;/p&gt;
+
+&lt;h2 id=&quot;p--freqcjsssum-plogp---sum函数是求-j-从-1-到-n-和&quot;&gt;P = freq(Cj,S)/|S|; SUM( P*LOG(P) ) ; SUM()函数是求 j 从 1 到 n 和.&lt;/h2&gt;
+&lt;p&gt;INFO(S)= Gain(X)=Info(X)-Infox(X); Infox(X)=SUM( (|T i|/|T|) *Info(X); 
+为保证生成的决策树最小,ID3 算法在生成子树时,选取使生成的子树的熵(即 Gain(S))最小的 的特征来生成子树. §4.3.3: ID3 算法对数据的要求 
+	1.	所有属性必须为离散量.  
+	2.	所有的训练例的所有属性必须有一个明确的值.  
+	3.	相同的因素必须得到相同的结论且训练例必须唯一.  
+§4.3.4: C4.5 对 ID3 算法的改进: 1. 熵的改进,加上了子树的信息. 
+Split_Infox(X)= - SUM( (|T|/|T i| ) *LOG(|T i|/|T|) ); 
+Gain ratio(X)= Gain(X)/Split Infox(X); 2. 在输入数据上的改进. 
+1) 因素属性的值可以是连续量,C4.5 对其排序并分成不同的集合后按照 ID3 算法当作离散量进 行处理,但结论属性的值必须是离散值. 
+2) 训练例的因素属性值可以是不确定的,以 ? 表示,但结论必须是确定的&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;对已生成的决策树进行裁剪,减小生成树的规模.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Bootstrapping&lt;/p&gt;
+
+&lt;p&gt;Bootstrapping从字面意思翻译是拔靴法，从其内容翻译又叫自助法，是一种再抽样的统计方法。自助法的名称来源于英文短语“to pull oneself up by one’s bootstrap”，表示完成一件不能自然完成的事情。1977年美国Standford大学统计学教授Efron提出了一种新的增广样本的统计方法，就是Bootstrap方法，为解决小子样试验评估问题提供了很好的思路。&lt;/p&gt;
+
+&lt;p&gt;算法流程&lt;/p&gt;
+
+&lt;p&gt;从N个样本中有放回的随机抽取n个样本。
+用n个样本计算统计量
+重复1，2步骤m次，得到统计量
+计算统计量序列的方差，则可得到统计量方差的无偏估计。（均值也是，bootstrapping方法就是通过多次的随机采样得到可以代表母体样本分布的子样本分布）&lt;/p&gt;
+
+&lt;p&gt;Bagging策略(bootstrap aggregating)套袋法&lt;/p&gt;
+
+&lt;p&gt;从N个样本中有放回的随机抽取n个样本。
+用这n个样本的所有属性构建基分类器（LR,ID3,C4.5,SVM）
+重复1,2两步m次，构建m个基分类器
+投票得出分类结果，哪个票最多就是哪一类。对回归模型，取多有基分类器结果的均值。总而言之就是所有基分类器的权重相同。&lt;/p&gt;
+
+&lt;p&gt;随机森林&lt;/p&gt;
+
+&lt;p&gt;bagging方法可以有效降低模型的方差。随机森林每棵子树不需要剪枝，是低偏差高方差的模型，通过bagging降低方差后使得整个模型有较高的性能。&lt;/p&gt;
+
+&lt;p&gt;随机森林其实很简单，就是在bagging策略上略微改动了一下。&lt;/p&gt;
+
+&lt;p&gt;从N个样本中有放回的随机抽样n个样本。
+如果每个样本的特征维度为M，指定一个常数m«M，随机地从M个特征中选取m个特征子集，每次树（ID3,C4.5,CART）进行分裂时，从这m个特征中选择最优的(信息增益，信息增益比率，基尼系数)；
+每棵树都尽最大程度的生长，并且没有剪枝过程。
+最后采用投票表决的方式进行分类。
+特征m个数的选取：&lt;/p&gt;
+
+&lt;p&gt;用作分类时，m默认取，最小取1.&lt;/p&gt;
+
+&lt;p&gt;用作回归时，m默认取M/3，最小取5.&lt;/p&gt;
+
+&lt;p&gt;两个随机性的引入对随机森林的分类性能至关重要。由于它们的引入，使得随机森林不容易陷入过拟合，并且具有很好得抗噪能力（比如：对缺省值不敏感）。&lt;/p&gt;
+
+&lt;p&gt;随机森林分类效果（错误率）与两个因素有关：&lt;/p&gt;
+
+&lt;p&gt;森林中任意两棵树的相关性：相关性越大，错误率越大；
+森林中每棵树的分类能力：每棵树的分类能力越强，整个森林的错误率越低。
+　　减小特征选择个数m，树的相关性和分类能力也会相应的降低；增大m，两者也会随之增大。所以关键问题是如何选择最优的m（或者是范围），这也是随机森林唯一的一个参数。
+　　
+　　
+　　
+　　
+　　
+　Boosting
+　其主要思想是将弱分类器组装成强分类器。在PAC(概率近似正确)的框架下，则一定可以将一个弱分类器组装成一个强分类器。
+　关于 Boosting 的两个核心问题：
+　1. 在每一轮如何改变训练数据的权值或概率分布？
+通过提高前一轮中被弱分类器分错样例的权值，减少前一轮对样例的权值，来使分类区对误分的数据有较好的效果。
+　
+　2. 通过什么方式在组合弱分类器？　
+　　通过加法模型将弱分类器线性组合，比如Aadaboost 通过加权多次表决的方式，即增大错误率小的分类器的权值，同时减小错误率大的分类器的权值。而提升树通过拟合残差的方式逐步减小误差，将每一步生成模型叠加得到最终模型。
+　　
+　　Bagging 和 Boosting 二者之间的区别
+　　1. 样本选择上
+Bagging: 训练集在样本集中有放回选取，从原实际中选出的各轮训练集之间是独立的。
+Boosting: 每一轮的训练集不变，只是训练集中每一个样例在分类器中的权重发生变化。而权重是根据上一轮的分类结果进行调整的。
+　　
+　　2. 样例权重
+Bagging: 使用均匀取样，每个样例权重相等。
+Boosting: 根据错误率不断调整样本的权值，错误率却大则权重越大。
+　　
+　　3. 预测函数
+Bagging: 使所有预测函数的权重相等。
+Boosting: 每个弱分类器都有相应的权重，对于分类误差小的分类器，会有更大的权重。
+　　
+　　4. 并行计算
+Bagging: 各个误差函数可以并行生成。
+Boosting: 每个误差函数只能顺序生成，因为后一个模型参数需要前一轮模型结果。
+　　
+　　
+　　
+　　
+　　
+　　
+　　
+　　
+　　
+　　
+　　
+　　
+　　OOB（Out Of Bag）袋外错误率&lt;/p&gt;
+
+&lt;p&gt;在bootstrapping的过程中，有些数据可能没有被选择，这些数据称为out-of-bag(OOB) examples。&lt;/p&gt;
+
+&lt;p&gt;解释一下上面这张图。一眼看还是挺难理解的，用白话讲一下。&lt;/p&gt;
+
+&lt;p&gt;是什么？&lt;/p&gt;
+
+&lt;p&gt;随机森林中每一次样本抽样（不是特征抽样），就是bootstrapping方法，是有放回的随机抽样，所以每一次抽的时候，对于一个特定的样本，抽到它的概率就是，很好理解，N个样本里随机抽取一个，抽到的概率当然是，因为是有放回的抽样，所以分母永远是N。&lt;/p&gt;
+
+&lt;p&gt;是什么？&lt;/p&gt;
+
+&lt;p&gt;既然被抽到的概率是，那不被抽到的概率就是,很好理解。那指数大N又是什么呢？其实就是抽样的次数。假设我们的随机森林一共有A颗树，每棵树抽了B个样本，那么指数大N就是，是不是感觉指数大N应该和分母的那个N一样？其实这里只是为了方便，它表达的意思就是抽了很多次。&lt;/p&gt;
+
+&lt;p&gt;搞明白了那个公式之后，就可以开始计算了。要用到数学分析中的极限知识。一步步推一下。&lt;/p&gt;
+
+&lt;p&gt;这是基本公式： 后面的都是基于这个变形&lt;/p&gt;
+
+&lt;p&gt;这说明了什么呢？就是你随机森林已经造好了，但是即使你的训练集是整个样本集，其中也会有的样本你抽不到。为什么抽不到，上面的公式就是告诉你为什么抽不到。这些抽不到的样本就叫做out-of-bag(OOB) examples&lt;/p&gt;
+
+&lt;p&gt;好了，到这里已经能搞懂什么是out-of-bag(OOB) examples了。那这些样本能用来做什么呢？下面就介绍oob袋外错误率。&lt;/p&gt;
+
+&lt;p&gt;袋外错误率的应用&lt;/p&gt;
+
+&lt;p&gt;正常情况下，我们训练一个模型，怎么验证它好不好。是不是要拿出一部分的数据集当作验证集，更好的还要拿出一部分当作测试集，一般是6:2:2。&lt;/p&gt;
+
+&lt;p&gt;在随机森林中，有了out-of-bag(OOB) examples，我们就不需要拿出一部分数据了，out-of-bag(OOB) examples就是那部分没有用到的数据，我们可以直接当成验证集来使用。&lt;/p&gt;
+
+&lt;p&gt;obb error = 被分类错误数 / 总数&lt;/p&gt;
+
+&lt;p&gt;随机森林算法中不需要再进行交叉验证或者单独的测试集来获取测试集误差的无偏估计。&lt;/p&gt;
+
+&lt;p&gt;Breiman [1996b]在对 bagged 分类器的错误率估计研究中, 给出实证证据显示，out-of-bag 估计 和使用与训练集大小一致的测试集所得到的错误率一样精确. 所以, 使用out-of-bag error 估计可以不在另外建立一个测试集.&lt;/p&gt;
+
+&lt;p&gt;特征重要性度量&lt;/p&gt;
+
+&lt;p&gt;计算某个特征X的重要性时，具体步骤如下：&lt;/p&gt;
+
+&lt;p&gt;对整个随机森林，得到相应的袋外数据（out of bag，OOB）​计算袋外数据误差，记为errOOB1.&lt;/p&gt;
+
+&lt;p&gt;所谓袋外数据是指，每次建立决策树时，通过重复抽样得到一个数据用于训练​决策树，这时还有大约1/3的数据没有被利用，没有参与决策树的建立。这部分数据可以用于对决策树的性能进行评估，计算模型的预测错误率，称为袋外数据误差。&lt;/p&gt;
+
+&lt;p&gt;​这已经经过证明是无偏估计的,所以在随机森林算法中不需要再进行交叉验证或者单独的测试集来获取测试集误差的无偏估计。&lt;/p&gt;
+
+&lt;p&gt;随机对袋外数据OOB所有样本的特征X加入噪声干扰（可以随机改变样本在特征X处的值），再次计算袋外数据误差，记为errOOB2。&lt;/p&gt;
+
+&lt;p&gt;​假设森林中有N棵树，则特征X的重要性=∑errOOB2−errOOB1N∑errOOB2−errOOB1N。这个数值之所以能够说明特征的重要性是因为，如果加入随机噪声后，袋外数据准确率大幅度下降（即errOOB2上升），说明这个特征对于样本的预测结果有很大影响，进而说明重要程度比较高。
+特征选择&lt;/p&gt;
+
+&lt;p&gt;在特征重要性的基础上，特征选择的步骤如下：&lt;/p&gt;
+
+&lt;p&gt;计算每个特征的重要性，并按降序排序
+确定要剔除的比例，依据特征重要性剔除相应比例的特征，得到一个新的特征集
+用新的特征集重复上述过程，直到剩下m个特征（m为提前设定的值）。
+根据上述过程中得到的各个特征集和特征集对应的袋外误差率，选择袋外误差率最低的特征集。​
+优点&lt;/p&gt;
+
+&lt;p&gt;在数据集上表现良好
+在当前的很多数据集上，相对其他算法有着很大的优势
+它能够处理很高维度（feature很多）的数据，并且不用做特征选择
+在训练完后，它能够给出哪些feature比较重要
+在创建随机森林的时候，对generlization error使用的是无偏估计
+训练速度快
+在训练过程中，能够检测到feature间的互相影响
+容易做成并行化方法
+实现比较简单
+可以得到变量重要性排序（两种：基于OOB误分率的增加量和基于分裂时的GINI下降量）
+随机森林有许多优点：&lt;/p&gt;
+
+&lt;p&gt;具有极高的准确率
+随机性的引入，使得随机森林不容易过拟合
+随机性的引入，使得随机森林有很好的抗噪声能力
+能处理很高维度的数据，并且不用做特征选择
+既能处理离散型数据，也能处理连续型数据，数据集无需规范化
+训练速度快，可以得到变量重要性排序
+容易实现并行化
+随机森林的缺点：&lt;/p&gt;
+
+&lt;p&gt;当随机森林中的决策树个数很多时，训练时需要的空间和时间会较大
+随机森林模型还有许多不好解释的地方，有点算个黑盒模型&lt;/p&gt;</content><author><name>被水淹死的鱼</name></author><category term="机器学习" /><summary type="html">[TOC]</summary></entry><entry><title type="html">Non-parameter model: Naive Bayes</title><link href="http://localhost:4000/2018/10/15/Naive-Bayes.html" rel="alternate" type="text/html" title="Non-parameter model: Naive Bayes" /><published>2018-10-15T00:00:00+08:00</published><updated>2018-10-15T00:00:00+08:00</updated><id>http://localhost:4000/2018/10/15/Naive%20Bayes</id><content type="html" xml:base="http://localhost:4000/2018/10/15/Naive-Bayes.html">&lt;h1 id=&quot;naive-bayes-algorithm&quot;&gt;Naive Bayes algorithm&lt;/h1&gt;
 
 &lt;h2 id=&quot;一-贝叶斯网络和贝叶斯分类器&quot;&gt;一. 贝叶斯网络和贝叶斯分类器&lt;/h2&gt;
 
@@ -82,16 +475,18 @@ D维向量x的高斯分布定义如下：
 
 &lt;p&gt;&lt;img src=&quot;/assets/bayes/bayes_3.png&quot; alt=&quot;1&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;       朴素贝叶斯分类是将一个未知样本分到几个预先已知类的过程。过程中最重要的就是建立模型，描述预先的数据集或概念集。通过分析由属性描述的样本(或实例，对象等)来构造模型。假定每一个样本都有一个预先定义的类，由一个被称为类标签的属性确定。为建立模型而被分析的数据元组形成训练数据集，该步也称作有指导的学习。 
-       在众多的分类模型中，应用最为广泛的两种分类模型是&lt;code class=&quot;highlighter-rouge&quot;&gt;决策树模型(Decision Tree Model)&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;朴素贝叶斯模型(Naive Bayesian Model，NBM)&lt;/code&gt;。决策树模型通过构造树来解决分类问题。首先利用训练数据集来构造一棵决策树，一旦树建立起来，它就可为未知样本产生一个分类。 在分类问题中使用决策树模型有很多的优点，决策树便于使用，而且高效；根据决策树可以 很容易地构造出规则，而规则通常易于解释和理解；决策树可很好地扩展到大型数据库中，同时它的大小独立于数据库的大小；决策树模型的另外一大优点就是可以对有许多属性的数 据集构造决策树。决策树模型也有一些缺点，比如处理缺失数据时的困难，过度拟合问题的出现，以及忽略数据集中属性之间的相关性等。
+&lt;p&gt;       朴素贝叶斯分类是将一个未知样本分到几个预先已知类的过程。过程中最重要的就是建立模型，描述预先的数据集或概念集。通过分析由属性描述的样本(或实例，对象等)来构造模型。假定每一个样本都有一个预先定义的类，由一个被称为类标签的属性确定。为建立模型而被分析的数据元组形成训练数据集，该步也称作有指导的学习。   &lt;br /&gt;
+       在众多的分类模型中，应用最为广泛的两种分类模型是&lt;code class=&quot;highlighter-rouge&quot;&gt;决策树模型(Decision Tree Model)&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;朴素贝叶斯模型(Naive Bayesian Model，NBM)&lt;/code&gt;。决策树模型通过构造树来解决分类问题。首先利用训练数据集来构造一棵决策树，一旦树建立起来，它就可为未知样本产生一个分类。 在分类问题中使用决策树模型有很多的优点，决策树便于使用，而且高效；根据决策树可以 很容易地构造出规则，而规则通常易于解释和理解；决策树可很好地扩展到大型数据库中，同时它的大小独立于数据库的大小；决策树模型的另外一大优点就是可以对有许多属性的数 据集构造决策树。决策树模型也有一些缺点，比如处理缺失数据时的困难，过度拟合问题的出现，以及忽略数据集中属性之间的相关性等。  &lt;br /&gt;
        和决策树模型相比，朴素贝叶斯模型发源于古典数学理论，有着坚实的数学基础，以及稳定的分类效率。同时，&lt;code class=&quot;highlighter-rouge&quot;&gt;NBM&lt;/code&gt; 模型所需估计的参数很少，对缺失数据不太敏感，算法也比较简单。理论上，&lt;code class=&quot;highlighter-rouge&quot;&gt;NBM&lt;/code&gt; 模型与其他分类方法相比具有最小的误差率。但是实际上并非总是如此， 这是因为 &lt;code class=&quot;highlighter-rouge&quot;&gt;NBM&lt;/code&gt; 模型假设属性之间相互独立，这个假设在实际应用中往往是不成立的，这给 &lt;code class=&quot;highlighter-rouge&quot;&gt;NBM&lt;/code&gt; 模型的正确分类带来了一定影响。在属性个数比较多或者属性之间相关性较大时，&lt;code class=&quot;highlighter-rouge&quot;&gt;NBM&lt;/code&gt; 模型的分类效率比不上决策树模型。而在属性相关性较小时，&lt;code class=&quot;highlighter-rouge&quot;&gt;NBM&lt;/code&gt; 模型的性能最为良好。&lt;/p&gt;
 
 &lt;h3 id=&quot;32-拉普拉斯平滑laplace-smoothing&quot;&gt;3.2 拉普拉斯平滑（Laplace smoothing）&lt;/h3&gt;
 &lt;p&gt;       &lt;code class=&quot;highlighter-rouge&quot;&gt;拉普拉斯平滑&lt;/code&gt;在自然语言处理中非常常见。用极大似然估计可能出现所要估计的概率值为&lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt;的情况，这时会影响到后验概率的计算结果，使分类产生偏差。也就是当某个分量在总样本某个分类中（观察样本库/训练集）从没出现过，会导致整个实例的计算结果为&lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt;。为了解决这个问题，使用拉普拉斯平滑进行处理。   &lt;br /&gt;
        它的思想非常简单，就是对先验概率的分子（划分的计数）加1，分母加上类别数；对条件概率分子加1，分母加上对应特征的可能取值数量。这样在解决零概率问题的同时，也保证了概率和依然为1。&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;举个栗子：
-假设在文本分类中，有3个类，A、B、C，在指定的训练样本中，某段话F，在各个类中观测计数分别为0，990，10，即概率为P(F/A)=0，P(F/B)=0.99，P(F/C)=0.01，对这三个量使用拉普拉斯平滑的计算方法如下：P(F/A)= 1/1003 = 0.001，P(F/B)= 991/1003=0.988 P(F/C)= 11/1003=0.011
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;举个栗子：
+假设在文本分类中，有3个类，A、B、C，在指定的训练样本中，某段话F，在各个类中观测计数分别为0，990，10，即概率为P(F/A)=0，P(F/B)=0.99，P(F/C)=0.01，对这三个量使用拉普拉斯平滑的计算方法如下：P(F/A)= 1/1003 = 0.001，P(F/B)= 991/1003=0.988 P(F/C)= 11/1003=0.011&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;h2 id=&quot;四-naive-bayes-在分类中的应用&quot;&gt;四. Naive Bayes 在分类中的应用&lt;/h2&gt;
 &lt;p&gt;以下是 Tom M.Mitchell 的机器学习中的一个栗子，是对不同环境下是否适合打网球作出预测，很具有代表性。&lt;/p&gt;

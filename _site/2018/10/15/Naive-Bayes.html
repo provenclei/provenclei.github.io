@@ -112,8 +112,8 @@ var _hmt = _hmt || [];
   <!-- 页面宽度大于800px -->
   <div class="left-area">
     
-      <a href="javascript:;" class="btn bounceInLeft animated" onmouseover="showLeft();this.style.color='orange';" onmouseout="goneLeft();this.style.color='rgba(0,0,0,.2)';"><</a>
-      <div id="left-tab" style="display:none;"><span class="left-san"></span><span class="left-main" style="color:orange;"><sapn class="main">没有上一页咯</sapn></span></div>
+      <a href="/2018/10/21/Decision-Tree.html" class="btn bounceInLeft animated" onmouseover="showLeft();this.style.color='orange';" onmouseout="goneLeft();this.style.color='rgba(0,0,0,.2)';"><</a>
+      <div id="left-tab" style="display:none;"><span class="left-san"></span><span class="left-main" style="color:orange;"><sapn class="main">Non-parameter model: Decision Tree</sapn></span></div>
     
   </div>
   <div class="post-titlearea">
@@ -132,7 +132,7 @@ var _hmt = _hmt || [];
   <!-- 页面宽度小于800px -->
   <div class="post-changearea">
     
-      <a href="javascript:;" class="leftchange" style="border-right: 1px solid orange;border-bottom: 2px solid orange;"><span><br>没有上一篇咯</span></a>
+      <a href="/2018/10/21/Decision-Tree.html" class="leftchange" style="border-right: 1px solid orange;border-bottom: 2px solid orange;"><span>上一篇<br><br>Non-parameter model: Decision Tree</span></a>
     
     
       <a href="/2018/10/08/KNN.html" class="rightchange" style="border-left: 1px solid orange;border-bottom: 2px solid orange;"><span>下一篇<br><br>Non-parameter model: KNN</span></a>
@@ -230,16 +230,18 @@ D维向量x的高斯分布定义如下：
 
 <p><img src="/assets/bayes/bayes_3.png" alt="1" /></p>
 
-<p>       朴素贝叶斯分类是将一个未知样本分到几个预先已知类的过程。过程中最重要的就是建立模型，描述预先的数据集或概念集。通过分析由属性描述的样本(或实例，对象等)来构造模型。假定每一个样本都有一个预先定义的类，由一个被称为类标签的属性确定。为建立模型而被分析的数据元组形成训练数据集，该步也称作有指导的学习。 
-       在众多的分类模型中，应用最为广泛的两种分类模型是<code class="highlighter-rouge">决策树模型(Decision Tree Model)</code>和<code class="highlighter-rouge">朴素贝叶斯模型(Naive Bayesian Model，NBM)</code>。决策树模型通过构造树来解决分类问题。首先利用训练数据集来构造一棵决策树，一旦树建立起来，它就可为未知样本产生一个分类。 在分类问题中使用决策树模型有很多的优点，决策树便于使用，而且高效；根据决策树可以 很容易地构造出规则，而规则通常易于解释和理解；决策树可很好地扩展到大型数据库中，同时它的大小独立于数据库的大小；决策树模型的另外一大优点就是可以对有许多属性的数 据集构造决策树。决策树模型也有一些缺点，比如处理缺失数据时的困难，过度拟合问题的出现，以及忽略数据集中属性之间的相关性等。
+<p>       朴素贝叶斯分类是将一个未知样本分到几个预先已知类的过程。过程中最重要的就是建立模型，描述预先的数据集或概念集。通过分析由属性描述的样本(或实例，对象等)来构造模型。假定每一个样本都有一个预先定义的类，由一个被称为类标签的属性确定。为建立模型而被分析的数据元组形成训练数据集，该步也称作有指导的学习。   <br />
+       在众多的分类模型中，应用最为广泛的两种分类模型是<code class="highlighter-rouge">决策树模型(Decision Tree Model)</code>和<code class="highlighter-rouge">朴素贝叶斯模型(Naive Bayesian Model，NBM)</code>。决策树模型通过构造树来解决分类问题。首先利用训练数据集来构造一棵决策树，一旦树建立起来，它就可为未知样本产生一个分类。 在分类问题中使用决策树模型有很多的优点，决策树便于使用，而且高效；根据决策树可以 很容易地构造出规则，而规则通常易于解释和理解；决策树可很好地扩展到大型数据库中，同时它的大小独立于数据库的大小；决策树模型的另外一大优点就是可以对有许多属性的数 据集构造决策树。决策树模型也有一些缺点，比如处理缺失数据时的困难，过度拟合问题的出现，以及忽略数据集中属性之间的相关性等。  <br />
        和决策树模型相比，朴素贝叶斯模型发源于古典数学理论，有着坚实的数学基础，以及稳定的分类效率。同时，<code class="highlighter-rouge">NBM</code> 模型所需估计的参数很少，对缺失数据不太敏感，算法也比较简单。理论上，<code class="highlighter-rouge">NBM</code> 模型与其他分类方法相比具有最小的误差率。但是实际上并非总是如此， 这是因为 <code class="highlighter-rouge">NBM</code> 模型假设属性之间相互独立，这个假设在实际应用中往往是不成立的，这给 <code class="highlighter-rouge">NBM</code> 模型的正确分类带来了一定影响。在属性个数比较多或者属性之间相关性较大时，<code class="highlighter-rouge">NBM</code> 模型的分类效率比不上决策树模型。而在属性相关性较小时，<code class="highlighter-rouge">NBM</code> 模型的性能最为良好。</p>
 
 <h3 id="32-拉普拉斯平滑laplace-smoothing">3.2 拉普拉斯平滑（Laplace smoothing）</h3>
 <p>       <code class="highlighter-rouge">拉普拉斯平滑</code>在自然语言处理中非常常见。用极大似然估计可能出现所要估计的概率值为<code class="highlighter-rouge">0</code>的情况，这时会影响到后验概率的计算结果，使分类产生偏差。也就是当某个分量在总样本某个分类中（观察样本库/训练集）从没出现过，会导致整个实例的计算结果为<code class="highlighter-rouge">0</code>。为了解决这个问题，使用拉普拉斯平滑进行处理。   <br />
        它的思想非常简单，就是对先验概率的分子（划分的计数）加1，分母加上类别数；对条件概率分子加1，分母加上对应特征的可能取值数量。这样在解决零概率问题的同时，也保证了概率和依然为1。</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>举个栗子：
-假设在文本分类中，有3个类，A、B、C，在指定的训练样本中，某段话F，在各个类中观测计数分别为0，990，10，即概率为P(F/A)=0，P(F/B)=0.99，P(F/C)=0.01，对这三个量使用拉普拉斯平滑的计算方法如下：P(F/A)= 1/1003 = 0.001，P(F/B)= 991/1003=0.988 P(F/C)= 11/1003=0.011
-</code></pre></div></div>
+
+<blockquote>
+  <p>举个栗子：
+假设在文本分类中，有3个类，A、B、C，在指定的训练样本中，某段话F，在各个类中观测计数分别为0，990，10，即概率为P(F/A)=0，P(F/B)=0.99，P(F/C)=0.01，对这三个量使用拉普拉斯平滑的计算方法如下：P(F/A)= 1/1003 = 0.001，P(F/B)= 991/1003=0.988 P(F/C)= 11/1003=0.011</p>
+</blockquote>
 
 <h2 id="四-naive-bayes-在分类中的应用">四. Naive Bayes 在分类中的应用</h2>
 <p>以下是 Tom M.Mitchell 的机器学习中的一个栗子，是对不同环境下是否适合打网球作出预测，很具有代表性。</p>
