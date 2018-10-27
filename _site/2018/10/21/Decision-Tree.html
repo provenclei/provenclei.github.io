@@ -27,6 +27,20 @@
 <!-- Android Lolipop Theme Color -->
 <!-- <meta name="theme-color" content="#1464FB"> -->
 <title>Non-parameter model: Decision Tree</title>
+
+<!-- 显示公式 -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+                tex2jax: {
+                  inlineMath: [['$','$'], ['\\(','\\)']]},
+                  processEscapes: true
+                    }
+                  );
+</script>
+<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
 <!-- 百度统计 -->
 
 <script>
@@ -112,8 +126,8 @@ var _hmt = _hmt || [];
   <!-- 页面宽度大于800px -->
   <div class="left-area">
     
-      <a href="javascript:;" class="btn bounceInLeft animated" onmouseover="showLeft();this.style.color='pink';" onmouseout="goneLeft();this.style.color='rgba(0,0,0,.2)';"><</a>
-      <div id="left-tab" style="display:none;"><span class="left-san"></span><span class="left-main" style="color:pink;"><sapn class="main">没有上一页咯</sapn></span></div>
+      <a href="/2018/10/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9C%A8%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E7%BB%BC%E8%BF%B0.html" class="btn bounceInLeft animated" onmouseover="showLeft();this.style.color='pink';" onmouseout="goneLeft();this.style.color='rgba(0,0,0,.2)';"><</a>
+      <div id="left-tab" style="display:none;"><span class="left-san"></span><span class="left-main" style="color:pink;"><sapn class="main">自然语言处理综述</sapn></span></div>
     
   </div>
   <div class="post-titlearea">
@@ -132,7 +146,7 @@ var _hmt = _hmt || [];
   <!-- 页面宽度小于800px -->
   <div class="post-changearea">
     
-      <a href="javascript:;" class="leftchange" style="border-right: 1px solid pink;border-bottom: 2px solid pink;"><span><br>没有上一篇咯</span></a>
+      <a href="/2018/10/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9C%A8%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E7%BB%BC%E8%BF%B0.html" class="leftchange" style="border-right: 1px solid pink;border-bottom: 2px solid pink;"><span>上一篇<br><br>自然语言处理综述</span></a>
     
     
       <a href="/2018/10/15/Naive-Bayes.html" class="rightchange" style="border-left: 1px solid pink;border-bottom: 2px solid pink;"><span>下一篇<br><br>Non-parameter model: Naive Bayes</span></a>
@@ -211,8 +225,22 @@ var _hmt = _hmt || [];
 
 <p>       在信息论中，<code class="highlighter-rouge">自信息</code>（英语：self-information），由克劳德·香农提出，是与概率空间中的单一事件或离散随机变量的值相关的信息量的量度。它用信息的单位表示，例如 bit、nat或是hart，使用哪个单位取决于在计算中使用的对数的底。自信息的期望值就是信息论中的<code class="highlighter-rouge">熵</code>，它<strong>反映了随机变量采样时的平均不确定程度</strong>。  <br />
        由定义，当信息被拥有它的实体传递给接收它的实体时，仅当接收实体不知道信息的先验知识时信息才得到传递。如果接收实体事先知道了消息的内容，这条消息所传递的信息量就是<code class="highlighter-rouge">0</code>。只有当接收实体对消息对先验知识少于<code class="highlighter-rouge">100%</code>时，消息才真正传递信息。  <br />
-       因此，一个随机产生的事<code class="highlighter-rouge">ω_n</code>所包含的自信息数量，只与事件发生的机率相关。事件发生的机率越低，在事件真的发生时，接收到的信息中，包含的自信息越大。  <br />
-<code class="highlighter-rouge">ω_n</code>的自信息量：<script type="math/tex">I(ω_n) = f(P(ω_n))</script> 如果 P(ω_n) = 1，则 I(ω_n) = 0。如果 P(ω_n) &lt; 1, 则 I(ω_n) &gt; 0。此外，根据定义，自信息的量度是非负的而且是可加的。如果事件 <code class="highlighter-rouge">C</code> 是两个独立事件 <code class="highlighter-rouge">A</code> 和 <code class="highlighter-rouge">B</code> 的交集，那么宣告 <code class="highlighter-rouge">C</code> 发生的信息量就等于分别宣告事件 <code class="highlighter-rouge">A</code> 和事件 <code class="highlighter-rouge">B</code> 的信息量的和： <script type="math/tex">I(C) = I(A∩B) = I(A) + I(B)</script> 因为 <code class="highlighter-rouge">A</code> 和 <code class="highlighter-rouge">B</code> 是独立事件，所以 <code class="highlighter-rouge">C</code> 的概率为： <script type="math/tex">P(C) = P(A∩B) = P(A) · P(B)</script> 应用函数 <code class="highlighter-rouge">f(·)</code> 会得到：<script type="math/tex">I(C) = I(A) + I(B)</script> <script type="math/tex">f(P(C)) = f(P(A)) + f(P(B)) = f(P(A) · P(B))</script> 所以函数 <code class="highlighter-rouge">f(·)</code> 具有性质 <script type="math/tex">f(x·y) = f(x) + f(y)</script> 而对数函数正好有这个性质，不同的底的对数函数之间的区别只差一个常数：<script type="math/tex">f(x) = Klog(x)</script> 由于事件的概率总在 <code class="highlighter-rouge">0</code> 和 <code class="highlighter-rouge">1</code> 之间，而信息量不能为负，所以 <code class="highlighter-rouge">K&lt;0</code> 。考虑到这些性质，假设事件 <code class="highlighter-rouge">ω_n</code> 发生的机率是  <code class="highlighter-rouge">P(ω_n)</code> ,自信息量的 <code class="highlighter-rouge">I(ω_n)</code> 的定义为：<script type="math/tex">I(ω_n) = -log(P(ω_n)) = log(\frac{1}{P(ω_n)})</script>事件 <code class="highlighter-rouge">ω_n</code> 的概率越小, 它发生后的自信息量越大。此定义符合上述条件。在上面的定义中，没有指定的对数的基底：如果以 <code class="highlighter-rouge">2</code> 为底，单位是 <code class="highlighter-rouge">bit</code>。当使用以 <code class="highlighter-rouge">e</code> 为底的对数时，单位将是 <code class="highlighter-rouge">nat</code>。对于基底为 <code class="highlighter-rouge">10</code> 的对数，单位是 <code class="highlighter-rouge">hart</code>。信息量的大小不同于信息作用的大小，这不是同一概念。信息量只表明不确定性的减少程度，至于对接收者来说，所获得的信息可能事关重大，也可能无足轻重，这是信息作用的大小。</p>
+       因此，一个随机产生的事<code class="highlighter-rouge">ω_n</code>所包含的自信息数量，只与事件发生的机率相关。事件发生的机率越低，在事件真的发生时，接收到的信息中，包含的自信息越大。<code class="highlighter-rouge">ω_n</code>的自信息量：
+\[ I(ω_n) = f(P(ω_n)) \] 
+如果 P(ω_n) = 1，则 I(ω_n) = 0。如果 P(ω_n) &lt; 1, 则 I(ω_n) &gt; 0。此外，根据定义，自信息的量度是非负的而且是可加的。如果事件 <code class="highlighter-rouge">C</code> 是两个独立事件 <code class="highlighter-rouge">A</code> 和 <code class="highlighter-rouge">B</code> 的交集，那么宣告 <code class="highlighter-rouge">C</code> 发生的信息量就等于分别宣告事件 <code class="highlighter-rouge">A</code> 和事件 <code class="highlighter-rouge">B</code> 的信息量的和：
+\[ I(C) = I(A∩B) = I(A) + I(B) \] 
+因为 <code class="highlighter-rouge">A</code> 和 <code class="highlighter-rouge">B</code> 是独立事件，所以 <code class="highlighter-rouge">C</code> 的概率为： 
+\[ P(C) = P(A∩B) = P(A) · P(B) \] 
+应用函数 <code class="highlighter-rouge">f(·)</code> 会得到：
+\[ I(C) = I(A) + I(B) \]
+\[ f(P(C)) = f(P(A)) + f(P(B)) = f(P(A) · P(B)) \] 
+所以函数 <code class="highlighter-rouge">f(·)</code> 具有性质 
+\[ f(x·y) = f(x) + f(y) \] 
+而对数函数正好有这个性质，不同的底的对数函数之间的区别只差一个常数：
+\[ f(x) = Klog(x) \] 
+由于事件的概率总在 <code class="highlighter-rouge">0</code> 和 <code class="highlighter-rouge">1</code> 之间，而信息量不能为负，所以 <code class="highlighter-rouge">K&lt;0</code> 。考虑到这些性质，假设事件 <code class="highlighter-rouge">ω_n</code> 发生的机率是  <code class="highlighter-rouge">P(ω_n)</code> ,自信息量的 <code class="highlighter-rouge">I(ω_n)</code> 的定义为：
+\[ I(ω_n) = -log(P(ω_n)) = log(\frac{1}{P(ω_n)}) \]
+事件 <code class="highlighter-rouge">ω_n</code> 的概率越小, 它发生后的自信息量越大。此定义符合上述条件。在上面的定义中，没有指定的对数的基底：如果以 <code class="highlighter-rouge">2</code> 为底，单位是 <code class="highlighter-rouge">bit</code>。当使用以 <code class="highlighter-rouge">e</code> 为底的对数时，单位将是 <code class="highlighter-rouge">nat</code>。对于基底为 <code class="highlighter-rouge">10</code> 的对数，单位是 <code class="highlighter-rouge">hart</code>。信息量的大小不同于信息作用的大小，这不是同一概念。信息量只表明不确定性的减少程度，至于对接收者来说，所获得的信息可能事关重大，也可能无足轻重，这是信息作用的大小。</p>
 
 <blockquote>
   <p>和熵的联系
@@ -222,11 +250,19 @@ var _hmt = _hmt || [];
 <h4 id="132-互信息">1.3.2 互信息</h4>
 
 <p>       在概率论和信息论中，两个随机变量的 <code class="highlighter-rouge">互信息（Mutual Information，简称MI）</code> 或<code class="highlighter-rouge"> 转移信息（transinformation）</code> 是变量间相互依赖性的量度。不同于相关系数，互信息并不局限于实值随机变量，它更加一般且决定着联合分布 <code class="highlighter-rouge">p(X,Y)</code> 和分解的边缘分布的乘积 <code class="highlighter-rouge">p(X)p(Y)</code> 的相似程度。互信息是 <code class="highlighter-rouge">点间互信息（PMI）</code> 的期望值。互信息最常用的单位是 <code class="highlighter-rouge">bit</code>。  <br />
-       一般地，两个离散随机变量 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 的互信息可以定义为：<script type="math/tex">I(X;Y) = \sum_{y∈Y}\sum_{x∈X}{P(x,y)log(\frac{P(x,y)}{P(x)·P(y)})}</script> 其中 <code class="highlighter-rouge">p(x,y)</code> 是 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 的联合概率分布函数，而 <code class="highlighter-rouge">P(x)</code> 和 <code class="highlighter-rouge">P(y)</code> 分别是 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 的边缘概率分布函数。  <br />
-在连续随机变量的情形下，求和被替换成了二重定积分：<script type="math/tex">I(X;Y) = \int_{Y}\int_{X}{P(x,y)log(\frac{P(x,y)}{P(x)·P(y)})} {\rm d}x{\rm d}y</script> 其中 <code class="highlighter-rouge">P(x,y)</code> 当前是 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 的联合概率密度函数，而 <code class="highlighter-rouge">P(x)</code> 和 <code class="highlighter-rouge">P(y)</code> 分别是 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 的边缘概率密度函数。如果对数以 <code class="highlighter-rouge">2</code> 为基底，互信息的单位是 <code class="highlighter-rouge">bit</code>。  <br />
+       一般地，两个离散随机变量 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 的互信息可以定义为：
+\[ I(X;Y) = \sum_{y∈Y}\sum_{x∈X}{P(x,y)log(\frac{P(x,y)}{P(x)·P(y)})} \] 
+其中 <code class="highlighter-rouge">p(x,y)</code> 是 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 的联合概率分布函数，而 <code class="highlighter-rouge">P(x)</code> 和 <code class="highlighter-rouge">P(y)</code> 分别是 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 的边缘概率分布函数。  <br />
+在连续随机变量的情形下，求和被替换成了二重定积分：
+\[ I(X;Y) = \int_{Y}\int_{X}{P(x,y)log(\frac{P(x,y)}{P(x)·P(y)})} {\rm d}x{\rm d}y \] 
+其中 <code class="highlighter-rouge">P(x,y)</code> 当前是 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 的联合概率密度函数，而 <code class="highlighter-rouge">P(x)</code> 和 <code class="highlighter-rouge">P(y)</code> 分别是 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 的边缘概率密度函数。如果对数以 <code class="highlighter-rouge">2</code> 为基底，互信息的单位是 <code class="highlighter-rouge">bit</code>。  <br />
        直观上，互信息度量 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 共享的信息：它度量知道这两个变量其中一个，对另一个不确定度减少的程度。例如，如果 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 相互独立，则知道 <code class="highlighter-rouge">X</code> 不对 <code class="highlighter-rouge">Y</code> 提供任何信息，反之亦然，所以它们的互信息为零。在另一个极端，如果 <code class="highlighter-rouge">X</code> 是 <code class="highlighter-rouge">Y</code> 的一个确定性函数，且 <code class="highlighter-rouge">Y</code> 也是 <code class="highlighter-rouge">X</code> 的一个确定性函数，那么传递的所有信息被 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 共享：知道 <code class="highlighter-rouge">X</code> 决定 <code class="highlighter-rouge">Y</code> 的值，反之亦然。因此，在此情形互信息与 <code class="highlighter-rouge">Y</code>（或 <code class="highlighter-rouge">X</code>）单独包含的不确定度相同，称作 <code class="highlighter-rouge">Y</code>（或 <code class="highlighter-rouge">X</code>）的熵。而且，这个互信息与 <code class="highlighter-rouge">X</code> 的熵和 <code class="highlighter-rouge">Y</code> 的熵相同。(这种情形的一个非常特殊的情况是当 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 为相同随机变量时。)  <br />
-       互信息是 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 的联合分布相对于假定 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 独立情况下的联合分布之间的内在依赖性。 于是互信息以下面方式度量依赖性：<code class="highlighter-rouge">I(X; Y) = 0</code> 当且仅当 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 为独立随机变量。从一个方向很容易看出：当 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 独立时，<code class="highlighter-rouge">p(x,y) = p(x) p(y)</code>，因此，<script type="math/tex">log(\frac{P(A,B)}{P(A)·P(B)}) = log(1) = 0</script>此外，互信息是非负的（即 <code class="highlighter-rouge">I(X;Y) ≥ 0</code>），而且是对称的（即 <code class="highlighter-rouge">I(X;Y) = I(Y;X)</code>）。  <br />
-       另外，互信息可以简单的表示成：<script type="math/tex">I(X;Y) = H(Y) - H(Y|X) = H(X,Y) - H(X|Y) - H(Y|X)</script> 其中 <code class="highlighter-rouge">H(X)</code> 和 <code class="highlighter-rouge">H(Y)</code> 是<strong>边缘熵</strong>，<code class="highlighter-rouge">H(X|Y)</code> 和 <code class="highlighter-rouge">H(Y|X)</code> 是<strong>条件熵</strong>，而 <code class="highlighter-rouge">H(X,Y)</code> 是 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 的<strong>联合熵</strong>。直观地说，如果把熵 H(Y) 看作一个随机变量于不确定度的量度，那么 H(Y|X) 就是”在已知 X 事件后Y事件会发生”的不确定度。这证实了互信息的直观意义为: “因X而有Y事件”的熵(基于已知随机变量的不确定性) 在”Y事件”的熵之中具有多少影响地位(“Y事件所具有的不确定性” 其中包含了多少 “Y|X事件所具有的不确性” )，意即”Y具有的不确定性”有多少程度是起因于X事件。</p>
+       互信息是 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 的联合分布相对于假定 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 独立情况下的联合分布之间的内在依赖性。 于是互信息以下面方式度量依赖性：<code class="highlighter-rouge">I(X; Y) = 0</code> 当且仅当 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 为独立随机变量。从一个方向很容易看出：当 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 独立时，<code class="highlighter-rouge">p(x,y) = p(x) p(y)</code>，因此，
+\[ log(\frac{P(A,B)}{P(A)·P(B)}) = log(1) = 0 \]
+此外，互信息是非负的（即 <code class="highlighter-rouge">I(X;Y) ≥ 0</code>），而且是对称的（即 <code class="highlighter-rouge">I(X;Y) = I(Y;X)</code>）。  <br />
+       另外，互信息可以简单的表示成：
+\[ I(X;Y) = H(Y) - H(Y|X) = H(X,Y) - H(X|Y) - H(Y|X) \] 
+其中 <code class="highlighter-rouge">H(X)</code> 和 <code class="highlighter-rouge">H(Y)</code> 是<strong>边缘熵</strong>，<code class="highlighter-rouge">H(X|Y)</code> 和 <code class="highlighter-rouge">H(Y|X)</code> 是<strong>条件熵</strong>，而 <code class="highlighter-rouge">H(X,Y)</code> 是 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 的<strong>联合熵</strong>。直观地说，如果把熵 H(Y) 看作一个随机变量于不确定度的量度，那么 H(Y|X) 就是”在已知 X 事件后Y事件会发生”的不确定度。这证实了互信息的直观意义为: “因X而有Y事件”的熵(基于已知随机变量的不确定性) 在”Y事件”的熵之中具有多少影响地位(“Y事件所具有的不确定性” 其中包含了多少 “Y|X事件所具有的不确性” )，意即”Y具有的不确定性”有多少程度是起因于X事件。</p>
 
 <blockquote>
   <p>舉例來說，當 <code class="highlighter-rouge">I(X;Y) = 0</code>時，也就是 <code class="highlighter-rouge">H(Y) = H(Y|X)</code>時，即代表此時 <code class="highlighter-rouge">"Y的不確定性"</code> 即為 <code class="highlighter-rouge">"Y|X的不確定性"</code>，這說明了互信息的具體意義是在度量兩個事件彼此之間的關聯性。</p>
@@ -236,40 +272,43 @@ var _hmt = _hmt || [];
 
 <h4 id="133-信息熵">1.3.3 信息熵</h4>
 
-<p>       在信息论中，<code class="highlighter-rouge">熵</code>（英语：entropy）是接收的每条消息中包含的信息的平均量，又被称为<strong>信息熵</strong>、<strong>信源熵</strong>、<strong>平均自信息量</strong>。这里，“消息”代表来自分布或数据流中的事件、样本或特征。（熵最好理解为不确定性的量度而不是确定性的量度，因为越随机的信源的熵越大。）<script type="math/tex">H(X) = E[I(X)] = E[-ln[P(X)]]</script> 其中，<code class="highlighter-rouge">P</code> 为 <code class="highlighter-rouge">X</code> 的概率质量函数（probability mass function），<code class="highlighter-rouge">E</code> 为期望函数，而 <code class="highlighter-rouge">I(X)</code> 是 <code class="highlighter-rouge">X</code> 的信息量（又称为自信息）。<code class="highlighter-rouge">I(X)</code> 本身是个随机变数。当取自有限的样本时，<strong>熵</strong>的公式可以表示为：
-<script type="math/tex">H(X) = \sum_{i} {P(x_i)I(x_i)} = -\sum_{i} {P(x_i)log_b{P(x_i)}}</script> 
+<p>       在信息论中，<code class="highlighter-rouge">熵</code>（英语：entropy）是接收的每条消息中包含的信息的平均量，又被称为<strong>信息熵</strong>、<strong>信源熵</strong>、<strong>平均自信息量</strong>。这里，“消息”代表来自分布或数据流中的事件、样本或特征。（熵最好理解为不确定性的量度而不是确定性的量度，因为越随机的信源的熵越大。）
+\[ H(X) = E[I(X)] = E[-ln[P(X)]] \] 
+其中，<code class="highlighter-rouge">P</code> 为 <code class="highlighter-rouge">X</code> 的概率质量函数（probability mass function），<code class="highlighter-rouge">E</code> 为期望函数，而 <code class="highlighter-rouge">I(X)</code> 是 <code class="highlighter-rouge">X</code> 的信息量（又称为自信息）。<code class="highlighter-rouge">I(X)</code> 本身是个随机变数。当取自有限的样本时，<strong>熵</strong>的公式可以表示为：
+\[ H(X) = \sum_{i} {P(x_i)I(x_i)} = -\sum_{i} {P(x_i)log_b{P(x_i)}} \] 
 可以定义事件 <code class="highlighter-rouge">X</code> 与 <code class="highlighter-rouge">Y</code> 分别取 <code class="highlighter-rouge">x_i</code> 和 <code class="highlighter-rouge">y_j</code> 时的<strong>条件熵</strong>为：
-<script type="math/tex">{H(X|Y)} = -\sum_{i,j}{P(x_i,y_j)·log[\frac{P(x_i,y_j)}{P(y_j)}]}</script> 
+\[ {H(X|Y)} = -\sum_{i,j}{P(x_i,y_j)·log[\frac{P(x_i,y_j)}{P(y_j)}]} \] 
 这个量应当理解为你知道Y的值前提下随机变量 X 的随机性的量。</p>
 
 <h4 id="134-相对熵">1.3.4 相对熵</h4>
 
 <p>       <strong>相对熵（relative entropy）</strong>又称为<strong>KL散度（Kullback–Leibler divergence，简称KLD）</strong>，<strong>信息散度（information divergence）</strong>，<strong>信息增益（information gain）</strong>。</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>       <code class="highlighter-rouge">KL散度</code>是两个概率分布 <code class="highlighter-rouge">P</code> 和 <code class="highlighter-rouge">Q</code> 差别的非对称性的度量。 <code class="highlighter-rouge">KL散度</code>是用来度量使用基于 <code class="highlighter-rouge">Q</code> 的编码来编码来自 <code class="highlighter-rouge">P</code> 的样本平均所需的额外的位元数。典型情况下，<code class="highlighter-rouge">P</code> 表示数据的真实分布，<code class="highlighter-rouge">Q</code> 表示数据的理论分布，模型分布，或 <code class="highlighter-rouge">P</code> 的近似分布。  对于离散随机变量，其概率分布 <code class="highlighter-rouge">P</code> 和 <code class="highlighter-rouge">Q</code> 的<code class="highlighter-rouge">KL散度</code>可按下式定义为$$ D_KL(P</td>
-      <td> </td>
-      <td>Q) = -\sum_{i}{P(i)\frac{Q(i)}{P(i)}} <script type="math/tex">等价于</script> D_KL(P</td>
-      <td> </td>
-      <td>Q) = \sum_{i}{P(i)\frac{P(i)}{Q(i)}} $$即按概率 <code class="highlighter-rouge">P</code> 求得的 <code class="highlighter-rouge">P</code> 和 <code class="highlighter-rouge">Q</code> 的对数差的平均值。<code class="highlighter-rouge">KL散度</code>仅当概率 <code class="highlighter-rouge">P</code> 和 <code class="highlighter-rouge">Q</code> 各自总和均为 <code class="highlighter-rouge">1</code>，且对于任何 <code class="highlighter-rouge">i</code> 皆满足<code class="highlighter-rouge">Q(i)&gt;0</code>及<code class="highlighter-rouge">P(i)&gt;0</code>时，才有定义。式中出现 <code class="highlighter-rouge">0ln0</code> 的情况，其值按0处理。</td>
-    </tr>
-    <tr>
-      <td>对于连续随机变量，其概率分布 <code class="highlighter-rouge">P</code> 和 <code class="highlighter-rouge">Q</code> 可按积分方式定义为：$$ D_KL(P</td>
-      <td> </td>
-      <td>Q) = \int_{-∞}^{∞}{P(i)\frac{Q(i)}{P(i)}}{\rm d}x $$ 尽管从直觉上KL散度是个度量或距离函数, 但是它实际上并不是一个真正的度量或距离。因为KL散度不具有对称性：从分布 <code class="highlighter-rouge">P</code> 到 <code class="highlighter-rouge">Q</code> 的距离通常并不等于从 <code class="highlighter-rouge">Q</code> 到 <code class="highlighter-rouge">P</code> 的距离。</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
+<p>       <code class="highlighter-rouge">KL散度</code>是两个概率分布 <code class="highlighter-rouge">P</code> 和 <code class="highlighter-rouge">Q</code> 差别的非对称性的度量。 <code class="highlighter-rouge">KL散度</code>是用来度量使用基于 <code class="highlighter-rouge">Q</code> 的编码来编码来自 <code class="highlighter-rouge">P</code> 的样本平均所需的额外的位元数。典型情况下，<code class="highlighter-rouge">P</code> 表示数据的真实分布，<code class="highlighter-rouge">Q</code> 表示数据的理论分布，模型分布，或 <code class="highlighter-rouge">P</code> 的近似分布。  对于离散随机变量，其概率分布 <code class="highlighter-rouge">P</code> 和 <code class="highlighter-rouge">Q</code> 的<code class="highlighter-rouge">KL散度</code>可按下式定义为
+\[ D_KL(P||Q) = -\sum_{i}{P(i)\frac{Q(i)}{P(i)}} \]
+等价于
+\[ D_KL(P||Q) = \sum_{i}{P(i)\frac{P(i)}{Q(i)}} \]
+即按概率 <code class="highlighter-rouge">P</code> 求得的 <code class="highlighter-rouge">P</code> 和 <code class="highlighter-rouge">Q</code> 的对数差的平均值。<code class="highlighter-rouge">KL散度</code>仅当概率 <code class="highlighter-rouge">P</code> 和 <code class="highlighter-rouge">Q</code> 各自总和均为 <code class="highlighter-rouge">1</code>，且对于任何 <code class="highlighter-rouge">i</code> 皆满足<code class="highlighter-rouge">Q(i)&gt;0</code>及<code class="highlighter-rouge">P(i)&gt;0</code>时，才有定义。式中出现 <code class="highlighter-rouge">0ln0</code> 的情况，其值按0处理。  <br />
+对于连续随机变量，其概率分布 <code class="highlighter-rouge">P</code> 和 <code class="highlighter-rouge">Q</code> 可按积分方式定义为：
+\[ D_KL(P||Q) = \int_{-∞}^{∞}{P(i)\frac{Q(i)}{P(i)}}{\rm d}x \] 
+尽管从直觉上KL散度是个度量或距离函数, 但是它实际上并不是一个真正的度量或距离。因为KL散度不具有对称性：从分布 <code class="highlighter-rouge">P</code> 到 <code class="highlighter-rouge">Q</code> 的距离通常并不等于从 <code class="highlighter-rouge">Q</code> 到 <code class="highlighter-rouge">P</code> 的距离。</p>
 
 <blockquote>
   <p>举个栗子：  <br />
 对于一维数据来说：
-<img src="/assets/tree/tree_3.png" alt="1" /> <script type="math/tex">对总体的信息熵： ori-Entropy(x) = -\frac{1}{2}log\frac{1}{2} - \frac{1}{2}log\frac{1}{2} = 1</script>
-对于<code class="highlighter-rouge">A</code>点来说，左边的信息熵用<code class="highlighter-rouge">A_1</code>表示，右边用<code class="highlighter-rouge">A_2</code>表示，则有<script type="math/tex">Entropy(A_1) = 0, Entropy(A_2) = -\frac{2}{7}log\frac{2}{7} - \frac{5}{7}log\frac{5}{7}</script>对于信息增益（Information Gain，由于熵的减小，增加信息量的多少）：<script type="math/tex">IG = ori-Entropy - \sum_{i=1}^n{ω_i}{Entropy(A_i)}</script>即：<script type="math/tex">IG = Entropy(A) - \sum_{i=1}^n{\frac{\lvert{A_i}\rvert}{A}}{Entropy(A_i)}</script> 所以有 <code class="highlighter-rouge">A</code> 点处的信息增益为：<script type="math/tex">IG(A) = 1 - \frac{3}{10}*0 + \frac{7}{10}*Entropy(A_2)</script>所以， <code class="highlighter-rouge">B</code> 点处的信息增益为：<script type="math/tex">IG(B) = 1 - \frac{6}{10}*Entropy(B_1) + \frac{4}{10}*Entropy(B_2)</script>同理可求出<code class="highlighter-rouge">IG(C)</code>，选择<code class="highlighter-rouge">IG(A)</code>,<code class="highlighter-rouge">IG(B)</code>,<code class="highlighter-rouge">IG(C)</code>中的最大值就是划分的最佳结点。
+<img src="/assets/tree/tree_3.png" alt="1" /> 
+\[ 对总体的信息熵： ori-Entropy(x) = -\frac{1}{2}log\frac{1}{2} - \frac{1}{2}log\frac{1}{2} = 1 \]
+对于<code class="highlighter-rouge">A</code>点来说，左边的信息熵用<code class="highlighter-rouge">A_1</code>表示，右边用<code class="highlighter-rouge">A_2</code>表示，则有
+\[ Entropy(A_1) = 0, Entropy(A_2) = -\frac{2}{7}log\frac{2}{7} - \frac{5}{7}log\frac{5}{7} \]
+对于信息增益（Information Gain，由于熵的减小，增加信息量的多少）：
+\[ IG = ori-Entropy - \sum_{i=1}^n{ω_i}{Entropy(A_i)} \]
+即：
+\[ IG = Entropy(A) - \sum_{i=1}^n{\frac{\lvert{A_i}\rvert}{A}}{Entropy(A_i)} \] 
+所以有 <code class="highlighter-rouge">A</code> 点处的信息增益为：
+\[ IG(A) = 1 - \frac{3}{10}<em>0 + \frac{7}{10}</em>Entropy(A_2) \]
+所以， <code class="highlighter-rouge">B</code> 点处的信息增益为：
+\[ IG(B) = 1 - \frac{6}{10}<em>Entropy(B_1) + \frac{4}{10}</em>Entropy(B_2) \]
+同理可求出<code class="highlighter-rouge">IG(C)</code>，选择<code class="highlighter-rouge">IG(A)</code>,<code class="highlighter-rouge">IG(B)</code>,<code class="highlighter-rouge">IG(C)</code>中的最大值就是划分的最佳结点。
 再比如上回提到的 Play Tennis 的预测模型：
 <img src="/assets/tree/tree_4.png" alt="1" />
 以上的步骤就是<code class="highlighter-rouge">ID3算法</code>（根据信息增益，确定合适的节点）的基本思路，实际就是将空间分为很多区域，根据特征类型进行划分，我们可以将空间划分为：<code class="highlighter-rouge">ordinal(有序的)</code>, <code class="highlighter-rouge">numerial(数字的)</code>,  <code class="highlighter-rouge">discrete(离散的)</code>。对于<strong>子树</strong>(sub-Trees)的选择，取决于两个属性：<code class="highlighter-rouge">attribute types</code>(Nominal, Ordinal, Continuous), <code class="highlighter-rouge">number of ways to split</code>(2-way split, Muti-way split)。对于<strong>连续数据的离散化</strong>（Discretization）可以根据<code class="highlighter-rouge">数据分布</code>，<code class="highlighter-rouge">区域</code>，<code class="highlighter-rouge">熵</code>进行离散化。对于<strong>分割</strong>（splitting），有 <code class="highlighter-rouge">Muti-way split</code>(Use as many partitions as distinct values.) 和 <code class="highlighter-rouge">Binary split</code>(Divide values into two subject. Need to find optional partitioning.) 两种。</p>
@@ -278,15 +317,24 @@ var _hmt = _hmt || [];
 <h3 id="14-信息增益比">1.4 信息增益比</h3>
 
 <p>       以信息增益比作为划分训练数据集的特征，存在偏向于选择取值较多的特征的问题。使用<strong>信息增益比</strong>（Information gain ratio）可以对这一问题进行校正，这是特征选择的标准之一。  <br />
-       特征 <code class="highlighter-rouge">A</code> 对数据集 <code class="highlighter-rouge">D</code> 的信息增益比<code class="highlighter-rouge">g_r(D,A)</code>定义为信息增益<code class="highlighter-rouge">g(D,A)</code>与训练数据集 <code class="highlighter-rouge">D</code> 关于特征 <code class="highlighter-rouge">A</code> 的值的熵<code class="highlighter-rouge">H_A(D)</code>之比，即 <script type="math/tex">g_R(D,A) = \frac{g(D,A)}{H_A(D)}</script> 其中，<script type="math/tex">-\sum_{i=1}^n{\frac{\lvert{D_i}\rvert}{\lvert{D}\rvert}{log}_2}{\frac{\lvert{D_i}\rvert}{\lvert{D}\rvert}}</script> <code class="highlighter-rouge">n</code> 是特征 <code class="highlighter-rouge">A</code> 取值的个数。</p>
+       特征 <code class="highlighter-rouge">A</code> 对数据集 <code class="highlighter-rouge">D</code> 的信息增益比<code class="highlighter-rouge">g_r(D,A)</code>定义为信息增益<code class="highlighter-rouge">g(D,A)</code>与训练数据集 <code class="highlighter-rouge">D</code> 关于特征 <code class="highlighter-rouge">A</code> 的值的熵<code class="highlighter-rouge">H_A(D)</code>之比，即 
+\[ g_R(D,A) = \frac{g(D,A)}{H_A(D)} \] 
+其中，
+\[ -\sum_{i=1}^n{\frac{\lvert{D_i}\rvert}{\lvert{D}\rvert}{log}_2}{\frac{\lvert{D_i}\rvert}{\lvert{D}\rvert}} \] 
+<code class="highlighter-rouge">n</code> 是特征 <code class="highlighter-rouge">A</code> 取值的个数。</p>
 
 <h3 id="14-gini-split">1.4 Gini Split</h3>
 
-<p>       对于给定样本集合 <code class="highlighter-rouge">D</code>，其<code class="highlighter-rouge">GINI Index</code>（基尼系数）为：<script type="math/tex">GINI(D) = 1 - \sum_{k=1}^K{[\frac{\lvert{C_k}\rvert}{\lvert{D}\rvert}]}^2</script> 其中 <code class="highlighter-rouge">C_k</code> 是 <code class="highlighter-rouge">D</code> 中属于第 <code class="highlighter-rouge">k</code> 类的样本子集, <code class="highlighter-rouge">K</code> 是类的个数。</p>
+<p>       对于给定样本集合 <code class="highlighter-rouge">D</code>，其<code class="highlighter-rouge">GINI Index</code>（基尼系数）为：
+\[ GINI(D) = 1 - \sum_{k=1}^K{[\frac{\lvert{C_k}\rvert}{\lvert{D}\rvert}]}^2 \] 
+其中 <code class="highlighter-rouge">C_k</code> 是 <code class="highlighter-rouge">D</code> 中属于第 <code class="highlighter-rouge">k</code> 类的样本子集, <code class="highlighter-rouge">K</code> 是类的个数。</p>
 
 <blockquote>
   <p>举个栗子:
-如果中有 <code class="highlighter-rouge">C_1</code> 类 <code class="highlighter-rouge">0</code> 个，<code class="highlighter-rouge">C_2</code> 类 <code class="highlighter-rouge">6</code> 个，则<code class="highlighter-rouge">GINI</code>系数为：<script type="math/tex">GINI(C) = 1 - \sum_{i=1}^2{[\frac{\lvert{C_i}\rvert}{\lvert{D}\rvert}]}^2 = 1 - [[\frac{0}{6}]^2 + [\frac{6}{6}]^2] = 1</script> 如果中有 <code class="highlighter-rouge">C_1</code> 类 <code class="highlighter-rouge">3</code> 个，<code class="highlighter-rouge">C_2</code> 类 <code class="highlighter-rouge">3</code> 个，则<code class="highlighter-rouge">GINI</code>系数为：<script type="math/tex">GINI(C) = 1 - \sum_{i=1}^2{[\frac{\lvert{C_i}\rvert}{\lvert{D}\rvert}]}^2 = 1 - [[\frac{3}{6}]^2 + [\frac{3}{6}]^2] = \frac{1}{2}</script></p>
+如果中有 <code class="highlighter-rouge">C_1</code> 类 <code class="highlighter-rouge">0</code> 个，<code class="highlighter-rouge">C_2</code> 类 <code class="highlighter-rouge">6</code> 个，则<code class="highlighter-rouge">GINI</code>系数为：
+\[ GINI(C) = 1 - \sum_{i=1}^2{[\frac{\lvert{C_i}\rvert}{\lvert{D}\rvert}]}^2 = 1 - [[\frac{0}{6}]^2 + [\frac{6}{6}]^2] = 1 \] 
+如果中有 <code class="highlighter-rouge">C_1</code> 类 <code class="highlighter-rouge">3</code> 个，<code class="highlighter-rouge">C_2</code> 类 <code class="highlighter-rouge">3</code> 个，则<code class="highlighter-rouge">GINI</code>系数为：
+\[ GINI(C) = 1 - \sum_{i=1}^2{[\frac{\lvert{C_i}\rvert}{\lvert{D}\rvert}]}^2 = 1 - [[\frac{3}{6}]^2 + [\frac{3}{6}]^2] = \frac{1}{2} \]</p>
 </blockquote>
 
 <p>基尼系数具有以下特点：
@@ -297,7 +345,9 @@ var _hmt = _hmt || [];
 
 <p><strong>GINI Split</strong>：
        Used in CART, SLIQ, SPRINT.
-       When a node p is split into k partitions (children), the quality of split is computed as, <script type="math/tex">{GINI}_{split} = 1 - \sum_{i=1}^k{\frac{n_i}{n}}Gini(i)</script>        where, n_i = number of records at child i, 
+       When a node p is split into k partitions (children), the quality of split is computed as, 
+\[ {GINI}<em>{split} = 1 - \sum</em>{i=1}^k{\frac{n_i}{n}}Gini(i) \] 
+       where, n_i = number of records at child i, 
                      n = number of records at node p.   <br />
        For efficient computation: for each attribute,
               * Sort the attribute on values;
@@ -309,7 +359,8 @@ var _hmt = _hmt || [];
 </code></pre></div></div>
 
 <h3 id="15-misclassification-error">1.5 Misclassification Error</h3>
-<p><script type="math/tex">Error(t) = 1 - max P(i|t)</script>
+
+<p>\[ Error(t) = 1 - max P(i|t) \]
 举个栗子:
 <img src="/assets/tree/tree_7.png" style="zoom:50%" />
 Measure of Impurity for 2-Class Problems:
@@ -320,26 +371,7 @@ Measure of Impurity for 2-Class Problems:
 <h3 id="21-id3">2.1 ID3</h3>
 
 <h3 id="22-c45">2.2 C4.5</h3>
-
-<h3 id="23-决策树剪枝">2.3 决策树剪枝</h3>
-
-<h2 id="三-tree-ensembles---cart">三. Tree Ensembles - CART</h2>
-
-<h2 id="四-tree-ensembles---bagging">四. Tree Ensembles - Bagging</h2>
-
-<h2 id="五-tree-ensembles---random-forest">五. Tree Ensembles - Random Forest</h2>
-
-<h2 id="六-tree-ensembles---boosting">六. Tree Ensembles - Boosting</h2>
-
-<h2 id="七-tree-ensembles---gradient-boosting-decision-treegbdt">七. Tree Ensembles - Gradient Boosting Decision Tree(GBDT)</h2>
-
-<h2 id="八-参考文献">八. 参考文献</h2>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>《 决策树中基于基尼指数的属性分裂方法 》 陈云樱等
-</code></pre></div></div>
-
-<p>1、C4.5 
-机器学习中，决策树是一个预测模型;他代表的是对象属性与对象值之间的一种映射关系。 树中每个节点表示某个对象，而每个分叉路径则代表的某个可能的属性值，而每个叶结点则 对应从根节点到该叶节点所经历的路径所表示的对象的值。决策树仅有单一输出，若欲有复 数输出，可以建立独立的决策树以处理不同输出。 从数据产生决策树的机器学习技术叫做决策树学习, 通俗说就是决策树。 决策树学习也是数据挖掘中一个普通的方法。在这里，每个决策树都表述了一种树型结构， 他由他的分支来对该类型的对象依靠属性进行分类。每个决策树可以依靠对源数据库的分割 进行数据测试。这个过程可以递归式的对树进行修剪。 当不能再进行分割或一个单独的类 可以被应用于某一分支时，递归过程就完成了。另外，随机森林分类器将许多决策树结合起 来以提升分类的正确率。 决策树同时也可以依靠计算条件概率来构造。决策树如果依靠数学的计算方法可以取得更加 理想的效果。 决策树是如何工作的 决策树一般都是自上而下的来生成的。 选择分割的方法有好几种，但是目的都是一致的:对目标类尝试进行最佳的分割。 从根到叶子节点都有一条路径，这条路径就是一条“规则”。 决策树可以是二叉的，也可以是多叉的。 对每个节点的衡量: 
+<p>机器学习中，决策树是一个预测模型;他代表的是对象属性与对象值之间的一种映射关系。 树中每个节点表示某个对象，而每个分叉路径则代表的某个可能的属性值，而每个叶结点则 对应从根节点到该叶节点所经历的路径所表示的对象的值。决策树仅有单一输出，若欲有复 数输出，可以建立独立的决策树以处理不同输出。 从数据产生决策树的机器学习技术叫做决策树学习, 通俗说就是决策树。 决策树学习也是数据挖掘中一个普通的方法。在这里，每个决策树都表述了一种树型结构， 他由他的分支来对该类型的对象依靠属性进行分类。每个决策树可以依靠对源数据库的分割 进行数据测试。这个过程可以递归式的对树进行修剪。 当不能再进行分割或一个单独的类 可以被应用于某一分支时，递归过程就完成了。另外，随机森林分类器将许多决策树结合起 来以提升分类的正确率。 决策树同时也可以依靠计算条件概率来构造。决策树如果依靠数学的计算方法可以取得更加 理想的效果。 决策树是如何工作的 决策树一般都是自上而下的来生成的。 选择分割的方法有好几种，但是目的都是一致的:对目标类尝试进行最佳的分割。 从根到叶子节点都有一条路径，这条路径就是一条“规则”。 决策树可以是二叉的，也可以是多叉的。 对每个节点的衡量: 
 	.	1)  通过该节点的记录数  
 	.	2)  如果是叶子节点的话，分类的路径  
 	.	3)  对叶子节点正确分类的比例。  
@@ -354,7 +386,7 @@ C4.5 算法继承了 ID3 算法的优点，并在以下几方面对 ID3 算法�
 1) 初始化参数 C={E},E 包括所有的例子,为根. 
 2) IF C 中的任一元素 e 同属于同一个决策类则创建一个叶子 节点 YES 终止. 
 ELSE 依启发式标准,选择特征 Fi={V1,V2,V3,.Vn}并创建 判定节点 
-划分 C 为互不相交的 N 个集合 C1,C2,C3,..,Cn; 3) 对任一个 Ci 递归. 2. ID3 算法 
+划分 C 为互不相交的 N 个集合 C1,C2,C3,..,Cn; 3 对任一个 Ci 递归. 2. ID3 算法 
 	.	1)  随机选择 C 的一个子集 W (窗口).  
 	.	2)  调用 CLS 生成 W 的分类树 DT(强调的启发式标准在后).  
 	.	3)  顺序扫描 C 搜集 DT 的意外(即由 DT 无法确定的例子).  
@@ -362,31 +394,29 @@ ELSE 依启发式标准,选择特征 Fi={V1,V2,V3,.Vn}并创建 判定节点
 	.	5)  重复 2)到 4),直到无例外为止.  
 启发式标准: 只跟本身与其子树有关,采取信息理论用熵来量度. 熵是选择事件时选择自由度的量度,其计算方法为</p>
 
-<h2 id="p--freqcjsssum-plogp---sum函数是求-j-从-1-到-n-和">P = freq(Cj,S)/|S|; SUM( P*LOG(P) ) ; SUM()函数是求 j 从 1 到 n 和.</h2>
-<p>INFO(S)= Gain(X)=Info(X)-Infox(X); Infox(X)=SUM( (|T i|/|T|) *Info(X); 
-为保证生成的决策树最小,ID3 算法在生成子树时,选取使生成的子树的熵(即 Gain(S))最小的 的特征来生成子树. §4.3.3: ID3 算法对数据的要求 
-	1.	所有属性必须为离散量.  
-	2.	所有的训练例的所有属性必须有一个明确的值.  
-	3.	相同的因素必须得到相同的结论且训练例必须唯一.  
-§4.3.4: C4.5 对 ID3 算法的改进: 1. 熵的改进,加上了子树的信息. 
+<p>P = freq(Cj,S)/|S|; SUM( P*LOG(P) ) ; SUM()函数是求 j 从 1 到 n 和.</p>
+<ul>
+  <li>INFO(S)= Gain(X)=Info(X)-Infox(X); Infox(X)=SUM( (|T i|/|T|) *Info(X); 
+为保证生成的决策树最小,ID3 算法在生成子树时,选取使生成的子树的熵(即 Gain(S))最小的 的特征来生成子树. ID3 算法对数据的要求
+    <ol>
+      <li>所有属性必须为离散量.  </li>
+      <li>所有的训练例的所有属性必须有一个明确的值.  </li>
+      <li>相同的因素必须得到相同的结论且训练例必须唯一.  
+C4.5 对 ID3 算法的改进: 1. 熵的改进,加上了子树的信息. 
 Split_Infox(X)= - SUM( (|T|/|T i| ) *LOG(|T i|/|T|) ); 
 Gain ratio(X)= Gain(X)/Split Infox(X); 2. 在输入数据上的改进. 
 1) 因素属性的值可以是连续量,C4.5 对其排序并分成不同的集合后按照 ID3 算法当作离散量进 行处理,但结论属性的值必须是离散值. 
-2) 训练例的因素属性值可以是不确定的,以 ? 表示,但结论必须是确定的</p>
-<ol>
-  <li>对已生成的决策树进行裁剪,减小生成树的规模.</li>
-</ol>
+2) 训练例的因素属性值可以是不确定的,以 ? 表示,但结论必须是确定的 
+      3. 对已生成的决策树进行裁剪,减小生成树的规模.</li>
+    </ol>
+  </li>
+</ul>
 
-<p>Bootstrapping</p>
+<h3 id="23-决策树剪枝">2.3 决策树剪枝</h3>
 
-<p>Bootstrapping从字面意思翻译是拔靴法，从其内容翻译又叫自助法，是一种再抽样的统计方法。自助法的名称来源于英文短语“to pull oneself up by one’s bootstrap”，表示完成一件不能自然完成的事情。1977年美国Standford大学统计学教授Efron提出了一种新的增广样本的统计方法，就是Bootstrap方法，为解决小子样试验评估问题提供了很好的思路。</p>
+<h2 id="三-tree-ensembles---cart">三. Tree Ensembles - CART</h2>
 
-<p>算法流程</p>
-
-<p>从N个样本中有放回的随机抽取n个样本。
-用n个样本计算统计量
-重复1，2步骤m次，得到统计量
-计算统计量序列的方差，则可得到统计量方差的无偏估计。（均值也是，bootstrapping方法就是通过多次的随机采样得到可以代表母体样本分布的子样本分布）</p>
+<h2 id="四-tree-ensembles---bagging">四. Tree Ensembles - Bagging</h2>
 
 <p>Bagging策略(bootstrap aggregating)套袋法</p>
 
@@ -394,6 +424,8 @@ Gain ratio(X)= Gain(X)/Split Infox(X); 2. 在输入数据上的改进.
 用这n个样本的所有属性构建基分类器（LR,ID3,C4.5,SVM）
 重复1,2两步m次，构建m个基分类器
 投票得出分类结果，哪个票最多就是哪一类。对回归模型，取多有基分类器结果的均值。总而言之就是所有基分类器的权重相同。</p>
+
+<h2 id="五-tree-ensembles---random-forest">五. Tree Ensembles - Random Forest</h2>
 
 <p>随机森林</p>
 
@@ -417,13 +449,22 @@ Gain ratio(X)= Gain(X)/Split Infox(X); 2. 在输入数据上的改进.
 
 <p>森林中任意两棵树的相关性：相关性越大，错误率越大；
 森林中每棵树的分类能力：每棵树的分类能力越强，整个森林的错误率越低。
-　　减小特征选择个数m，树的相关性和分类能力也会相应的降低；增大m，两者也会随之增大。所以关键问题是如何选择最优的m（或者是范围），这也是随机森林唯一的一个参数。
-　　
-　　
-　　
-　　
-　　
-　Boosting
+　　减小特征选择个数m，树的相关性和分类能力也会相应的降低；增大m，两者也会随之增大。所以关键问题是如何选择最优的m（或者是范围），这也是随机森林唯一的一个参数。</p>
+
+<h2 id="六-tree-ensembles---boosting">六. Tree Ensembles - Boosting</h2>
+
+<p>Bootstrapping</p>
+
+<p>Bootstrapping从字面意思翻译是拔靴法，从其内容翻译又叫自助法，是一种再抽样的统计方法。自助法的名称来源于英文短语“to pull oneself up by one’s bootstrap”，表示完成一件不能自然完成的事情。1977年美国Standford大学统计学教授Efron提出了一种新的增广样本的统计方法，就是Bootstrap方法，为解决小子样试验评估问题提供了很好的思路。</p>
+
+<p>算法流程</p>
+
+<p>从N个样本中有放回的随机抽取n个样本。
+用n个样本计算统计量
+重复1，2步骤m次，得到统计量
+计算统计量序列的方差，则可得到统计量方差的无偏估计。（均值也是，bootstrapping方法就是通过多次的随机采样得到可以代表母体样本分布的子样本分布）</p>
+
+<p>Boosting
 　其主要思想是将弱分类器组装成强分类器。在PAC(概率近似正确)的框架下，则一定可以将一个弱分类器组装成一个强分类器。
 　关于 Boosting 的两个核心问题：
 　1. 在每一轮如何改变训练数据的权值或概率分布？
@@ -447,20 +488,16 @@ Boosting: 每个弱分类器都有相应的权重，对于分类误差小的分�
 　　
 　　4. 并行计算
 Bagging: 各个误差函数可以并行生成。
-Boosting: 每个误差函数只能顺序生成，因为后一个模型参数需要前一轮模型结果。
-　　
-　　
-　　
-　　
-　　
-　　
-　　
-　　
-　　
-　　
-　　
-　　
-　　OOB（Out Of Bag）袋外错误率</p>
+Boosting: 每个误差函数只能顺序生成，因为后一个模型参数需要前一轮模型结果。</p>
+
+<h2 id="七-tree-ensembles---gradient-boosting-decision-treegbdt">七. Tree Ensembles - Gradient Boosting Decision Tree(GBDT)</h2>
+
+<h2 id="八-参考文献">八. 参考文献</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>《 决策树中基于基尼指数的属性分裂方法 》 陈云樱等
+</code></pre></div></div>
+
+<p>　　OOB（Out Of Bag）袋外错误率</p>
 
 <p>在bootstrapping的过程中，有些数据可能没有被选择，这些数据称为out-of-bag(OOB) examples。</p>
 
