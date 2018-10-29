@@ -160,9 +160,46 @@ var _hmt = _hmt || [];
   
 
   <!-- 文章内容 -->
-  <p>[TOC]</p>
+  <h1 id="decision-tree-algorithm">Decision Tree algorithm</h1>
 
-<h1 id="decision-tree-algorithm">Decision Tree algorithm</h1>
+<p>目录：</p>
+<ul id="markdown-toc">
+  <li><a href="#decision-tree-algorithm" id="markdown-toc-decision-tree-algorithm">Decision Tree algorithm</a>    <ul>
+      <li><a href="#一-基础知识" id="markdown-toc-一-基础知识">一. 基础知识</a>        <ul>
+          <li><a href="#11-决策树模型" id="markdown-toc-11-决策树模型">1.1 决策树模型</a></li>
+          <li><a href="#12-决策树学习" id="markdown-toc-12-决策树学习">1.2 决策树学习</a></li>
+          <li><a href="#13-information-theory信息论" id="markdown-toc-13-information-theory信息论">1.3 information Theory(信息论)</a>            <ul>
+              <li><a href="#131-自信息" id="markdown-toc-131-自信息">1.3.1 自信息</a></li>
+              <li><a href="#132-互信息" id="markdown-toc-132-互信息">1.3.2 互信息</a></li>
+              <li><a href="#133-信息熵" id="markdown-toc-133-信息熵">1.3.3 信息熵</a></li>
+              <li><a href="#134-相对熵" id="markdown-toc-134-相对熵">1.3.4 相对熵</a></li>
+            </ul>
+          </li>
+          <li><a href="#14-信息增益比" id="markdown-toc-14-信息增益比">1.4 信息增益比</a></li>
+          <li><a href="#14-gini-split" id="markdown-toc-14-gini-split">1.4 Gini Split</a></li>
+          <li><a href="#15-misclassification-error" id="markdown-toc-15-misclassification-error">1.5 Misclassification Error</a></li>
+        </ul>
+      </li>
+      <li><a href="#二-id3-和-c45-算法" id="markdown-toc-二-id3-和-c45-算法">二. ID3 和 C4.5 算法</a>        <ul>
+          <li><a href="#21-id3-算法" id="markdown-toc-21-id3-算法">2.1 ID3 算法</a></li>
+          <li><a href="#22-c45-算法" id="markdown-toc-22-c45-算法">2.2 C4.5 算法</a></li>
+          <li><a href="#23-id3-和-c45-的对比" id="markdown-toc-23-id3-和-c45-的对比">2.3 ID3 和 C4.5 的对比</a></li>
+          <li><a href="#23-决策树剪枝" id="markdown-toc-23-决策树剪枝">2.3 决策树剪枝</a>            <ul>
+              <li><a href="#231-过拟合" id="markdown-toc-231-过拟合">2.3.1 过拟合</a></li>
+              <li><a href="#232-剪枝策略" id="markdown-toc-232-剪枝策略">2.3.2 剪枝策略</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#三-tree-ensembles---cart" id="markdown-toc-三-tree-ensembles---cart">三. Tree Ensembles - CART</a></li>
+      <li><a href="#四-tree-ensembles---bagging" id="markdown-toc-四-tree-ensembles---bagging">四. Tree Ensembles - Bagging</a></li>
+      <li><a href="#五-tree-ensembles---random-forest" id="markdown-toc-五-tree-ensembles---random-forest">五. Tree Ensembles - Random Forest</a></li>
+      <li><a href="#六-tree-ensembles---boosting" id="markdown-toc-六-tree-ensembles---boosting">六. Tree Ensembles - Boosting</a></li>
+      <li><a href="#七-tree-ensembles---gradient-boosting-decision-treegbdt" id="markdown-toc-七-tree-ensembles---gradient-boosting-decision-treegbdt">七. Tree Ensembles - Gradient Boosting Decision Tree(GBDT)</a></li>
+      <li><a href="#八-参考文献" id="markdown-toc-八-参考文献">八. 参考文献</a></li>
+    </ul>
+  </li>
+</ul>
 
 <blockquote>
   <p>决策树（decision tree）算法基于特征属性进行分类，其主要的优点：模型具有可读性，计算量小，分类速度快。决策树算法包括了由Quinlan提出的ID3与C4.5，Breiman等提出的CART。其中，C4.5是基于ID3的，对分裂属性的目标函数做出了改进。</p>

@@ -8,9 +8,11 @@ cover: 'http://img5.imgtn.bdimg.com/it/u=3668605211,1052431768&fm=26&gp=0.jpg'
 tags: 机器学习
 ---
 
-[TOC]
+# Decision Tree algorithm  
 
-# Decision Tree algorithm    
+目录：
+* 目录
+{:toc}
 
 >决策树（decision tree）算法基于特征属性进行分类，其主要的优点：模型具有可读性，计算量小，分类速度快。决策树算法包括了由Quinlan提出的ID3与C4.5，Breiman等提出的CART。其中，C4.5是基于ID3的，对分裂属性的目标函数做出了改进。    
 

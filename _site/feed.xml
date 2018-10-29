@@ -1,6 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-28T15:47:08+08:00</updated><id>http://localhost:4000/</id><title type="html">被水淹死的鱼</title><subtitle>个人技术微博</subtitle><author><name>true</name></author><entry><title type="html">Non-parameter model: Decision Tree</title><link href="http://localhost:4000/2018/10/28/Decision-Tree.html" rel="alternate" type="text/html" title="Non-parameter model: Decision Tree" /><published>2018-10-28T00:00:00+08:00</published><updated>2018-10-28T00:00:00+08:00</updated><id>http://localhost:4000/2018/10/28/Decision%20Tree</id><content type="html" xml:base="http://localhost:4000/2018/10/28/Decision-Tree.html">&lt;p&gt;[TOC]&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-29T09:59:06+08:00</updated><id>http://localhost:4000/</id><title type="html">被水淹死的鱼</title><subtitle>个人技术微博</subtitle><author><name>true</name></author><entry><title type="html">Non-parameter model: Decision Tree</title><link href="http://localhost:4000/2018/10/28/Decision-Tree.html" rel="alternate" type="text/html" title="Non-parameter model: Decision Tree" /><published>2018-10-28T00:00:00+08:00</published><updated>2018-10-28T00:00:00+08:00</updated><id>http://localhost:4000/2018/10/28/Decision%20Tree</id><content type="html" xml:base="http://localhost:4000/2018/10/28/Decision-Tree.html">&lt;h1 id=&quot;decision-tree-algorithm&quot;&gt;Decision Tree algorithm&lt;/h1&gt;
 
-&lt;h1 id=&quot;decision-tree-algorithm&quot;&gt;Decision Tree algorithm&lt;/h1&gt;
+&lt;p&gt;目录：&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#decision-tree-algorithm&quot; id=&quot;markdown-toc-decision-tree-algorithm&quot;&gt;Decision Tree algorithm&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#一-基础知识&quot; id=&quot;markdown-toc-一-基础知识&quot;&gt;一. 基础知识&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#11-决策树模型&quot; id=&quot;markdown-toc-11-决策树模型&quot;&gt;1.1 决策树模型&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#12-决策树学习&quot; id=&quot;markdown-toc-12-决策树学习&quot;&gt;1.2 决策树学习&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#13-information-theory信息论&quot; id=&quot;markdown-toc-13-information-theory信息论&quot;&gt;1.3 information Theory(信息论)&lt;/a&gt;            &lt;ul&gt;
+              &lt;li&gt;&lt;a href=&quot;#131-自信息&quot; id=&quot;markdown-toc-131-自信息&quot;&gt;1.3.1 自信息&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#132-互信息&quot; id=&quot;markdown-toc-132-互信息&quot;&gt;1.3.2 互信息&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#133-信息熵&quot; id=&quot;markdown-toc-133-信息熵&quot;&gt;1.3.3 信息熵&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#134-相对熵&quot; id=&quot;markdown-toc-134-相对熵&quot;&gt;1.3.4 相对熵&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#14-信息增益比&quot; id=&quot;markdown-toc-14-信息增益比&quot;&gt;1.4 信息增益比&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#14-gini-split&quot; id=&quot;markdown-toc-14-gini-split&quot;&gt;1.4 Gini Split&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#15-misclassification-error&quot; id=&quot;markdown-toc-15-misclassification-error&quot;&gt;1.5 Misclassification Error&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#二-id3-和-c45-算法&quot; id=&quot;markdown-toc-二-id3-和-c45-算法&quot;&gt;二. ID3 和 C4.5 算法&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#21-id3-算法&quot; id=&quot;markdown-toc-21-id3-算法&quot;&gt;2.1 ID3 算法&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#22-c45-算法&quot; id=&quot;markdown-toc-22-c45-算法&quot;&gt;2.2 C4.5 算法&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#23-id3-和-c45-的对比&quot; id=&quot;markdown-toc-23-id3-和-c45-的对比&quot;&gt;2.3 ID3 和 C4.5 的对比&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#23-决策树剪枝&quot; id=&quot;markdown-toc-23-决策树剪枝&quot;&gt;2.3 决策树剪枝&lt;/a&gt;            &lt;ul&gt;
+              &lt;li&gt;&lt;a href=&quot;#231-过拟合&quot; id=&quot;markdown-toc-231-过拟合&quot;&gt;2.3.1 过拟合&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#232-剪枝策略&quot; id=&quot;markdown-toc-232-剪枝策略&quot;&gt;2.3.2 剪枝策略&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#三-tree-ensembles---cart&quot; id=&quot;markdown-toc-三-tree-ensembles---cart&quot;&gt;三. Tree Ensembles - CART&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#四-tree-ensembles---bagging&quot; id=&quot;markdown-toc-四-tree-ensembles---bagging&quot;&gt;四. Tree Ensembles - Bagging&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#五-tree-ensembles---random-forest&quot; id=&quot;markdown-toc-五-tree-ensembles---random-forest&quot;&gt;五. Tree Ensembles - Random Forest&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#六-tree-ensembles---boosting&quot; id=&quot;markdown-toc-六-tree-ensembles---boosting&quot;&gt;六. Tree Ensembles - Boosting&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#七-tree-ensembles---gradient-boosting-decision-treegbdt&quot; id=&quot;markdown-toc-七-tree-ensembles---gradient-boosting-decision-treegbdt&quot;&gt;七. Tree Ensembles - Gradient Boosting Decision Tree(GBDT)&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#八-参考文献&quot; id=&quot;markdown-toc-八-参考文献&quot;&gt;八. 参考文献&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;决策树（decision tree）算法基于特征属性进行分类，其主要的优点：模型具有可读性，计算量小，分类速度快。决策树算法包括了由Quinlan提出的ID3与C4.5，Breiman等提出的CART。其中，C4.5是基于ID3的，对分裂属性的目标函数做出了改进。&lt;/p&gt;
@@ -543,7 +580,41 @@ Boosting: 每个误差函数只能顺序生成，因为后一个模型参数需�
 随机森林的缺点：&lt;/p&gt;
 
 &lt;p&gt;当随机森林中的决策树个数很多时，训练时需要的空间和时间会较大
-随机森林模型还有许多不好解释的地方，有点算个黑盒模型&lt;/p&gt;</content><author><name>被水淹死的鱼</name></author><category term="机器学习" /><summary type="html">[TOC]</summary></entry><entry><title type="html">自然语言处理综述</title><link href="http://localhost:4000/2018/10/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9C%A8%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E7%BB%BC%E8%BF%B0.html" rel="alternate" type="text/html" title="自然语言处理综述" /><published>2018-10-26T00:00:00+08:00</published><updated>2018-10-26T00:00:00+08:00</updated><id>http://localhost:4000/2018/10/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9C%A8%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E7%BB%BC%E8%BF%B0</id><content type="html" xml:base="http://localhost:4000/2018/10/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9C%A8%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E7%BB%BC%E8%BF%B0.html">&lt;h1 id=&quot;深度学习在自然语言处理的发展与应用&quot;&gt;深度学习在自然语言处理的发展与应用&lt;/h1&gt;
+随机森林模型还有许多不好解释的地方，有点算个黑盒模型&lt;/p&gt;</content><author><name>被水淹死的鱼</name></author><category term="机器学习" /><summary type="html">Decision Tree algorithm</summary></entry><entry><title type="html">自然语言处理综述</title><link href="http://localhost:4000/2018/10/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9C%A8%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E7%BB%BC%E8%BF%B0.html" rel="alternate" type="text/html" title="自然语言处理综述" /><published>2018-10-26T00:00:00+08:00</published><updated>2018-10-26T00:00:00+08:00</updated><id>http://localhost:4000/2018/10/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9C%A8%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E7%BB%BC%E8%BF%B0</id><content type="html" xml:base="http://localhost:4000/2018/10/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9C%A8%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E7%BB%BC%E8%BF%B0.html">&lt;h1 id=&quot;深度学习在自然语言处理的发展与应用&quot;&gt;深度学习在自然语言处理的发展与应用&lt;/h1&gt;
+
+&lt;p&gt;目录：&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#深度学习在自然语言处理的发展与应用&quot; id=&quot;markdown-toc-深度学习在自然语言处理的发展与应用&quot;&gt;深度学习在自然语言处理的发展与应用&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#摘要&quot; id=&quot;markdown-toc-摘要&quot;&gt;摘要&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#abstract&quot; id=&quot;markdown-toc-abstract&quot;&gt;Abstract&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#概述&quot; id=&quot;markdown-toc-概述&quot;&gt;概述&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#正文&quot; id=&quot;markdown-toc-正文&quot;&gt;正文&lt;/a&gt;            &lt;ul&gt;
+              &lt;li&gt;&lt;a href=&quot;#1信息抽取&quot; id=&quot;markdown-toc-1信息抽取&quot;&gt;1.信息抽取&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#2词性标注&quot; id=&quot;markdown-toc-2词性标注&quot;&gt;2.词性标注&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#3文本分类&quot; id=&quot;markdown-toc-3文本分类&quot;&gt;3.文本分类&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#4语义分析和问题回答&quot; id=&quot;markdown-toc-4语义分析和问题回答&quot;&gt;4.语义分析和问题回答&lt;/a&gt;            &lt;ul&gt;
+              &lt;li&gt;&lt;a href=&quot;#41有监督的词义消歧方法&quot; id=&quot;markdown-toc-41有监督的词义消歧方法&quot;&gt;4.1有监督的词义消歧方法&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#42基于互信息的消歧方法&quot; id=&quot;markdown-toc-42基于互信息的消歧方法&quot;&gt;4.2基于互信息的消歧方法&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#43基于贝叶斯分类器的消歧方法&quot; id=&quot;markdown-toc-43基于贝叶斯分类器的消歧方法&quot;&gt;4.3基于贝叶斯分类器的消歧方法&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#44基于最大熵的词义消歧方法&quot; id=&quot;markdown-toc-44基于最大熵的词义消歧方法&quot;&gt;4.4基于最大熵的词义消歧方法&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#45基于词典的词义消歧方法&quot; id=&quot;markdown-toc-45基于词典的词义消歧方法&quot;&gt;4.5基于词典的词义消歧方法&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#46基于词典语义定义的消歧方法&quot; id=&quot;markdown-toc-46基于词典语义定义的消歧方法&quot;&gt;4.6基于词典语义定义的消歧方法&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#47基于义类词典的消歧方法&quot; id=&quot;markdown-toc-47基于义类词典的消歧方法&quot;&gt;4.7基于义类词典的消歧方法&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#48无监督的词义消歧方法&quot; id=&quot;markdown-toc-48无监督的词义消歧方法&quot;&gt;4.8无监督的词义消歧方法&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#5语言生成和多文档总结&quot; id=&quot;markdown-toc-5语言生成和多文档总结&quot;&gt;5.语言生成和多文档总结&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#6机器翻译&quot; id=&quot;markdown-toc-6机器翻译&quot;&gt;6.机器翻译&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#7语音识别&quot; id=&quot;markdown-toc-7语音识别&quot;&gt;7.语音识别&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#8字符识别&quot; id=&quot;markdown-toc-8字符识别&quot;&gt;8.字符识别&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#参考文献&quot; id=&quot;markdown-toc-参考文献&quot;&gt;参考文献&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&quot;摘要&quot;&gt;摘要&lt;/h2&gt;
 &lt;p&gt;       深度学习的概念源于人工神经网络的研究。含多隐层的多层感知器就是一种深度学习结构。深度学习通过组合低层特征形成更加抽象的高层表示属性类别或特征，以发现数据的分布式特征表示。深度学习是机器学习研究中的一个新的领域，其动机在于建立、模拟人脑进行分析学习的神经网络，它模仿人脑的机制来解释数据，例如图像，声音和文本。
@@ -700,6 +771,34 @@ Boosting: 每个误差函数只能顺序生成，因为后一个模型参数需�
 &lt;p&gt;《基于双重注意力模型的微博情感分析方法》     张仰森，郑佳，黄改娟，蒋玉茹&lt;/p&gt;
 
 &lt;p&gt;《用于微博情感分析的一种情感语义增强的深度学习模型》    何炎祥，孙松涛，牛菲菲，李飞&lt;/p&gt;</content><author><name>被水淹死的鱼</name></author><category term="自然语言处理" /><category term="综述" /><summary type="html">深度学习在自然语言处理的发展与应用</summary></entry><entry><title type="html">Non-parameter model: Naive Bayes</title><link href="http://localhost:4000/2018/10/15/Naive-Bayes.html" rel="alternate" type="text/html" title="Non-parameter model: Naive Bayes" /><published>2018-10-15T00:00:00+08:00</published><updated>2018-10-15T00:00:00+08:00</updated><id>http://localhost:4000/2018/10/15/Naive%20Bayes</id><content type="html" xml:base="http://localhost:4000/2018/10/15/Naive-Bayes.html">&lt;h1 id=&quot;naive-bayes-algorithm&quot;&gt;Naive Bayes algorithm&lt;/h1&gt;
+
+&lt;p&gt;目录：&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#naive-bayes-algorithm&quot; id=&quot;markdown-toc-naive-bayes-algorithm&quot;&gt;Naive Bayes algorithm&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#一-贝叶斯网络和贝叶斯分类器&quot; id=&quot;markdown-toc-一-贝叶斯网络和贝叶斯分类器&quot;&gt;一. 贝叶斯网络和贝叶斯分类器&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#11-贝叶斯概率&quot; id=&quot;markdown-toc-11-贝叶斯概率&quot;&gt;1.1 贝叶斯概率&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#12-高斯分布&quot; id=&quot;markdown-toc-12-高斯分布&quot;&gt;1.2 高斯分布&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#13-贝叶斯网络&quot; id=&quot;markdown-toc-13-贝叶斯网络&quot;&gt;1.3 贝叶斯网络&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#二-常见的贝叶斯分类器&quot; id=&quot;markdown-toc-二-常见的贝叶斯分类器&quot;&gt;二. 常见的贝叶斯分类器&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#21-naive-bayes-分类器&quot; id=&quot;markdown-toc-21-naive-bayes-分类器&quot;&gt;2.1 Naive Bayes 分类器&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#22-tan-分类器&quot; id=&quot;markdown-toc-22-tan-分类器&quot;&gt;2.2 TAN 分类器&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#23-ban-分类器&quot; id=&quot;markdown-toc-23-ban-分类器&quot;&gt;2.3 BAN 分类器&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#24-gbn-分类器&quot; id=&quot;markdown-toc-24-gbn-分类器&quot;&gt;2.4 GBN 分类器&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#三-bayes-估计&quot; id=&quot;markdown-toc-三-bayes-估计&quot;&gt;三. Bayes 估计&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#31-贝叶斯估计&quot; id=&quot;markdown-toc-31-贝叶斯估计&quot;&gt;3.1 贝叶斯估计&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#32-拉普拉斯平滑laplace-smoothing&quot; id=&quot;markdown-toc-32-拉普拉斯平滑laplace-smoothing&quot;&gt;3.2 拉普拉斯平滑（Laplace smoothing）&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#四-naive-bayes-在分类中的应用&quot; id=&quot;markdown-toc-四-naive-bayes-在分类中的应用&quot;&gt;四. Naive Bayes 在分类中的应用&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#五-naive-bayes-在拟合中的应用&quot; id=&quot;markdown-toc-五-naive-bayes-在拟合中的应用&quot;&gt;五. Naive Bayes 在拟合中的应用&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#六-参考文献&quot; id=&quot;markdown-toc-六-参考文献&quot;&gt;六. 参考文献&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&quot;一-贝叶斯网络和贝叶斯分类器&quot;&gt;一. 贝叶斯网络和贝叶斯分类器&lt;/h2&gt;
 
@@ -867,6 +966,27 @@ D维向量x的高斯分布定义如下：
 
 《Machine Learning》 Tom M.Mitchell
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>被水淹死的鱼</name></author><category term="机器学习" /><summary type="html">Naive Bayes algorithm</summary></entry><entry><title type="html">Non-parameter model: KNN</title><link href="http://localhost:4000/2018/10/08/KNN.html" rel="alternate" type="text/html" title="Non-parameter model: KNN" /><published>2018-10-08T00:00:00+08:00</published><updated>2018-10-08T00:00:00+08:00</updated><id>http://localhost:4000/2018/10/08/KNN</id><content type="html" xml:base="http://localhost:4000/2018/10/08/KNN.html">&lt;h1 id=&quot;k-nearest-neighber-algorithm&quot;&gt;K-Nearest Neighber algorithm&lt;/h1&gt;
+
+&lt;p&gt;目录：&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#k-nearest-neighber-algorithm&quot; id=&quot;markdown-toc-k-nearest-neighber-algorithm&quot;&gt;K-Nearest Neighber algorithm&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#一-knn-算法决策过程&quot; id=&quot;markdown-toc-一-knn-算法决策过程&quot;&gt;一. KNN 算法决策过程&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#11-knn-for-regression-prediction&quot; id=&quot;markdown-toc-11-knn-for-regression-prediction&quot;&gt;1.1 KNN for Regression (Prediction)&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#12-度量问题&quot; id=&quot;markdown-toc-12-度量问题&quot;&gt;1.2 度量问题&lt;/a&gt;            &lt;ul&gt;
+              &lt;li&gt;&lt;a href=&quot;#121-distance-measure&quot; id=&quot;markdown-toc-121-distance-measure&quot;&gt;1.2.1 Distance Measure&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#122-edited-measure&quot; id=&quot;markdown-toc-122-edited-measure&quot;&gt;1.2.2 Edited Measure&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#二-knn-的不足&quot; id=&quot;markdown-toc-二-knn-的不足&quot;&gt;二. KNN 的不足&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#三-knn-中遇到的问题&quot; id=&quot;markdown-toc-三-knn-中遇到的问题&quot;&gt;三. KNN 中遇到的问题&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#31-two-questions&quot; id=&quot;markdown-toc-31-two-questions&quot;&gt;3.1 Two Questions&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;KNN is a non-parameteric model used for classification and regression. The input considts of the K closest training examples in the feature space.&lt;/p&gt;
