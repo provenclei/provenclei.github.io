@@ -160,7 +160,9 @@ var _hmt = _hmt || [];
   
 
   <!-- 文章内容 -->
-  <h1 id="decision-tree-algorithm">Decision Tree algorithm</h1>
+  <p>[TOC]</p>
+
+<h1 id="decision-tree-algorithm">Decision Tree algorithm</h1>
 
 <p>目录：</p>
 <ul id="markdown-toc">
@@ -191,12 +193,28 @@ var _hmt = _hmt || [];
           </li>
         </ul>
       </li>
-      <li><a href="#三-tree-ensembles---cart" id="markdown-toc-三-tree-ensembles---cart">三. Tree Ensembles - CART</a></li>
-      <li><a href="#四-tree-ensembles---bagging" id="markdown-toc-四-tree-ensembles---bagging">四. Tree Ensembles - Bagging</a></li>
+      <li><a href="#三-tree-ensembles---cart" id="markdown-toc-三-tree-ensembles---cart">三. Tree Ensembles - CART</a>        <ul>
+          <li><a href="#cart-生成" id="markdown-toc-cart-生成">CART 生成</a>            <ul>
+              <li><a href="#特征选择" id="markdown-toc-特征选择">特征选择</a></li>
+              <li><a href="#cart-算法" id="markdown-toc-cart-算法">CART 算法</a></li>
+            </ul>
+          </li>
+          <li><a href="#cart-剪枝" id="markdown-toc-cart-剪枝">CART 剪枝</a></li>
+          <li><a href="#cart-笔记" id="markdown-toc-cart-笔记">CART 笔记</a></li>
+        </ul>
+      </li>
+      <li><a href="#四-tree-ensembles---bagging-and-boosting" id="markdown-toc-四-tree-ensembles---bagging-and-boosting">四. Tree Ensembles - Bagging And Boosting</a>        <ul>
+          <li><a href="#bootstrapping" id="markdown-toc-bootstrapping">Bootstrapping</a></li>
+          <li><a href="#bagging" id="markdown-toc-bagging">Bagging</a></li>
+          <li><a href="#boosting" id="markdown-toc-boosting">Boosting</a></li>
+          <li><a href="#bagging-和-boosting-二者之间的区别" id="markdown-toc-bagging-和-boosting-二者之间的区别">Bagging 和 Boosting 二者之间的区别</a></li>
+          <li><a href="#gradient-boosting" id="markdown-toc-gradient-boosting">Gradient Boosting</a></li>
+          <li><a href="#面试题" id="markdown-toc-面试题">面试题</a></li>
+        </ul>
+      </li>
       <li><a href="#五-tree-ensembles---random-forest" id="markdown-toc-五-tree-ensembles---random-forest">五. Tree Ensembles - Random Forest</a></li>
-      <li><a href="#六-tree-ensembles---boosting" id="markdown-toc-六-tree-ensembles---boosting">六. Tree Ensembles - Boosting</a></li>
-      <li><a href="#七-tree-ensembles---gradient-boosting-decision-treegbdt" id="markdown-toc-七-tree-ensembles---gradient-boosting-decision-treegbdt">七. Tree Ensembles - Gradient Boosting Decision Tree(GBDT)</a></li>
-      <li><a href="#八-参考文献" id="markdown-toc-八-参考文献">八. 参考文献</a></li>
+      <li><a href="#六-tree-ensembles---gradient-boosting-decision-treegbdt" id="markdown-toc-六-tree-ensembles---gradient-boosting-decision-treegbdt">六. Tree Ensembles - Gradient Boosting Decision Tree(GBDT)</a></li>
+      <li><a href="#七-参考文献" id="markdown-toc-七-参考文献">七. 参考文献</a></li>
     </ul>
   </li>
 </ul>
@@ -288,7 +306,8 @@ var _hmt = _hmt || [];
 
 <p>       在概率论和信息论中，两个随机变量的 <code class="highlighter-rouge">互信息（Mutual Information，简称MI）</code> 或<code class="highlighter-rouge"> 转移信息（transinformation）</code> 是变量间相互依赖性的量度。不同于相关系数，互信息并不局限于实值随机变量，它更加一般且决定着联合分布 <code class="highlighter-rouge">p(X,Y)</code> 和分解的边缘分布的乘积 <code class="highlighter-rouge">p(X)p(Y)</code> 的相似程度。互信息是 <code class="highlighter-rouge">点间互信息（PMI）</code> 的期望值。互信息最常用的单位是 <code class="highlighter-rouge">bit</code>。  <br />
        一般地，两个离散随机变量 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 的互信息可以定义为：
-\[ I(X;Y) = \sum_{y∈Y}\sum_{x∈X}{P(x,y)log(\frac{P(x,y)}{P(x)·P(y)})} \] 
+\[ 
+I(X;Y) = \sum_{y∈Y}\sum_{x∈X}{P(x,y)log(\frac{P(x,y)}{P(x)·P(y)})} \] 
 其中 <code class="highlighter-rouge">p(x,y)</code> 是 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 的联合概率分布函数，而 <code class="highlighter-rouge">P(x)</code> 和 <code class="highlighter-rouge">P(y)</code> 分别是 <code class="highlighter-rouge">X</code> 和 <code class="highlighter-rouge">Y</code> 的边缘概率分布函数。  <br />
 在连续随机变量的情形下，求和被替换成了二重定积分：
 \[ I(X;Y) = \int_{Y}\int_{X}{P(x,y)log(\frac{P(x,y)}{P(x)·P(y)})} {\rm d}x{\rm d}y \] 
@@ -312,7 +331,9 @@ var _hmt = _hmt || [];
 <p>       在信息论中，<code class="highlighter-rouge">熵</code>（英语：entropy）是接收的每条消息中包含的信息的平均量，又被称为<strong>信息熵</strong>、<strong>信源熵</strong>、<strong>平均自信息量</strong>。这里，“消息”代表来自分布或数据流中的事件、样本或特征。（熵最好理解为不确定性的量度而不是确定性的量度，因为越随机的信源的熵越大。）
 \[ H(X) = E[I(X)] = E[-ln[P(X)]] \] 
 其中，<code class="highlighter-rouge">P</code> 为 <code class="highlighter-rouge">X</code> 的概率质量函数（probability mass function），<code class="highlighter-rouge">E</code> 为期望函数，而 <code class="highlighter-rouge">I(X)</code> 是 <code class="highlighter-rouge">X</code> 的信息量（又称为自信息）。<code class="highlighter-rouge">I(X)</code> 本身是个随机变数。当取自有限的样本时，<strong>熵</strong>的公式可以表示为：
-\[ H(X) = \sum_{i} {P(x_i)I(x_i)} = -\sum_{i} {P(x_i)log_b{P(x_i)}} \] 
+\[ 
+H(X) = \sum_{i} {P(x_i)I(x_i)} = -\sum_{i} {P(x_i)log_b{P(x_i)}}
+ \] 
 可以定义事件 <code class="highlighter-rouge">X</code> 与 <code class="highlighter-rouge">Y</code> 分别取 <code class="highlighter-rouge">x_i</code> 和 <code class="highlighter-rouge">y_j</code> 时的<strong>条件熵</strong>为：
 \[ {H(X|Y)} = -\sum_{i,j}{P(x_i,y_j)·log[\frac{P(x_i,y_j)}{P(y_j)}]} \] 
 这个量应当理解为你知道Y的值前提下随机变量 X 的随机性的量。</p>
@@ -560,7 +581,7 @@ Measure of Impurity for 2-Class Problems:
 
 <h4 id="232-剪枝策略">2.3.2 剪枝策略</h4>
 
-<p>为了解决过拟合，<code class="highlighter-rouge">C4.5</code> 通过剪枝以减少模型的复杂度。一种简单剪枝策略，通过极小化决策树的整体损失函数（loss function）或代价函数（cost function）来实现，决策树 <code class="highlighter-rouge">T</code> 的损失函数为
+<p>       为了解决过拟合，<code class="highlighter-rouge">C4.5</code> 通过剪枝以减少模型的复杂度。一种简单剪枝策略，通过极小化决策树的整体损失函数（loss function）或代价函数（cost function）来实现，决策树 <code class="highlighter-rouge">T</code> 的损失函数为
 \[ L_\alpha(T) = C(T) + \alpha |T| \]
 其中，<code class="highlighter-rouge">C(T)</code> 表示决策树的训练误差，<code class="highlighter-rouge">α</code> 为调节参数，<code class="highlighter-rouge">|T|</code> 为模型的复杂度。当模型越复杂时，训练的误差就越小。上述定义的损失正好做了两者之间的权衡。</p>
 
@@ -578,18 +599,250 @@ Measure of Impurity for 2-Class Problems:
 
 <h2 id="三-tree-ensembles---cart">三. Tree Ensembles - CART</h2>
 
+<p>       <code class="highlighter-rouge">分类与回归树（Classification and Regression Trees, CART）</code> 是由四人帮<code class="highlighter-rouge">Leo Breiman</code>, <code class="highlighter-rouge">Jerome Friedman</code>, <code class="highlighter-rouge">Richard Olshen</code>与<code class="highlighter-rouge">Charles Stone</code>于1984年提出，既可用于分类也可用于回归。本文将主要介绍用于分类的<code class="highlighter-rouge">CART</code>。<code class="highlighter-rouge">CART</code> 被称为数据挖掘领域内里程碑式的算法。</p>
+
+<p>       不同于<code class="highlighter-rouge">C4.5</code>，<code class="highlighter-rouge">CART</code>本质是对特征空间进行二元划分（即<code class="highlighter-rouge">CART</code> 生成的决策树是一棵二叉树），并能够对<code class="highlighter-rouge">标量属性</code>（nominal attribute）与<code class="highlighter-rouge">连续属性</code>（continuous attribute）进行分裂。</p>
+
+<h3 id="cart-生成">CART 生成</h3>
+
+<p>决策树生成涉及到两个问题：如何选择最优特征属性进行分裂，以及停止分裂的条件是什么。</p>
+
+<h4 id="特征选择">特征选择</h4>
+
+<p><code class="highlighter-rouge">CART</code> 对特征属性进行二元分裂。特别地，当特征属性为标量或连续时，可选择如下方式分裂：样本记录满足条件则分裂给左子树，否则则分裂给右子树。</p>
+
+<p><strong>标量属性</strong></p>
+
+<p>进行分裂的条件可置为<code class="highlighter-rouge">不等于属性的某值</code>；比如，标量属性<code class="highlighter-rouge">Car Type</code>取值空间为<code class="highlighter-rouge">{Sports, Family, Luxury}</code>，二元分裂与多路分裂如下:</p>
+
+<p><img src="/assets/tree/tree_17.png" alt="1" /></p>
+
+<p><strong>连续属性</strong>  <br />
+条件可置为不大于<code class="highlighter-rouge">ε</code>；比如，连续属性<code class="highlighter-rouge">Annual Income</code>，<code class="highlighter-rouge">ε</code>取属性相邻值的平均值，其二元分裂结果如下：</p>
+
+<p><img src="/assets/tree/tree_18.png" alt="1" /></p>
+
+<p>接下来，需要解决的问题：应该选择哪种特征属性及定义条件，才能分类效果比较好。<code class="highlighter-rouge">CART</code> 采用 <code class="highlighter-rouge">Gini指数</code> 来度量分裂时的不纯度，之所以采用<code class="highlighter-rouge">Gini指数</code>，是因为较于熵而言其计算速度更快一些。对决策树的节点 <code class="highlighter-rouge">t</code>，<code class="highlighter-rouge">Gini指数</code>计算公式如下：
+\[ Gini(t) = 1 - \sum_{k} {p(c_k|t)^2} \]
+<code class="highlighter-rouge">Gini指数</code> 即为<code class="highlighter-rouge">1</code>与类别$ c_k $的概率平方之和的差值，反映了样本集合的不确定性程度。<code class="highlighter-rouge">Gini指数</code> 越大，样本集合的不确定性程度越高。分类学习过程的本质是样本不确定性程度的减少（即熵减过程），故应选择最小 <code class="highlighter-rouge">Gini指数</code> 的特征分裂。父节点对应的样本集合为 <code class="highlighter-rouge">D</code>，<code class="highlighter-rouge">CART</code> 选择特征 <code class="highlighter-rouge">A</code> 分裂为两个子节点，对应集合为 $D_L$ 与 $D_R$ ；分裂后的 <code class="highlighter-rouge">Gini指数</code> 定义如下：
+\[ 
+Gini(D,A) = \frac{\lvert{D_L}\rvert}{\lvert{D}\rvert}Gini(D_L) + \frac{\lvert{D_R}\rvert}{\lvert{D}\rvert}Gini(D_R) 
+\]
+其中，<code class="highlighter-rouge">|⋅|</code>表示样本集合的记录数量。如上图中的表格所示，当<code class="highlighter-rouge">Annual Income</code> 的分裂值取 <code class="highlighter-rouge">87</code> 时，则 <code class="highlighter-rouge">Gini指数</code> 计算如下：
+\[ 
+Gini(D,A) = \frac{4}{10}[1 - (\frac{1}{4})^2 - (\frac{3}{4})^2] + \frac{6}{10}[1 - (\frac{2}{6})^2 - (\frac{4}{6})^2] = 0.417
+\]</p>
+
+<h4 id="cart-算法">CART 算法</h4>
+
 <p>CART 算法过程如下：</p>
 
 <p><img src="/assets/tree/tree_10.png" alt="1" /></p>
 
-<h2 id="四-tree-ensembles---bagging">四. Tree Ensembles - Bagging</h2>
+<p><code class="highlighter-rouge">CART</code> 算法流程与 <code class="highlighter-rouge">C4.5</code> 算法相类似：</p>
+<blockquote>
+  <p>1.若满足停止分裂条件（样本个数小于预定阈值，或Gini指数小于预定阈值（样本基本属于同一类，或没有特征可供分裂），则停止分裂；
+    2.否则，选择最小Gini指数进行分裂；
+    3.递归执行1-2步骤，直至停止分裂。</p>
+</blockquote>
 
-<p>Bagging策略(bootstrap aggregating)套袋法</p>
+<h3 id="cart-剪枝">CART 剪枝</h3>
 
-<p>从N个样本中有放回的随机抽取n个样本。
-用这n个样本的所有属性构建基分类器（LR,ID3,C4.5,SVM）
-重复1,2两步m次，构建m个基分类器
-投票得出分类结果，哪个票最多就是哪一类。对回归模型，取多有基分类器结果的均值。总而言之就是所有基分类器的权重相同。</p>
+<p><code class="highlighter-rouge">CART</code> 剪枝与 <code class="highlighter-rouge">C4.5</code> 的剪枝策略相似，均以极小化整体损失函数实现。同理，定义决策树 <code class="highlighter-rouge">T</code> 的损失函数为：
+\[ L_α(T) = C(T) + α|T| \]
+其中，<code class="highlighter-rouge">C(T)</code> 表示决策树的训练误差，<code class="highlighter-rouge">α</code> 为调节参数，<code class="highlighter-rouge">|T|</code> 为模型的复杂度。
+CART算法采用递归的方法进行剪枝，具体办法：</p>
+
+<p>将α递增 $ 0 = α_0&lt;α_&lt;α_2&lt;…&lt;α_n $，计算得到对应于区间 $[α_i,α_i+1)$ 的最优子树为  $T_i$；  <br />
+从最优子树序列 ${T_1,T_2,⋯,T_n}$ 选出最优的（即损失函数最小的）。
+如何计算最优子树为 $T_i$ 呢？首先，定义以 <code class="highlighter-rouge">t</code> 为单节点的损失函数为
+\[ L_α(t) = C(t) + α \]
+以 <code class="highlighter-rouge">T</code> 为根节点的子树 <code class="highlighter-rouge">T_t</code> 的损失函数为
+\[ L_α(t) = C(t) + α \]
+为单节点的损失函数为
+\[ L_α(T_t) = C(T_t) + α|T_t| \]
+令$ L_α(t) = L_α(T_t) $
+则得到：
+\[ α = \frac{C(t) - C(T_α)}{|T_α| - 1} \]
+此时，单节点<code class="highlighter-rouge">t</code>与子树$T_t$有相同的损失函数，而单节点<code class="highlighter-rouge">t</code>的模型复杂度更小，故更为可取；同时也说明对节点 <code class="highlighter-rouge">t</code> 的剪枝为有效剪枝。由此，定义对节点<code class="highlighter-rouge">t</code>的剪枝后整体损失函数减少程度为：
+\[ 
+g(t) = \frac{C(t) - C(T_t)}{|T_t| - 1}
+\]</p>
+
+<p>剪枝流程如下：</p>
+
+<ul>
+  <li>对输入决策树 $T_0$，自上而下计算内部节点的<code class="highlighter-rouge">g(t)</code>；选择最小的 <code class="highlighter-rouge">g(t)</code> 作为 <code class="highlighter-rouge">α1</code> ，并进行剪枝得到树 $T_1$，其为区间 $[α_1,α_2)$ 对应的最优子树。</li>
+  <li>对树 $T_1$，再次自上而下计算内部节点的 <code class="highlighter-rouge">g(t)</code>… $α_2$…$T_2$…</li>
+  <li>如此递归地得到最优子树序列，采用交叉验证选取最优子树。</li>
+</ul>
+
+<h3 id="cart-笔记">CART 笔记</h3>
+
+<p>笔记是英文的，单词句子很简单就不做翻译了 。</p>
+
+<p>CART - Classificcation And Regression Tree</p>
+
+<ol>
+  <li>We have learned that a decision tree is a model that divides the input into a few regions.  <br />
+<img src="/assets/tree/tree_19.png" alt="1" /></li>
+  <li>If we only consider one-dimension &amp; variable x, how can we use a tree model for regression?
+<img src="/assets/tree/tree_20.png" alt="1" /></li>
+  <li>Training data $ D = {(x^{(1)}, y^{(1)}), (x^{(2)}, y^{(2)}), … , (x^{(n)}, y^{(n)})} $, we hope to learn a CART tree that minimize the fllowing cost function：\[ Loss = \min_{j,s} {[ \min_{C_1}{L(y^{(i)},C_1)}  +  \min_{C_2}{L(y^{(i)},C_2)}]} \] where \[ C_m = ave(y_i | x_i ∈ R_m) \] j: 选择第几个变量,  s: 何时进行分割。 <br />
+<img src="/assets/tree/tree_21.png" style="zoom:50%" />
+We find the best variable $x_j$ and cut points inorder to minize the loss function.\[ 
+Loss = \min_{j,s} {[ \min_{C_1}{\sum_{x ∈R_1(j,s)} {(y^{(i)} - C_1)^2}}  + \min_{C_2}{\sum_{x ∈R_2(j,s)} {(y^{(i)} - C_2)^2}} ]} 
+\] 
+where</li>
+</ol>
+<div>
+$$ R_1(j, s) = \{ x | x_j &lt;= s \} $$ 
+</div>
+<div>
+$$ R_2(j, s) = \left\{ x | x_j &gt; s \right\} $$
+</div>
+
+<p>\[ C_m = \frac{1}{N_m} \sum_{x ∈ R_m(j,s)}{y^{(i)}} , m = 1,2\]</p>
+
+<ol>
+  <li>An example</li>
+</ol>
+
+<table>
+  <tbody>
+    <tr>
+      <td>x</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>y</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="/assets/tree/tree_22.png" style="zoom:50%" />
+(j = 1)  <br />
+Given  s = 1.5
+$ R_1 = { 0 }  $, $ C_1 = 0 $
+$ R_2 = { 1, 2, …, 9 }  $, $ C_2 = 5 $
+\[ Loss(1.5) = 0^2 + \sum_{i = 1}^{9} {(i - 5)^2} \]</p>
+
+<p>Given  s = 4.5
+$ R_1 = { 0, 1, 2, 3 }  $, $ C_1 = 1.5 $
+$ R_2 = { 4, 5, 6, 7, 8, 9 }  $, $ C_2 = 6.5 $
+\[ Loss(4.5) =\sum_{i = 0}^{3} {(i - 5)^2} + \sum_{i = 4}^{9} {(i - 6.5)^2} \]
+calculate Loss(s) for s = 1.5, 2.5, …, 9.5 find the best cut point s.</p>
+
+<p>if no more than on variable, search (j = 1, …, n) with best cut point $s_j$</p>
+
+<h2 id="四-tree-ensembles---bagging-and-boosting">四. Tree Ensembles - Bagging And Boosting</h2>
+
+<h3 id="bootstrapping">Bootstrapping</h3>
+
+<p><code class="highlighter-rouge">Bootstrapping</code> 从字面意思翻译是拔靴法，从其内容翻译又叫自助法，是一种再抽样的统计方法。自助法的名称来源于英文短语 “to pull oneself up by one’s bootstrap”，表示完成一件不能自然完成的事情。1977年美国<code class="highlighter-rouge">Standford</code>大学统计学教授<code class="highlighter-rouge">Efron</code>提出了一种新的增广样本的统计方法，就是<code class="highlighter-rouge">Bootstrap</code>方法，为解决小子样试验评估问题提供了很好的思路。</p>
+
+<p>算法流程</p>
+
+<ol>
+  <li>从 <code class="highlighter-rouge">N</code> 个样本中有放回的随机抽取 <code class="highlighter-rouge">n</code> 个样本。</li>
+  <li>用 <code class="highlighter-rouge">n</code> 个样本计算统计量</li>
+  <li>重复1，2步骤 <code class="highlighter-rouge">m</code> 次，得到统计量</li>
+  <li>计算统计量序列的方差，则可得到统计量方差的无偏估计。（均值也是，<code class="highlighter-rouge">bootstrapping</code> 方法就是通过多次的随机采样得到可以代表母体样本分布的子样本分布）</li>
+</ol>
+
+<p>应该说是Bootstrap是现代统计学较为流行的方法，小样本效果好，通过方差的估计可以构造置信区间等。</p>
+
+<h3 id="bagging">Bagging</h3>
+
+<p><code class="highlighter-rouge">Bagging</code>即<code class="highlighter-rouge">套袋法</code>，可译为<code class="highlighter-rouge">自主整合法</code>，其算法过程如下：</p>
+
+<ol>
+  <li>从<code class="highlighter-rouge">N</code>个样本中有放回的随机抽取 <code class="highlighter-rouge">n</code> 个样本。</li>
+  <li>用这 <code class="highlighter-rouge">n</code> 个样本的所有属性构建基分类器（LR,ID3,C4.5,SVM）</li>
+  <li>重复1,2两步m次，构建m个基分类器</li>
+  <li>投票得出分类结果，哪个票最多就是哪一类。对回归模型，取多有基分类器结果的均值。总而言之就是所有基分类器的权重相同。</li>
+</ol>
+
+<h3 id="boosting">Boosting</h3>
+
+<p>　其主要思想是将弱分类器组装成强分类器。在PAC(概率近似正确)的框架下，则一定可以将一个弱分类器组装成一个强分类器。  <br />
+　
+　关于 Boosting 的两个核心问题：  <br />
+　
+　1. 在每一轮如何改变训练数据的权值或概率分布？  <br />
+	通过提高前一轮中被弱分类器分错样例的权值，减少前一轮对样例的权值，来使分类区对误分的数据有较好的效果。  <br />
+　
+　2. 通过什么方式在组合弱分类器？　 <br />
+　　通过加法模型将弱分类器线性组合，比如Aadaboost 通过加权多次表决的方式，即增大错误率小的分类器的权值，同时减小错误率大的分类器的权值。而提升树通过拟合残差的方式逐步减小误差，将每一步生成模型叠加得到最终模型。</p>
+
+<h3 id="bagging-和-boosting-二者之间的区别">Bagging 和 Boosting 二者之间的区别</h3>
+
+<p>Bagging和Boosting都是将已有的分类或回归算法通过一定方式组合起来，形成一个性能更加强大的分类器，更准确的说这是一种分类算法的组装方法。即将弱分类器组装成强分类器的方法。</p>
+
+<ol>
+  <li>
+    <p>样本选择上
+Bagging: 训练集在样本集中有放回选取，从原实际中选出的各轮训练集之间是独立的。
+Boosting: 每一轮的训练集不变，只是训练集中每一个样例在分类器中的权重发生变化。而权重是根据上一轮的分类结果进行调整的。</p>
+  </li>
+  <li>
+    <p>样例权重
+Bagging: 使用均匀取样，每个样例权重相等。
+Boosting: 根据错误率不断调整样本的权值，错误率却大则权重越大。</p>
+  </li>
+  <li>
+    <p>预测函数
+Bagging: 使所有预测函数的权重相等。
+Boosting: 每个弱分类器都有相应的权重，对于分类误差小的分类器，会有更大的权重。</p>
+  </li>
+  <li>
+    <p>并行计算
+Bagging: 各个误差函数可以并行生成。
+Boosting: 每个误差函数只能顺序生成，因为后一个模型参数需要前一轮模型结果。</p>
+  </li>
+</ol>
+
+<p>这两种方法都是把若干个分类器整合为一个分类器的方法，只是整合的方式不一样，最终得到不一样的效果，将不同的分类算法套入到此类算法框架中一定程度上会提高了原单一分类器的分类效果，但是也增大了计算量。</p>
+
+<p>下面是将决策树与这些算法框架进行结合所得到的新的算法：</p>
+
+<p>1）Bagging + 决策树 = 随机森林</p>
+
+<p>2）AdaBoost + 决策树 = 提升树</p>
+
+<p>3）Gradient Boosting + 决策树 = GBDT</p>
+
+<h3 id="gradient-boosting">Gradient Boosting</h3>
+
+<p><code class="highlighter-rouge">boosting</code> 是一种思想，<code class="highlighter-rouge">Gradient Boosting</code> 是一种实现 <code class="highlighter-rouge">Boosting</code> 的方法，它的主要思想是，每一次建立模型，是在之前建立模型损失函数的梯度下降方向。损失函数描述的是模型的不靠谱程度，损失函数越大，说明模型越容易出错。如果我们的模型能够让损失函数持续的下降，说明我们的模型在不停的改进，而最好的方式就是让损失函数在其梯度的方向下降。</p>
+
+<h3 id="面试题">面试题</h3>
+
+<blockquote>
+  <p>为什么说bagging是减少variance，而boosting是减少bias？</p>
+
+  <p><a href="https://www.zhihu.com/question/26760839/answer/40337791">答案参考</a></p>
+
+</blockquote>
 
 <h2 id="五-tree-ensembles---random-forest">五. Tree Ensembles - Random Forest</h2>
 
@@ -615,135 +868,18 @@ Measure of Impurity for 2-Class Problems:
 
 <p>森林中任意两棵树的相关性：相关性越大，错误率越大；
 森林中每棵树的分类能力：每棵树的分类能力越强，整个森林的错误率越低。
-　　减小特征选择个数m，树的相关性和分类能力也会相应的降低；增大m，两者也会随之增大。所以关键问题是如何选择最优的m（或者是范围），这也是随机森林唯一的一个参数。</p>
+　　减小特征选择个数m，树的相关性和分类能力也会相应的降低；增大m，两者也会随之增大。所以关键问题是如何选择最优的m（或者是范围），这也是随机森林唯一的一个参数。
+　　</p>
 
-<h2 id="六-tree-ensembles---boosting">六. Tree Ensembles - Boosting</h2>
+<h2 id="六-tree-ensembles---gradient-boosting-decision-treegbdt">六. Tree Ensembles - Gradient Boosting Decision Tree(GBDT)</h2>
 
-<p>Bootstrapping</p>
+<h2 id="七-参考文献">七. 参考文献</h2>
 
-<p>Bootstrapping从字面意思翻译是拔靴法，从其内容翻译又叫自助法，是一种再抽样的统计方法。自助法的名称来源于英文短语“to pull oneself up by one’s bootstrap”，表示完成一件不能自然完成的事情。1977年美国Standford大学统计学教授Efron提出了一种新的增广样本的统计方法，就是Bootstrap方法，为解决小子样试验评估问题提供了很好的思路。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1] 李航，《统计学习方法》
 
-<p>算法流程</p>
+[2] 陈云樱等, 《决策树中基于基尼指数的属性分裂方法》
 
-<p>从N个样本中有放回的随机抽取n个样本。
-用n个样本计算统计量
-重复1，2步骤m次，得到统计量
-计算统计量序列的方差，则可得到统计量方差的无偏估计。（均值也是，bootstrapping方法就是通过多次的随机采样得到可以代表母体样本分布的子样本分布）</p>
-
-<p>Boosting
-　其主要思想是将弱分类器组装成强分类器。在PAC(概率近似正确)的框架下，则一定可以将一个弱分类器组装成一个强分类器。
-　关于 Boosting 的两个核心问题：
-　1. 在每一轮如何改变训练数据的权值或概率分布？
-通过提高前一轮中被弱分类器分错样例的权值，减少前一轮对样例的权值，来使分类区对误分的数据有较好的效果。
-　
-　2. 通过什么方式在组合弱分类器？　
-　　通过加法模型将弱分类器线性组合，比如Aadaboost 通过加权多次表决的方式，即增大错误率小的分类器的权值，同时减小错误率大的分类器的权值。而提升树通过拟合残差的方式逐步减小误差，将每一步生成模型叠加得到最终模型。
-　　
-　　Bagging 和 Boosting 二者之间的区别
-　　1. 样本选择上
-Bagging: 训练集在样本集中有放回选取，从原实际中选出的各轮训练集之间是独立的。
-Boosting: 每一轮的训练集不变，只是训练集中每一个样例在分类器中的权重发生变化。而权重是根据上一轮的分类结果进行调整的。
-　　
-　　2. 样例权重
-Bagging: 使用均匀取样，每个样例权重相等。
-Boosting: 根据错误率不断调整样本的权值，错误率却大则权重越大。
-　　
-　　3. 预测函数
-Bagging: 使所有预测函数的权重相等。
-Boosting: 每个弱分类器都有相应的权重，对于分类误差小的分类器，会有更大的权重。
-　　
-　　4. 并行计算
-Bagging: 各个误差函数可以并行生成。
-Boosting: 每个误差函数只能顺序生成，因为后一个模型参数需要前一轮模型结果。</p>
-
-<h2 id="七-tree-ensembles---gradient-boosting-decision-treegbdt">七. Tree Ensembles - Gradient Boosting Decision Tree(GBDT)</h2>
-
-<h2 id="八-参考文献">八. 参考文献</h2>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>《 决策树中基于基尼指数的属性分裂方法 》 陈云樱等
 </code></pre></div></div>
-
-<p>　　OOB（Out Of Bag）袋外错误率</p>
-
-<p>在bootstrapping的过程中，有些数据可能没有被选择，这些数据称为out-of-bag(OOB) examples。</p>
-
-<p>解释一下上面这张图。一眼看还是挺难理解的，用白话讲一下。</p>
-
-<p>是什么？</p>
-
-<p>随机森林中每一次样本抽样（不是特征抽样），就是bootstrapping方法，是有放回的随机抽样，所以每一次抽的时候，对于一个特定的样本，抽到它的概率就是，很好理解，N个样本里随机抽取一个，抽到的概率当然是，因为是有放回的抽样，所以分母永远是N。</p>
-
-<p>是什么？</p>
-
-<p>既然被抽到的概率是，那不被抽到的概率就是,很好理解。那指数大N又是什么呢？其实就是抽样的次数。假设我们的随机森林一共有A颗树，每棵树抽了B个样本，那么指数大N就是，是不是感觉指数大N应该和分母的那个N一样？其实这里只是为了方便，它表达的意思就是抽了很多次。</p>
-
-<p>搞明白了那个公式之后，就可以开始计算了。要用到数学分析中的极限知识。一步步推一下。</p>
-
-<p>这是基本公式： 后面的都是基于这个变形</p>
-
-<p>这说明了什么呢？就是你随机森林已经造好了，但是即使你的训练集是整个样本集，其中也会有的样本你抽不到。为什么抽不到，上面的公式就是告诉你为什么抽不到。这些抽不到的样本就叫做out-of-bag(OOB) examples</p>
-
-<p>好了，到这里已经能搞懂什么是out-of-bag(OOB) examples了。那这些样本能用来做什么呢？下面就介绍oob袋外错误率。</p>
-
-<p>袋外错误率的应用</p>
-
-<p>正常情况下，我们训练一个模型，怎么验证它好不好。是不是要拿出一部分的数据集当作验证集，更好的还要拿出一部分当作测试集，一般是6:2:2。</p>
-
-<p>在随机森林中，有了out-of-bag(OOB) examples，我们就不需要拿出一部分数据了，out-of-bag(OOB) examples就是那部分没有用到的数据，我们可以直接当成验证集来使用。</p>
-
-<p>obb error = 被分类错误数 / 总数</p>
-
-<p>随机森林算法中不需要再进行交叉验证或者单独的测试集来获取测试集误差的无偏估计。</p>
-
-<p>Breiman [1996b]在对 bagged 分类器的错误率估计研究中, 给出实证证据显示，out-of-bag 估计 和使用与训练集大小一致的测试集所得到的错误率一样精确. 所以, 使用out-of-bag error 估计可以不在另外建立一个测试集.</p>
-
-<p>特征重要性度量</p>
-
-<p>计算某个特征X的重要性时，具体步骤如下：</p>
-
-<p>对整个随机森林，得到相应的袋外数据（out of bag，OOB）​计算袋外数据误差，记为errOOB1.</p>
-
-<p>所谓袋外数据是指，每次建立决策树时，通过重复抽样得到一个数据用于训练​决策树，这时还有大约1/3的数据没有被利用，没有参与决策树的建立。这部分数据可以用于对决策树的性能进行评估，计算模型的预测错误率，称为袋外数据误差。</p>
-
-<p>​这已经经过证明是无偏估计的,所以在随机森林算法中不需要再进行交叉验证或者单独的测试集来获取测试集误差的无偏估计。</p>
-
-<p>随机对袋外数据OOB所有样本的特征X加入噪声干扰（可以随机改变样本在特征X处的值），再次计算袋外数据误差，记为errOOB2。</p>
-
-<p>​假设森林中有N棵树，则特征X的重要性=∑errOOB2−errOOB1N∑errOOB2−errOOB1N。这个数值之所以能够说明特征的重要性是因为，如果加入随机噪声后，袋外数据准确率大幅度下降（即errOOB2上升），说明这个特征对于样本的预测结果有很大影响，进而说明重要程度比较高。
-特征选择</p>
-
-<p>在特征重要性的基础上，特征选择的步骤如下：</p>
-
-<p>计算每个特征的重要性，并按降序排序
-确定要剔除的比例，依据特征重要性剔除相应比例的特征，得到一个新的特征集
-用新的特征集重复上述过程，直到剩下m个特征（m为提前设定的值）。
-根据上述过程中得到的各个特征集和特征集对应的袋外误差率，选择袋外误差率最低的特征集。​
-优点</p>
-
-<p>在数据集上表现良好
-在当前的很多数据集上，相对其他算法有着很大的优势
-它能够处理很高维度（feature很多）的数据，并且不用做特征选择
-在训练完后，它能够给出哪些feature比较重要
-在创建随机森林的时候，对generlization error使用的是无偏估计
-训练速度快
-在训练过程中，能够检测到feature间的互相影响
-容易做成并行化方法
-实现比较简单
-可以得到变量重要性排序（两种：基于OOB误分率的增加量和基于分裂时的GINI下降量）
-随机森林有许多优点：</p>
-
-<p>具有极高的准确率
-随机性的引入，使得随机森林不容易过拟合
-随机性的引入，使得随机森林有很好的抗噪声能力
-能处理很高维度的数据，并且不用做特征选择
-既能处理离散型数据，也能处理连续型数据，数据集无需规范化
-训练速度快，可以得到变量重要性排序
-容易实现并行化
-随机森林的缺点：</p>
-
-<p>当随机森林中的决策树个数很多时，训练时需要的空间和时间会较大
-随机森林模型还有许多不好解释的地方，有点算个黑盒模型</p>
-
 
   <!-- 引入share模块 -->
   
