@@ -157,14 +157,14 @@ H(X) = \sum_{i} {P(x_i)I(x_i)} = -\sum_{i} {P(x_i)log_b{P(x_i)}}
 
 ### 1.4 Gini Split    
 
-&nbsp; &nbsp; &nbsp; &nbsp;对于给定样本集合 `D`，其`GINI Index`（基尼系数）为：
+&nbsp; &nbsp; &nbsp; &nbsp;对于给定样本集合 `D`，其 `GINI Index`（基尼系数）为：
 \\[ GINI(D) = 1 - \sum_{k=1}^K{[\frac{\lvert{C_k}\rvert}{\lvert{D}\rvert}]}^2 \\] 
-其中 `C_k` 是 `D` 中属于第 `k` 类的样本子集, `K` 是类的个数。    
+其中 $C_k$ 是 `D` 中属于第 `k` 类的样本子集, `K` 是类的个数。    
 
 >举个栗子:
-如果中有 `C_1` 类 `0` 个，`C_2` 类 `6` 个，则`GINI`系数为：
-\\[ GINI(C) = 1 - \sum_{i=1}^2{[\frac{\lvert{C_i}\rvert}{\lvert{D}\rvert}]}^2 = 1 - [[\frac{0}{6}]^2 + [\frac{6}{6}]^2] = 1 \\] 
-如果中有 `C_1` 类 `3` 个，`C_2` 类 `3` 个，则`GINI`系数为：
+如果中有 $C_1$ 类 `0` 个，$C_2$ 类 `6` 个，则`GINI`系数为：
+\\[ GINI(C) = 1 - \sum_{i=1}^2{[\frac{\lvert{C_i}\rvert}{\lvert{D}\rvert}]}^2 = 1 - [[\frac{0}{6}]^2 + [\frac{6}{6}]^2] = 0 \\] 
+如果中有 $C_1$ 类 `3` 个，$C_2$ 类 `3` 个，则`GINI`系数为：
 \\[ GINI(C) = 1 - \sum_{i=1}^2{[\frac{\lvert{C_i}\rvert}{\lvert{D}\rvert}]}^2 = 1 - [[\frac{3}{6}]^2 + [\frac{3}{6}]^2] = \frac{1}{2} \\]    
 
 基尼系数具有以下特点：    

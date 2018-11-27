@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-30T21:07:19+08:00</updated><id>http://localhost:4000/</id><title type="html">被水淹死的鱼</title><subtitle>个人技术微博</subtitle><author><name>true</name></author><entry><title type="html">Non-parameter model: Decision Tree</title><link href="http://localhost:4000/2018/10/28/Decision-Tree.html" rel="alternate" type="text/html" title="Non-parameter model: Decision Tree" /><published>2018-10-28T00:00:00+08:00</published><updated>2018-10-28T00:00:00+08:00</updated><id>http://localhost:4000/2018/10/28/Decision%20Tree</id><content type="html" xml:base="http://localhost:4000/2018/10/28/Decision-Tree.html">&lt;p&gt;[TOC]&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-11-19T20:29:20+08:00</updated><id>http://localhost:4000/</id><title type="html">被水淹死的鱼</title><subtitle>个人技术微博</subtitle><author><name>true</name></author><entry><title type="html">Non-parameter model: Decision Tree</title><link href="http://localhost:4000/2018/10/28/Decision-Tree.html" rel="alternate" type="text/html" title="Non-parameter model: Decision Tree" /><published>2018-10-28T00:00:00+08:00</published><updated>2018-10-28T00:00:00+08:00</updated><id>http://localhost:4000/2018/10/28/Decision%20Tree</id><content type="html" xml:base="http://localhost:4000/2018/10/28/Decision-Tree.html">&lt;p&gt;[TOC]&lt;/p&gt;
 
 &lt;h1 id=&quot;decision-tree-algorithm&quot;&gt;Decision Tree algorithm&lt;/h1&gt;
 
@@ -50,7 +50,15 @@
           &lt;li&gt;&lt;a href=&quot;#面试题&quot; id=&quot;markdown-toc-面试题&quot;&gt;面试题&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#五-tree-ensembles---random-forest&quot; id=&quot;markdown-toc-五-tree-ensembles---random-forest&quot;&gt;五. Tree Ensembles - Random Forest&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#五-tree-ensembles---random-forest&quot; id=&quot;markdown-toc-五-tree-ensembles---random-forest&quot;&gt;五. Tree Ensembles - Random Forest&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#随机森林-bagging-with-carts&quot; id=&quot;markdown-toc-随机森林-bagging-with-carts&quot;&gt;随机森林 (Bagging with CARTs)&lt;/a&gt;            &lt;ul&gt;
+              &lt;li&gt;&lt;a href=&quot;#定义&quot; id=&quot;markdown-toc-定义&quot;&gt;定义&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#算法&quot; id=&quot;markdown-toc-算法&quot;&gt;算法&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href=&quot;#优缺点&quot; id=&quot;markdown-toc-优缺点&quot;&gt;优缺点&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#六-tree-ensembles---gradient-boosting-decision-treegbdt&quot; id=&quot;markdown-toc-六-tree-ensembles---gradient-boosting-decision-treegbdt&quot;&gt;六. Tree Ensembles - Gradient Boosting Decision Tree(GBDT)&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#七-参考文献&quot; id=&quot;markdown-toc-七-参考文献&quot;&gt;七. 参考文献&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
@@ -221,15 +229,15 @@ H(X) = \sum_{i} {P(x_i)I(x_i)} = -\sum_{i} {P(x_i)log_b{P(x_i)}}
 
 &lt;h3 id=&quot;14-gini-split&quot;&gt;1.4 Gini Split&lt;/h3&gt;
 
-&lt;p&gt;       对于给定样本集合 &lt;code class=&quot;highlighter-rouge&quot;&gt;D&lt;/code&gt;，其&lt;code class=&quot;highlighter-rouge&quot;&gt;GINI Index&lt;/code&gt;（基尼系数）为：
+&lt;p&gt;       对于给定样本集合 &lt;code class=&quot;highlighter-rouge&quot;&gt;D&lt;/code&gt;，其 &lt;code class=&quot;highlighter-rouge&quot;&gt;GINI Index&lt;/code&gt;（基尼系数）为：
 \[ GINI(D) = 1 - \sum_{k=1}^K{[\frac{\lvert{C_k}\rvert}{\lvert{D}\rvert}]}^2 \] 
-其中 &lt;code class=&quot;highlighter-rouge&quot;&gt;C_k&lt;/code&gt; 是 &lt;code class=&quot;highlighter-rouge&quot;&gt;D&lt;/code&gt; 中属于第 &lt;code class=&quot;highlighter-rouge&quot;&gt;k&lt;/code&gt; 类的样本子集, &lt;code class=&quot;highlighter-rouge&quot;&gt;K&lt;/code&gt; 是类的个数。&lt;/p&gt;
+其中 $C_k$ 是 &lt;code class=&quot;highlighter-rouge&quot;&gt;D&lt;/code&gt; 中属于第 &lt;code class=&quot;highlighter-rouge&quot;&gt;k&lt;/code&gt; 类的样本子集, &lt;code class=&quot;highlighter-rouge&quot;&gt;K&lt;/code&gt; 是类的个数。&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;举个栗子:
-如果中有 &lt;code class=&quot;highlighter-rouge&quot;&gt;C_1&lt;/code&gt; 类 &lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt; 个，&lt;code class=&quot;highlighter-rouge&quot;&gt;C_2&lt;/code&gt; 类 &lt;code class=&quot;highlighter-rouge&quot;&gt;6&lt;/code&gt; 个，则&lt;code class=&quot;highlighter-rouge&quot;&gt;GINI&lt;/code&gt;系数为：
-\[ GINI(C) = 1 - \sum_{i=1}^2{[\frac{\lvert{C_i}\rvert}{\lvert{D}\rvert}]}^2 = 1 - [[\frac{0}{6}]^2 + [\frac{6}{6}]^2] = 1 \] 
-如果中有 &lt;code class=&quot;highlighter-rouge&quot;&gt;C_1&lt;/code&gt; 类 &lt;code class=&quot;highlighter-rouge&quot;&gt;3&lt;/code&gt; 个，&lt;code class=&quot;highlighter-rouge&quot;&gt;C_2&lt;/code&gt; 类 &lt;code class=&quot;highlighter-rouge&quot;&gt;3&lt;/code&gt; 个，则&lt;code class=&quot;highlighter-rouge&quot;&gt;GINI&lt;/code&gt;系数为：
+如果中有 $C_1$ 类 &lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt; 个，$C_2$ 类 &lt;code class=&quot;highlighter-rouge&quot;&gt;6&lt;/code&gt; 个，则&lt;code class=&quot;highlighter-rouge&quot;&gt;GINI&lt;/code&gt;系数为：
+\[ GINI(C) = 1 - \sum_{i=1}^2{[\frac{\lvert{C_i}\rvert}{\lvert{D}\rvert}]}^2 = 1 - [[\frac{0}{6}]^2 + [\frac{6}{6}]^2] = 0 \] 
+如果中有 $C_1$ 类 &lt;code class=&quot;highlighter-rouge&quot;&gt;3&lt;/code&gt; 个，$C_2$ 类 &lt;code class=&quot;highlighter-rouge&quot;&gt;3&lt;/code&gt; 个，则&lt;code class=&quot;highlighter-rouge&quot;&gt;GINI&lt;/code&gt;系数为：
 \[ GINI(C) = 1 - \sum_{i=1}^2{[\frac{\lvert{C_i}\rvert}{\lvert{D}\rvert}]}^2 = 1 - [[\frac{3}{6}]^2 + [\frac{3}{6}]^2] = \frac{1}{2} \]&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -596,7 +604,7 @@ calculate Loss(s) for s = 1.5, 2.5, …, 9.5 find the best cut point s.&lt;/p&gt
 
 &lt;h3 id=&quot;bootstrapping&quot;&gt;Bootstrapping&lt;/h3&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Bootstrapping&lt;/code&gt; 从字面意思翻译是拔靴法，从其内容翻译又叫自助法，是一种再抽样的统计方法。自助法的名称来源于英文短语 “to pull oneself up by one’s bootstrap”，表示完成一件不能自然完成的事情。1977年美国&lt;code class=&quot;highlighter-rouge&quot;&gt;Standford&lt;/code&gt;大学统计学教授&lt;code class=&quot;highlighter-rouge&quot;&gt;Efron&lt;/code&gt;提出了一种新的增广样本的统计方法，就是&lt;code class=&quot;highlighter-rouge&quot;&gt;Bootstrap&lt;/code&gt;方法，为解决小子样试验评估问题提供了很好的思路。&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Bootstrapping&lt;/code&gt; 从字面意思翻译是 &lt;code class=&quot;highlighter-rouge&quot;&gt;拔靴法&lt;/code&gt;，从其内容翻译又叫&lt;code class=&quot;highlighter-rouge&quot;&gt;自助法&lt;/code&gt;，是一种再抽样的统计方法。自助法的名称来源于英文短语 “to pull oneself up by one’s bootstrap”，表示完成一件不能自然完成的事情。1977年美国&lt;code class=&quot;highlighter-rouge&quot;&gt;Standford&lt;/code&gt;大学统计学教授&lt;code class=&quot;highlighter-rouge&quot;&gt;Efron&lt;/code&gt;提出了一种新的增广样本的统计方法，就是&lt;code class=&quot;highlighter-rouge&quot;&gt;Bootstrap&lt;/code&gt;方法，为解决小子样试验评估问题提供了很好的思路。&lt;/p&gt;
 
 &lt;p&gt;算法流程&lt;/p&gt;
 
@@ -611,7 +619,7 @@ calculate Loss(s) for s = 1.5, 2.5, …, 9.5 find the best cut point s.&lt;/p&gt
 
 &lt;h3 id=&quot;bagging&quot;&gt;Bagging&lt;/h3&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Bagging&lt;/code&gt;即&lt;code class=&quot;highlighter-rouge&quot;&gt;套袋法&lt;/code&gt;，可译为&lt;code class=&quot;highlighter-rouge&quot;&gt;自主整合法&lt;/code&gt;，其算法过程如下：&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Bagging&lt;/code&gt;即&lt;code class=&quot;highlighter-rouge&quot;&gt;套袋法&lt;/code&gt;，可译为&lt;code class=&quot;highlighter-rouge&quot;&gt;自主整合法&lt;/code&gt;，Booststrapping is any test or metric that relies on random sampling with replacement（放回式采样）。其算法过程如下：&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;从&lt;code class=&quot;highlighter-rouge&quot;&gt;N&lt;/code&gt;个样本中有放回的随机抽取 &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt; 个样本。&lt;/li&gt;
@@ -619,6 +627,8 @@ calculate Loss(s) for s = 1.5, 2.5, …, 9.5 find the best cut point s.&lt;/p&gt
   &lt;li&gt;重复1,2两步m次，构建m个基分类器&lt;/li&gt;
   &lt;li&gt;投票得出分类结果，哪个票最多就是哪一类。对回归模型，取多有基分类器结果的均值。总而言之就是所有基分类器的权重相同。&lt;/li&gt;
 &lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/tree/tree_23.png&quot; alt=&quot;1&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;boosting&quot;&gt;Boosting&lt;/h3&gt;
 
@@ -684,30 +694,68 @@ Boosting: 每个误差函数只能顺序生成，因为后一个模型参数需�
 
 &lt;h2 id=&quot;五-tree-ensembles---random-forest&quot;&gt;五. Tree Ensembles - Random Forest&lt;/h2&gt;
 
-&lt;p&gt;随机森林&lt;/p&gt;
+&lt;h3 id=&quot;随机森林-bagging-with-carts&quot;&gt;随机森林 (Bagging with CARTs)&lt;/h3&gt;
+
+&lt;h4 id=&quot;定义&quot;&gt;定义&lt;/h4&gt;
 
 &lt;p&gt;bagging方法可以有效降低模型的方差。随机森林每棵子树不需要剪枝，是低偏差高方差的模型，通过bagging降低方差后使得整个模型有较高的性能。&lt;/p&gt;
 
-&lt;p&gt;随机森林其实很简单，就是在bagging策略上略微改动了一下。&lt;/p&gt;
+&lt;h4 id=&quot;算法&quot;&gt;算法&lt;/h4&gt;
+&lt;p&gt;随机森林算法如下:&lt;/p&gt;
 
-&lt;p&gt;从N个样本中有放回的随机抽样n个样本。
-如果每个样本的特征维度为M，指定一个常数m«M，随机地从M个特征中选取m个特征子集，每次树（ID3,C4.5,CART）进行分裂时，从这m个特征中选择最优的(信息增益，信息增益比率，基尼系数)；
-每棵树都尽最大程度的生长，并且没有剪枝过程。
-最后采用投票表决的方式进行分类。
-特征m个数的选取：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;从N个样本中有放回的随机抽样n个样本。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;如果每个样本的特征维度为 M，指定一个常数 m«M，随机地从M个特征中选取m个特征子集，每次树（ID3,C4.5,CART）进行分裂时，从这m个特征中选择最优的(信息增益，信息增益比率，基尼系数)；&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;每棵树都尽最大程度的生长，并且没有剪枝过程。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;采用投票表决的方式进行分类。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;p&gt;用作分类时，m默认取，最小取1.&lt;/p&gt;
-
-&lt;p&gt;用作回归时，m默认取M/3，最小取5.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;特征m个数的选取：
+用作分类时，m默认取，最小取1.
+用作回归时，m默认取M/3，最小取5.&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;两个随机性的引入对随机森林的分类性能至关重要。由于它们的引入，使得随机森林不容易陷入过拟合，并且具有很好得抗噪能力（比如：对缺省值不敏感）。&lt;/p&gt;
 
-&lt;p&gt;随机森林分类效果（错误率）与两个因素有关：&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;随机森林分类效果（错误率）与两个因素有关：
+森林中任意两棵树的 &lt;code class=&quot;highlighter-rouge&quot;&gt;相关性&lt;/code&gt;：相关性越大，错误率越大；
+森林中每棵树的 &lt;code class=&quot;highlighter-rouge&quot;&gt;分类能力&lt;/code&gt;：每棵树的分类能力越强，整个森林的错误率越低。&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;p&gt;森林中任意两棵树的相关性：相关性越大，错误率越大；
-森林中每棵树的分类能力：每棵树的分类能力越强，整个森林的错误率越低。
-　　减小特征选择个数m，树的相关性和分类能力也会相应的降低；增大m，两者也会随之增大。所以关键问题是如何选择最优的m（或者是范围），这也是随机森林唯一的一个参数。
+&lt;p&gt;减小特征选择个数m，树的相关性和分类能力也会相应的降低；增大m，两者也会随之增大。所以关键问题是如何选择最优的m（或者是范围），这也是随机森林唯一的一个参数。
+　　
+&lt;img src=&quot;/assets/tree/tree_23.png&quot; alt=&quot;1&quot; /&gt;
 　　&lt;/p&gt;
+&lt;h4 id=&quot;优缺点&quot;&gt;优缺点&lt;/h4&gt;
+
+&lt;p&gt;随机森林优点：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;具有极高的准确率&lt;/li&gt;
+  &lt;li&gt;随机性的引入，使得随机森林不容易过拟合&lt;/li&gt;
+  &lt;li&gt;随机性的引入，使得随机森林有很好的抗噪声能力&lt;/li&gt;
+  &lt;li&gt;能处理很高维度的数据，并且不用做特征选择&lt;/li&gt;
+  &lt;li&gt;既能处理离散型数据，也能处理连续型数据，数据集无需规范化&lt;/li&gt;
+  &lt;li&gt;训练速度快，可以得到变量重要性排序&lt;/li&gt;
+  &lt;li&gt;容易实现并行化&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;随机森林缺点：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;当随机森林中的决策树个数很多时，训练时需要的空间和时间会较大&lt;/li&gt;
+  &lt;li&gt;随机森林模型还有许多不好解释的地方，有点算个黑盒模型&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;h2 id=&quot;六-tree-ensembles---gradient-boosting-decision-treegbdt&quot;&gt;六. Tree Ensembles - Gradient Boosting Decision Tree(GBDT)&lt;/h2&gt;
 

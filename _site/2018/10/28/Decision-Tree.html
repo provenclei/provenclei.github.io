@@ -212,7 +212,15 @@ var _hmt = _hmt || [];
           <li><a href="#面试题" id="markdown-toc-面试题">面试题</a></li>
         </ul>
       </li>
-      <li><a href="#五-tree-ensembles---random-forest" id="markdown-toc-五-tree-ensembles---random-forest">五. Tree Ensembles - Random Forest</a></li>
+      <li><a href="#五-tree-ensembles---random-forest" id="markdown-toc-五-tree-ensembles---random-forest">五. Tree Ensembles - Random Forest</a>        <ul>
+          <li><a href="#随机森林-bagging-with-carts" id="markdown-toc-随机森林-bagging-with-carts">随机森林 (Bagging with CARTs)</a>            <ul>
+              <li><a href="#定义" id="markdown-toc-定义">定义</a></li>
+              <li><a href="#算法" id="markdown-toc-算法">算法</a></li>
+              <li><a href="#优缺点" id="markdown-toc-优缺点">优缺点</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
       <li><a href="#六-tree-ensembles---gradient-boosting-decision-treegbdt" id="markdown-toc-六-tree-ensembles---gradient-boosting-decision-treegbdt">六. Tree Ensembles - Gradient Boosting Decision Tree(GBDT)</a></li>
       <li><a href="#七-参考文献" id="markdown-toc-七-参考文献">七. 参考文献</a></li>
     </ul>
@@ -383,15 +391,15 @@ H(X) = \sum_{i} {P(x_i)I(x_i)} = -\sum_{i} {P(x_i)log_b{P(x_i)}}
 
 <h3 id="14-gini-split">1.4 Gini Split</h3>
 
-<p>       对于给定样本集合 <code class="highlighter-rouge">D</code>，其<code class="highlighter-rouge">GINI Index</code>（基尼系数）为：
+<p>       对于给定样本集合 <code class="highlighter-rouge">D</code>，其 <code class="highlighter-rouge">GINI Index</code>（基尼系数）为：
 \[ GINI(D) = 1 - \sum_{k=1}^K{[\frac{\lvert{C_k}\rvert}{\lvert{D}\rvert}]}^2 \] 
-其中 <code class="highlighter-rouge">C_k</code> 是 <code class="highlighter-rouge">D</code> 中属于第 <code class="highlighter-rouge">k</code> 类的样本子集, <code class="highlighter-rouge">K</code> 是类的个数。</p>
+其中 $C_k$ 是 <code class="highlighter-rouge">D</code> 中属于第 <code class="highlighter-rouge">k</code> 类的样本子集, <code class="highlighter-rouge">K</code> 是类的个数。</p>
 
 <blockquote>
   <p>举个栗子:
-如果中有 <code class="highlighter-rouge">C_1</code> 类 <code class="highlighter-rouge">0</code> 个，<code class="highlighter-rouge">C_2</code> 类 <code class="highlighter-rouge">6</code> 个，则<code class="highlighter-rouge">GINI</code>系数为：
-\[ GINI(C) = 1 - \sum_{i=1}^2{[\frac{\lvert{C_i}\rvert}{\lvert{D}\rvert}]}^2 = 1 - [[\frac{0}{6}]^2 + [\frac{6}{6}]^2] = 1 \] 
-如果中有 <code class="highlighter-rouge">C_1</code> 类 <code class="highlighter-rouge">3</code> 个，<code class="highlighter-rouge">C_2</code> 类 <code class="highlighter-rouge">3</code> 个，则<code class="highlighter-rouge">GINI</code>系数为：
+如果中有 $C_1$ 类 <code class="highlighter-rouge">0</code> 个，$C_2$ 类 <code class="highlighter-rouge">6</code> 个，则<code class="highlighter-rouge">GINI</code>系数为：
+\[ GINI(C) = 1 - \sum_{i=1}^2{[\frac{\lvert{C_i}\rvert}{\lvert{D}\rvert}]}^2 = 1 - [[\frac{0}{6}]^2 + [\frac{6}{6}]^2] = 0 \] 
+如果中有 $C_1$ 类 <code class="highlighter-rouge">3</code> 个，$C_2$ 类 <code class="highlighter-rouge">3</code> 个，则<code class="highlighter-rouge">GINI</code>系数为：
 \[ GINI(C) = 1 - \sum_{i=1}^2{[\frac{\lvert{C_i}\rvert}{\lvert{D}\rvert}]}^2 = 1 - [[\frac{3}{6}]^2 + [\frac{3}{6}]^2] = \frac{1}{2} \]</p>
 </blockquote>
 
@@ -758,7 +766,7 @@ calculate Loss(s) for s = 1.5, 2.5, …, 9.5 find the best cut point s.</p>
 
 <h3 id="bootstrapping">Bootstrapping</h3>
 
-<p><code class="highlighter-rouge">Bootstrapping</code> 从字面意思翻译是拔靴法，从其内容翻译又叫自助法，是一种再抽样的统计方法。自助法的名称来源于英文短语 “to pull oneself up by one’s bootstrap”，表示完成一件不能自然完成的事情。1977年美国<code class="highlighter-rouge">Standford</code>大学统计学教授<code class="highlighter-rouge">Efron</code>提出了一种新的增广样本的统计方法，就是<code class="highlighter-rouge">Bootstrap</code>方法，为解决小子样试验评估问题提供了很好的思路。</p>
+<p><code class="highlighter-rouge">Bootstrapping</code> 从字面意思翻译是 <code class="highlighter-rouge">拔靴法</code>，从其内容翻译又叫<code class="highlighter-rouge">自助法</code>，是一种再抽样的统计方法。自助法的名称来源于英文短语 “to pull oneself up by one’s bootstrap”，表示完成一件不能自然完成的事情。1977年美国<code class="highlighter-rouge">Standford</code>大学统计学教授<code class="highlighter-rouge">Efron</code>提出了一种新的增广样本的统计方法，就是<code class="highlighter-rouge">Bootstrap</code>方法，为解决小子样试验评估问题提供了很好的思路。</p>
 
 <p>算法流程</p>
 
@@ -773,7 +781,7 @@ calculate Loss(s) for s = 1.5, 2.5, …, 9.5 find the best cut point s.</p>
 
 <h3 id="bagging">Bagging</h3>
 
-<p><code class="highlighter-rouge">Bagging</code>即<code class="highlighter-rouge">套袋法</code>，可译为<code class="highlighter-rouge">自主整合法</code>，其算法过程如下：</p>
+<p><code class="highlighter-rouge">Bagging</code>即<code class="highlighter-rouge">套袋法</code>，可译为<code class="highlighter-rouge">自主整合法</code>，Booststrapping is any test or metric that relies on random sampling with replacement（放回式采样）。其算法过程如下：</p>
 
 <ol>
   <li>从<code class="highlighter-rouge">N</code>个样本中有放回的随机抽取 <code class="highlighter-rouge">n</code> 个样本。</li>
@@ -781,6 +789,8 @@ calculate Loss(s) for s = 1.5, 2.5, …, 9.5 find the best cut point s.</p>
   <li>重复1,2两步m次，构建m个基分类器</li>
   <li>投票得出分类结果，哪个票最多就是哪一类。对回归模型，取多有基分类器结果的均值。总而言之就是所有基分类器的权重相同。</li>
 </ol>
+
+<p><img src="/assets/tree/tree_23.png" alt="1" /></p>
 
 <h3 id="boosting">Boosting</h3>
 
@@ -846,30 +856,68 @@ Boosting: 每个误差函数只能顺序生成，因为后一个模型参数需�
 
 <h2 id="五-tree-ensembles---random-forest">五. Tree Ensembles - Random Forest</h2>
 
-<p>随机森林</p>
+<h3 id="随机森林-bagging-with-carts">随机森林 (Bagging with CARTs)</h3>
+
+<h4 id="定义">定义</h4>
 
 <p>bagging方法可以有效降低模型的方差。随机森林每棵子树不需要剪枝，是低偏差高方差的模型，通过bagging降低方差后使得整个模型有较高的性能。</p>
 
-<p>随机森林其实很简单，就是在bagging策略上略微改动了一下。</p>
+<h4 id="算法">算法</h4>
+<p>随机森林算法如下:</p>
 
-<p>从N个样本中有放回的随机抽样n个样本。
-如果每个样本的特征维度为M，指定一个常数m«M，随机地从M个特征中选取m个特征子集，每次树（ID3,C4.5,CART）进行分裂时，从这m个特征中选择最优的(信息增益，信息增益比率，基尼系数)；
-每棵树都尽最大程度的生长，并且没有剪枝过程。
-最后采用投票表决的方式进行分类。
-特征m个数的选取：</p>
+<ol>
+  <li>
+    <p>从N个样本中有放回的随机抽样n个样本。</p>
+  </li>
+  <li>
+    <p>如果每个样本的特征维度为 M，指定一个常数 m«M，随机地从M个特征中选取m个特征子集，每次树（ID3,C4.5,CART）进行分裂时，从这m个特征中选择最优的(信息增益，信息增益比率，基尼系数)；</p>
+  </li>
+  <li>
+    <p>每棵树都尽最大程度的生长，并且没有剪枝过程。</p>
+  </li>
+  <li>
+    <p>采用投票表决的方式进行分类。</p>
+  </li>
+</ol>
 
-<p>用作分类时，m默认取，最小取1.</p>
-
-<p>用作回归时，m默认取M/3，最小取5.</p>
+<blockquote>
+  <p>特征m个数的选取：
+用作分类时，m默认取，最小取1.
+用作回归时，m默认取M/3，最小取5.</p>
+</blockquote>
 
 <p>两个随机性的引入对随机森林的分类性能至关重要。由于它们的引入，使得随机森林不容易陷入过拟合，并且具有很好得抗噪能力（比如：对缺省值不敏感）。</p>
 
-<p>随机森林分类效果（错误率）与两个因素有关：</p>
+<blockquote>
+  <p>随机森林分类效果（错误率）与两个因素有关：
+森林中任意两棵树的 <code class="highlighter-rouge">相关性</code>：相关性越大，错误率越大；
+森林中每棵树的 <code class="highlighter-rouge">分类能力</code>：每棵树的分类能力越强，整个森林的错误率越低。</p>
+</blockquote>
 
-<p>森林中任意两棵树的相关性：相关性越大，错误率越大；
-森林中每棵树的分类能力：每棵树的分类能力越强，整个森林的错误率越低。
-　　减小特征选择个数m，树的相关性和分类能力也会相应的降低；增大m，两者也会随之增大。所以关键问题是如何选择最优的m（或者是范围），这也是随机森林唯一的一个参数。
+<p>减小特征选择个数m，树的相关性和分类能力也会相应的降低；增大m，两者也会随之增大。所以关键问题是如何选择最优的m（或者是范围），这也是随机森林唯一的一个参数。
+　　
+<img src="/assets/tree/tree_23.png" alt="1" />
 　　</p>
+<h4 id="优缺点">优缺点</h4>
+
+<p>随机森林优点：</p>
+
+<ol>
+  <li>具有极高的准确率</li>
+  <li>随机性的引入，使得随机森林不容易过拟合</li>
+  <li>随机性的引入，使得随机森林有很好的抗噪声能力</li>
+  <li>能处理很高维度的数据，并且不用做特征选择</li>
+  <li>既能处理离散型数据，也能处理连续型数据，数据集无需规范化</li>
+  <li>训练速度快，可以得到变量重要性排序</li>
+  <li>容易实现并行化</li>
+</ol>
+
+<p>随机森林缺点：</p>
+
+<ol>
+  <li>当随机森林中的决策树个数很多时，训练时需要的空间和时间会较大</li>
+  <li>随机森林模型还有许多不好解释的地方，有点算个黑盒模型</li>
+</ol>
 
 <h2 id="六-tree-ensembles---gradient-boosting-decision-treegbdt">六. Tree Ensembles - Gradient Boosting Decision Tree(GBDT)</h2>
 
