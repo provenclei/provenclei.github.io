@@ -12,20 +12,25 @@
 `url` ：provenclei.github.io
 
 ### 内容
+Decision Tree（四）：随机森林和GBDT
 
-2018-10-28-Decision Tree
+Decision Tree（三）：CART, Bagging, Boosting
 
-2018-10-26-深度学习在自然语言处理中的应用综述
+Decision Tree（二）：ID3 和 C4.5
 
-2018-10-16-Naive Bayes
+Decision Tree（一）：基础知识
 
-2018-10-8-KNN
+深度学习在自然语言处理中的应用综述
 
-2018-10-6-Markdown语法
+Naive Bayes
 
-2018-05-18-hello-jekyll
+KNN
 
-2018-05-17-welcome-to-jekyll
+Markdown语法
+
+hello-jekyll
+
+welcome-to-jekyll
 
 ### 主题特性
 

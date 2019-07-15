@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Non-parameter model: Decision Tree（二）'
-date: 2018-10-28
+date: 2018-11-3
 author: 被水淹死的鱼
 color: blue
 cover: 'http://img5.imgtn.bdimg.com/it/u=3668605211,1052431768&fm=26&gp=0.jpg'
