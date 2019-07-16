@@ -7,7 +7,6 @@ color: grey
 cover: 'http://img5.imgtn.bdimg.com/it/u=3668605211,1052431768&fm=26&gp=0.jpg'
 tags: 机器学习
 ---
-[TOC]
 
 # Decision Tree algorithm（三）  
 
