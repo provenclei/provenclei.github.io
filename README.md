@@ -12,6 +12,8 @@
 `url` ：provenclei.github.io
 
 ### 内容
+Searching and Mining Trillions of Time Series Subsequences under Dynamic Time Warping 论文总结
+
 Decision Tree（四）：随机森林和GBDT
 
 Decision Tree（三）：CART, Bagging, Boosting
