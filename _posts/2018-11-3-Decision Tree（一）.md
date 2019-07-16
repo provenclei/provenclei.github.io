@@ -128,7 +128,7 @@ H(X) = \sum_{i} {P(x_i)I(x_i)} = -\sum_{i} {P(x_i)log_b{P(x_i)}}
 
 >举个栗子：    
 >对于一维数据来说：
->![1](/assets/tree/tree_3.png) 
+>![1](/assets/tree/tree_3.png)
 >\\[ 对总体的信息熵： ori-Entropy(x) = -\frac{1}{2}log\frac{1}{2} - \frac{1}{2}log\frac{1}{2} = 1 \\]
 > 对于`A`点来说，左边的信息熵用`A_1`表示，右边用`A_2`表示，则有
 > \\[ Entropy(A_1) = 0, Entropy(A_2) = -\frac{2}{7}log\frac{2}{7} - \frac{5}{7}log\frac{5}{7} \\]
