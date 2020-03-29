@@ -12,29 +12,35 @@
 `url` ：provenclei.github.io
 
 ### 内容
-Searching and Mining Trillions of Time Series Subsequences under Dynamic Time Warping 论文总结
+[TF-IDF原理、实现与应用](https://provenclei.github.io/2020/02/01/TF-IDF.html)
 
-Git 的使用
+[From Word Embeddings To Document Distances 论文总结](https://provenclei.github.io/2019/07/25/WMD.html)
 
-Decision Tree（四）：随机森林和GBDT
+[Searching and Mining Trillions of Time Series Subsequences under Dynamic Time Warping 论文总结](https://provenclei.github.io/2019/07/15/DTW.html)
 
-Decision Tree（三）：CART, Bagging, Boosting
+[An Empirical Evaluation of Generic Convolutional and Recurrent Networks for Sequence Modeling](https://provenclei.github.io/2019/07/10/TCN.html)
 
-Decision Tree（二）：ID3 和 C4.5
+[Git 的使用](https://provenclei.github.io/2019/07/05/Git.html)
 
-Decision Tree（一）：基础知识
+[Decision Tree（四）：随机森林和GBDT](https://provenclei.github.io/2018/11/04/Decision-Tree4.html)
 
-深度学习在自然语言处理中的应用综述
+[Decision Tree（三）：CART, Bagging, Boosting](https://provenclei.github.io/2018/11/04/Decision-Tree3.html)
 
-Naive Bayes
+[Decision Tree（二）：ID3 和 C4.5](https://provenclei.github.io/2018/11/03/Decision-Tree2.html)
 
-KNN
+[Decision Tree（一）：基础知识](https://provenclei.github.io/2018/11/03/Decision-Tree1.html)
 
-Markdown语法
+[深度学习在自然语言处理中的应用综述](https://provenclei.github.io/2018/10/26/Deep-Learning-in-NLP.html)
 
-hello-jekyll
+[Naive Bayes](https://provenclei.github.io/2018/10/15/Naive-Bayes.html)
 
-welcome-to-jekyll
+[KNN](https://provenclei.github.io/2018/10/08/KNN.html)
+
+[Markdown语法](https://provenclei.github.io/2018/10/06/Markdown.html)
+
+[hello-jekyll](https://provenclei.github.io/2018/05/17/welcome-to-jekyll.html)
+
+[welcome-to-jekyll](https://provenclei.github.io/2017/04/18/hello-jekyll.html)
 
 ### 主题特性
 
