@@ -14,12 +14,12 @@ nav: # 最佳体验 六个标签 且最好每个标签不超过4中文字
 
 # 博主
 author: true
-name: '滕大磊'
+name: '滕滕'
 NickName: 'MaoLongT'
 webtitle: '被水淹死的鱼'
-bio: '新浪微博@被水淹死的鱼'
+bio: '新浪微博@水淹死的鱼er'
 about: true
-aboutyou: '世界混沌不堪，毫无条理，没有任何意义。注意到了这一点却不想承认的人，从他们的祈求中萌发出了愿望，诸如希望世界变得有趣一点的愿望。软件开发三年有余，现自然语言处理专业的小学生。'
+aboutyou: '世界混沌不堪，毫无条理，没有任何意义。注意到了这一点却不想承认的人，从他们的祈求中萌发出了愿望，诸如希望世界变得有趣一点的愿望。'
 portraits: '/assets/profile.jpeg' # your portraits image file path
 
 markdown: kramdown
