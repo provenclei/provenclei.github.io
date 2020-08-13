@@ -5,7 +5,7 @@ date: 2020-3-18
 author: 被水淹死的鱼
 color: gray
 cover: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597163278649&di=a6870f1bbbb8415f58d9e8c2a746b4fe&imgtype=0&src=http%3A%2F%2Fwww.cbdio.com%2Fimage%2Fattachement%2Fjpg%2Fsite2%2F20150723%2Fbc305b9c2fb4171a92e010.jpg'
-tags: 大数据 Hadoop Streaming
+tags: 大数据 HadoopStreaming
 ---
 
 # Hadoop Streaming

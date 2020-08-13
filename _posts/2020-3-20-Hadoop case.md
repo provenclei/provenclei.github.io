@@ -4,7 +4,7 @@ title: 'Hadoop Case'
 date: 2020-3-20
 author: 被水淹死的鱼
 color: gray
-cover: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3869213443,2672154895&fm=26&gp=0.jpg'
+cover: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597164266687&di=7f8c892a4da8c5ebe9cf64d53068f075&imgtype=0&src=http%3A%2F%2Fattachbak.dataguru.cn%2Fattachments%2Fportal%2F201312%2F10%2F1247240batq2qo9uqeyyte.jpg'
 tags: 大数据 Hadoop
 ---
 
